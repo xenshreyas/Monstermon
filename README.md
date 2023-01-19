@@ -3,13 +3,13 @@
 ## <span style="color:AliceBlue"> **What will the application do?**
 
 <div style="text-align: justify">
-<p>The application will implement monster collection and battling. Monsters will have certain attributes such as names, types and health-points. The application will allow users to create and name monsters, choose their types and the amount of health-points they have. Then, they will be able to compose a team of 5 monsters that can battle amongst another team of 5 monsters. The application will then battle the two teams, and determine the victor of the battle. </p>
+<p>The application will implement monster collection and battling. Monsters will have certain attributes such as names, types and health-points. The application will allow users to create and name monsters, choose their types and the amount of health-points they have. Then, they will be able to compose a team of 5 monsters that can battle amongst another team of 5 monsters. The application will then battle the two teams, and determine the victor of the battle. The application can be closed and reopened, and all progress made will remain intact. As such, users can run the program anytime, anywhere and enjoy the world of Monstermon. </p>
 </div>
 
 ### <span style="color:Beige"> Monster Collection </span>
 
 <div style="text-align: justify">
-<p></p>
+<p>Monsters can be collected by creating a new Monster, with a name, type and health-points and adding it to a particular team. These teams can then be used to battle against each other.</p>
 </div>
 
 ### <span style="color:Beige"> Monster Battling </span>
@@ -34,4 +34,12 @@
 
 ## <span style="color:AliceBlue"> **Who will use it?**
 
+<div style="align: justify"> 
+<p>Those passionate about monster battling or fans of role-playing battle simulation games will use this application. This application can be enjoyed by people of all ages, as they create monsters and teams to strategically develop teams that can fight and win against other teams.</p>
+</div>
+
 ## <span style="color:AliceBlue"> **Why is this project of interest to you?**
+
+<div style="align: justify"> 
+<p>This project is of special interest to me as I have and will continue to be a massive fan of the Pokémon franchise. My love for the monster collection and battling franchise will only grow more by understanding the functionalities and implementation of incredible concepts of Pokémon. The engaging stories and adventure style of the Pokémon games always stood out to me, and helped me develop problem-solving skills and strategy. By making a smaller scale simulation under the Pokémon collection and battling theme, I hope to take my understanding of Pokémon and Java to a new level together.</p>
+</div>
