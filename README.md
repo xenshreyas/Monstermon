@@ -52,6 +52,7 @@
 <ul>
 <li>As a user, I want to have the ability to create unique monsters by assigning them a name, type and a specific number of health points. </li>
 <li>As a user, I want to be able to assemble a team of monsters, carefully selected from my collection. </li>
+<li>As a user, I want to have the ability to remove any monsters that do not meet my standards from my team, allowing me to fine-tune and optimize my team's composition.</li>
 <li>As a user, I want to be able to engage in thrilling battles against other teams of monsters.</li>
 <li>As a user, I want to be able to rename my team to give it a personal touch.</li>
 <li>As a user, I want to be able to view the characteristics of individual monsters within my team, such as their name, type and health points.</li>
@@ -59,3 +60,6 @@
 </div>
 
 ## <span style="color:AliceBlue"> **Future Plans**
+<div style="text-align: justify">
+<p>In the future, I plan to expand the Monstermon experience by adding more types of monsters to the game, and creating a more complex system of type advantages and disadvantages. Furthermore, I aim to enhance the user interface by implementing visually appealing sprites and other graphics that will make the game more immersive. Additionally, I want to develop a system that allows monsters to have specific Skill Values such as attack, defense, and speed adding yet another layer of strategy and depth to the battling experience.</p>
+</div>
