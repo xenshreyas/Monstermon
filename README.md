@@ -30,6 +30,7 @@
 ### <span style="color:Beige"> Implementation </span>
 <p>In code, the application would be implemented using two classes: Monster and Team. The Monster class would represent a monster, with its attributes being name, type and health-points. The Team class would be a list of Monster objects implemented using ArrayLists. The Team class would also have attributes, including name and the list of monsters it contains.</p>
 <p>The Monster class would have methods including renameMonster(), getHp() and getType(). The Team class would have methods including renameTeam(), addToTeam(), removeFromTeam() and battle(). </p>
+<p>These methods would help implement adding new monsters to a team, removing them from that team as well as simulating battles amongst those teams of monsters.</p>
 </div>
 
 ## <span style="color:AliceBlue"> **Who will use it?**
