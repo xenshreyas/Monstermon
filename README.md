@@ -3,7 +3,7 @@
 ## <span style="color:AliceBlue"> **What will the application do?**
 
 <div style="text-align: justify">
-<p>"Monstermon Adventures" is an application that brings the excitement of monster collection and battling to your fingertips. Create and customize your own monsters by giving them unique names, selecting their types, and assigning them health points. Assemble a team of 5 powerful monsters and challenge other players' teams to epic battles. The game will determine the victor and keep track of your progress, so you can pick up right where you left off whenever you want to play. Experience the thrill of monster collecting and battling anytime, anywhere with Monstermon. </p>
+<p>"Monstermon Adventures" is an application that brings the excitement of monster collection and battling to your fingertips. Create and customize your own monsters by giving them unique names, selecting their types, and assigning them health points. Assemble a team of 5 powerful monsters and challenge other teams to epic battles. The game will determine the victor and keep track of your progress, so you can pick up right where you left off whenever you want to play. Experience the thrill of monster collecting and battling anytime, anywhere with Monstermon. </p>
 </div>
 
 ### <span style="color:Beige"> Monster Collection </span>
@@ -15,7 +15,7 @@
 ### <span style="color:Beige"> Monster Battling </span>
 
 <div style="text-align: justify">
-<p>In Monstermon, monsters come in three different types: fire, water, and plant. Each monster has a base damage of 50, which is then multiplied by a type-specific multiplier during battle. If a monster has a type advantage over its opponent, its damage multiplier is increased to 1.5, while a type disadvantage results in a multiplier of 0.5. This creates an exciting and strategic element to the battles, as players must consider the types of their monsters and their opponents' to maximize their damage. </p>
+<p>In Monstermon, monsters come in three different types: fire, water, and grass. Each monster has a base damage of 50, which is then multiplied by a type-specific multiplier during battle. If a monster has a type advantage over its opponent, its damage multiplier is increased to 1.5, while a type disadvantage results in a multiplier of 0.5. This creates an exciting and strategic element to the battles, as players must consider the types of their monsters and their opponents' to maximize their damage. </p>
 </div>
 <div style="text-align: left">
 <p> Type advantages and disadvantages in Monstermon are calculated using the following system: </p>
@@ -25,7 +25,7 @@
 </div>
 
 <div style="text-align: justify">
-<p>Monstermon battles are intense one-on-one matchups between monsters. Each battle continues until one monster's health points are depleted, at which point the next monster from the opposing team enters the arena. This process continues until all the monsters on one team have been defeated, resulting in a victorious team. The tension and excitement build as players strategize and select their monsters, knowing that one false move could lead to defeat. </p>
+<p>Monstermon battles are intense one-on-one matchups between monsters. Each battle continues until one monster's health points are depleted, at which point the next monster from the respective team enters the arena. This process continues until all the monsters on one team have been defeated, resulting in a victorious team. The tension and excitement build as players strategize and select their monsters, knowing that one false move could lead to defeat. </p>
 </div>
 
 ### <span style="color:Beige"> Implementation </span>
@@ -61,5 +61,5 @@
 
 ## <span style="color:AliceBlue"> **Future Plans**
 <div style="text-align: justify">
-<p>In the future, I plan to expand the Monstermon experience by adding more types of monsters to the game, and creating a more complex system of type advantages and disadvantages. Furthermore, I aim to enhance the user interface by implementing visually appealing sprites and other graphics that will make the game more immersive. Additionally, I want to develop a system that allows monsters to have specific Skill Values such as attack, defense, and speed adding yet another layer of strategy and depth to the battling experience.</p>
+<p>In the future, I plan to expand the Monstermon universe by adding more types of monsters to the game, and creating a more complex system of type advantages and disadvantages. Furthermore, I aim to enhance the user interface by implementing visually appealing sprites and other graphics that will make the game more immersive. Additionally, I want to develop a system that allows monsters to have specific Skill Values such as attack, defense, and speed adding yet another layer of strategy and depth to the battling experience.</p>
 </div>
