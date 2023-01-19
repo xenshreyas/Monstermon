@@ -44,3 +44,5 @@
 <div style="align: justify"> 
 <p>This project is of special interest to me as I have and will continue to be a massive fan of the Pokémon franchise. My love for the monster collection and battling franchise will only grow more by understanding the functionalities and implementation of incredible concepts of Pokémon. The engaging stories and adventure style of the Pokémon games always stood out to me, and helped me develop problem-solving skills and strategy. By making a smaller scale simulation under the Pokémon collection and battling theme, I hope to take my understanding of Pokémon and Java to a new level together.</p>
 </div>
+
+## <span style="color:AliceBlue"> **User Stories**
