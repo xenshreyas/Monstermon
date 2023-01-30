@@ -55,7 +55,7 @@
 <li>As a user, I want to have the ability to create unique monsters by assigning them a name, type and a specific number of health points. </li>
 <li>As a user, I want to be able to assemble a team of monsters, carefully selected from my collection. </li>
 <li>As a user, I want to have the ability to remove any monsters that do not meet my standards from my team, allowing me to fine-tune and optimize my team's composition.</li>
-<li>As a user, I want to be able to rename my team to give it a personal touch.</li>
+<li>As a user, I want to be able to rename a monster or an entire team to give it a personal touch.</li>
 
 ### <span style="color:Beige"> Future Expansions </span>
 <li>As a user, I want to be able to engage in thrilling battles against other teams of monsters.</li>
