@@ -22,8 +22,8 @@ public class Team {
         return this.monsters;
     }
 
-    //MODIFIES: this
-    //EFFECTS: adds the monster to this team
+    // MODIFIES: this
+    // EFFECTS: adds the monster to this team
     public boolean addMonsterToTeam(Monster monster) {
         if (monsters.size() <= 4) {
             if (monsters.contains(monster)) {
@@ -37,8 +37,8 @@ public class Team {
         return false;
     }
 
-    //MODIFIES: this
-    //EFFECTS: removes the monster from this team
+    // MODIFIES: this
+    // EFFECTS: removes the monster from this team
     public boolean removeMonsterFromTeam(Monster monster) {
         if (monsters.size() > 0) {
             if (monsters.contains(monster)) {
@@ -49,8 +49,8 @@ public class Team {
         return false;
     }
 
-    //MODIFIES: this
-    //EFFECTS: renames this team to given name
+    // MODIFIES: this
+    // EFFECTS: renames this team to given name
     public void renameTeam(String name) {
         this.name = name;
     }
