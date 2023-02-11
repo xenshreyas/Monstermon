@@ -1,7 +1,6 @@
 package ui;
 
-import model.Monster;
-import model.Team;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +12,21 @@ public class MonstermonApp {
     private Scanner input;
     private List<Monster> allMonsters;
     private List<Team> allTeams;
-    
+    private String colorReset = "\u001B[37m";
+    private String colorPink = "\u001B[35m";
+    private String colorRed = "\033[0;31m";
+
+
     // EFFECTS: runs the monstermon application
     public MonstermonApp() {
-        runMonstermon();
+        try {
+            runMonstermon();
+        } catch (Exception e) {
+            System.out.println("It seems that something went wrong! We have taken you back to the main menu!");
+            displayMenu();
+        }
     }
-    
+
     // MODIFIES: this
     // EFFECTS: processes user input
     private void runMonstermon() {
@@ -31,16 +39,18 @@ public class MonstermonApp {
             displayMenu();
             command = input.nextLine();
             command = command.toLowerCase();
-            
+
             if (command.equals("/quit")) {
                 System.out.println("We hope you had a great adventure today. Goodbye!");
                 break;
             }
-            
+
             processCommand(command);
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes allTeams, allMonsters and creates an object to obtain user input from console
     private void init() {
         allTeams = new ArrayList<>();
         allMonsters = new ArrayList<>();
@@ -56,8 +66,8 @@ public class MonstermonApp {
         System.out.println("Welcome to the fascinating world of Monstermon!");
         System.out.println("My name is Mahogany. However, everyone just calls me the Monstermon Professor.");
         System.out.println("This world is widely inhabited by creatures known as Monstermon!");
-        System.out.println("We humans live alongside Monstermon as friends. At times we play together, and at other " +
-                "times, we work together.");
+        System.out.println("We humans live alongside Monstermon as friends. At times we play together, and at other "
+                + "times, we work together.");
         System.out.println("Some people use their Monstermon to battle and develop closer bonds with them!");
 
         System.out.println();
@@ -65,8 +75,8 @@ public class MonstermonApp {
         //       every time the app is opened. Not sure how I would do this though.
 
         System.out.println("All right. The time has come. Your very own tale of grand adventure is about to unfold!");
-        System.out.println("On your journey, you will meet countless monsters. I'm sure that along the way, " +
-                "you will discover many things, maybe even things that weren't meant to be discovered!");
+        System.out.println("On your journey, you will meet countless monsters. I'm sure that along the way, "
+                + "you will discover many things, maybe even things that weren't meant to be discovered!");
         System.out.println("Now, go on and leap into the world of Monstermon!");
         System.out.println();
         System.out.println();
@@ -74,10 +84,11 @@ public class MonstermonApp {
 
     // EFFECTS: displays the menu of options to user
     private void displayMenu() {
-        System.out.println("Choose an option: \t[If you haven't already, please take a look at the rules before you" +
-                " begin!]");
+        System.out.println("Choose an option: \t[If you haven't already, please take a look at the rules before you"
+                + " begin!]");
         System.out.println("/rules -> Rules");
         System.out.println("/newmonster -> Create New Monster");
+        System.out.println("/getcharacteristics -> Get Monster's Characteristics");
         System.out.println("/newteam -> Create New Team");
         System.out.println("/addmonster -> Add Monster to a Team");
         System.out.println("/removemonster -> Remove Monster from a Team");
@@ -86,6 +97,18 @@ public class MonstermonApp {
         System.out.println("/viewteams -> View all Teams");
         System.out.println("/viewmonsters -> View all Monsters");
         System.out.println("/quit -> Quit\n");
+    }
+
+    // EFFECTS: displays the rules to user
+    private void displayRules() {
+        System.out.println("Thank you for taking the time to look at the rules of Monstermon!");
+        System.out.println("The first step in playing Monstermon is to create a monster.");
+        System.out.println("In order to create a monster, you must decide its name, type and number of health points!");
+        System.out.println("A monster can be of one of three types: Fire, Water and Grass. "
+                + "\t\t\t[alpha: more types coming soon!]");
+        System.out.println("Your monster must have a minimum of 1 health point, and a maximum of 400."
+                + "\t[alpha: attack, defense and speed coming soon!]");
+        System.out.println("That's about it! Now, go on and leap into the world of Monstermon!\n");
     }
 
     // MODIFIES: this
@@ -109,6 +132,8 @@ public class MonstermonApp {
             viewAllTeams();
         } else if (command.equals("/newteam")) {
             createTeam();
+        } else if (command.equals("/getcharacteristics")) {
+            getMonsterCharacteristics();
         } else {
             System.out.println("Invalid input! Please try again!\n");
         }
@@ -150,8 +175,8 @@ public class MonstermonApp {
     // EFFECTS: displays all the monsters in the given team
     private void printMonsters(Team t) {
         for (Monster m : t.getAllMonsters()) {
-            List <Monster> allMonstersInTeam = t.getAllMonsters();
-            if (allMonstersInTeam.indexOf(m) == allMonstersInTeam.size()-1) {
+            List<Monster> allMonstersInTeam = t.getAllMonsters();
+            if (allMonstersInTeam.indexOf(m) == allMonstersInTeam.size() - 1) {
                 System.out.print(m.getName());
             } else {
                 System.out.print(m.getName() + ", ");
@@ -160,21 +185,16 @@ public class MonstermonApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: creates a new team
-    private void createTeam() {
-        System.out.println("What is this team's name?");
-        String teamName = input.nextLine();
-        Team t = new Team(teamName);
-        allTeams.add(t);
-        System.out.println("Team successfully created!");
-        System.out.println();
-    }
-
-    // MODIFIES: this
-    // EFFECTS: renames a particular team
+    // EFFECTS: prints all teams available, renames a particular team. If no team of the inputted name is made,
+    //          prints that the team doesn't exist
     private void renameTeam() {
         System.out.println("Which team would you like to rename?");
         viewAllTeams();
+        if (allTeams.size() == 0) {
+            createTeam();
+            viewAllTeams();
+            System.out.println("Which team would you like to rename?");
+        }
         String teamName = input.nextLine();
         System.out.println("What would you like to rename " + teamName + " to?");
         String newName = input.nextLine();
@@ -191,10 +211,16 @@ public class MonstermonApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: renames a particular monster
+    // EFFECTS: prints all monsters available, renames a particular monster. If no monster of the inputted name is made,
+    //          prints that the monster doesn't exist
     private void renameMonster() {
         System.out.println("Which monster would you like to rename?");
         viewAllMonsters();
+        if (allMonsters.size() == 0) {
+            createMonster();
+            viewAllMonsters();
+            System.out.println("Which monster would you like to rename?");
+        }
         String monsterName = input.nextLine();
         System.out.println("What would you like to rename " + monsterName + " to?");
         String newName = input.nextLine();
@@ -211,45 +237,57 @@ public class MonstermonApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: removes a particular monster from a particular team
-    private void removeMonsterFromTeam() {
-        Monster m = getParticularMonsterToRemove();
-        Team t = getParticularTeam();
-        if (t.getAllMonsters().size() == 0) {
-            System.out.println("This team is empty! Try another team!");
-            return;
-        }
-        else if (!t.getAllMonsters().contains(m)) {
-            System.out.println("That monster is not in this team!");
-            return;
-        }
-        t.removeMonsterFromTeam(m);
+    // EFFECTS: gets a monster to remove, if no monsters exist, redirects user to create a monster
+    private Monster getParticularMonsterToRemove() {
+        checkMonstersNotEmpty();
+        System.out.println("What is the name of the monster to remove?");
+        viewAllMonsters();
+        String monsterName = input.nextLine();
+        return findMonster(monsterName);
     }
 
-    // EFFECTS: gets a particular team
+    // MODIFIES: this
+    // EFFECTS: gets a particular team that a monster is attempted to be removed from
     private Team getParticularTeam() {
-        checkTeamsNotEmpty();
+        checkAtLeastOneTeamExists();
         System.out.println("What is the name of the team to remove the monster from?");
+        viewAllTeams();
         String teamName = input.nextLine();
         return findTeam(teamName, "removeTeam");
     }
 
     // MODIFIES: this
-    // EFFECTS: checks that there is at least one team that exists, if not, redirects user to create a new team
-    private void checkTeamsNotEmpty() {
-        if (allTeams.size() == 0) {
-            System.out.println("You have not created any teams, please create one first!");
-            createTeam();
-        }
+    // EFFECTS: gets the team that the monster is attempted to be added to
+    private Team getTeam() {
+        checkAtLeastOneTeamExists();
+        System.out.println("Which team would you like to add this monster to?");
+        viewAllTeams();
+        String teamName = input.nextLine();
+        return findTeam(teamName, "getTeam");
     }
 
     // MODIFIES: this
-    // EFFECTS: gets a monster to remove, if no monsters exist, redirects user to create a monster
-    private Monster getParticularMonsterToRemove() {
-        checkMonstersNotEmpty();
-        System.out.println("What is the name of the monster to remove?");
+    // EFFECTS: gets the monster that is attempted to be added
+    private Monster getMonster() {
+        viewAllMonsters();
+        if (allMonsters.size() == 0) {
+            System.out.println("Since you haven't created any monsters, you now have the opportunity to make one!");
+            createMonster();
+            viewAllMonsters();
+        }
+        System.out.println("Which monster would you like to add to a team?");
         String monsterName = input.nextLine();
-        return findMonster(monsterName);
+        for (Monster m : allMonsters) {
+            if (monsterName.equals(m.getName())) {
+                return m;
+            }
+        }
+        if (monsterName.equals("%20Mew%20")) {
+            return triggerEvent();
+        }
+        System.out.println("No monsters with that name were found! Please try again!");
+        System.out.println();
+        return getMonster();
     }
 
     // MODIFIES: this
@@ -268,12 +306,20 @@ public class MonstermonApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: checks that at least one monster exists, if not, redirects user to make a new monster
-    private void checkMonstersNotEmpty() {
-        if (allMonsters.size() == 0) {
-            System.out.println("You have not created any monsters, please create one first!");
-            createMonster();
+    // EFFECTS: TODO: make this better
+    private Team findTeam(String teamName, String calledBy) {
+        for (Team t : allTeams) {
+            if (teamName.equals(t.getTeamName())) {
+                return t;
+            }
         }
+        System.out.println("No teams with that name were found! Please try again!");
+        viewAllTeams();
+        System.out.println();
+        if (calledBy.equals("getTeam")) {
+            return getTeam();
+        }
+        return getParticularTeam();
     }
 
     // MODIFIES: this
@@ -284,6 +330,40 @@ public class MonstermonApp {
         checkTeamUnderCapacity(t);
         checkMonsterInTeamAlready(t, m);
         t.addMonsterToTeam(m);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: removes a particular monster from a particular team, if it exists in that team, otherwise prints that
+    //          the team is empty or that monster is not in that team
+    private void removeMonsterFromTeam() {
+        Monster m = getParticularMonsterToRemove();
+        Team t = getParticularTeam();
+        if (t.getAllMonsters().size() == 0) {
+            System.out.println("This team is empty! Try another team!");
+            return;
+        } else if (!t.getAllMonsters().contains(m)) {
+            System.out.println("That monster is not in this team!");
+            return;
+        }
+        t.removeMonsterFromTeam(m);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: checks that there is at least one team that exists, if not, redirects user to create a new team
+    private void checkAtLeastOneTeamExists() {
+        if (allTeams.size() == 0) {
+            System.out.println("You do not have any existing teams, please create one first!");
+            createTeam();
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: checks that at least one monster exists, if not, redirects user to make a new monster
+    private void checkMonstersNotEmpty() {
+        if (allMonsters.size() == 0) {
+            System.out.println("You have not created any monsters, please create one first!");
+            createMonster();
+        }
     }
 
     // EFFECTS: checks whether a team is under capacity
@@ -302,25 +382,6 @@ public class MonstermonApp {
         }
     }
 
-    // EFFECTS: gets the monster that is attempted to be added
-    private Monster getMonster() {
-        System.out.println("Which monster would you like to add to a team?");
-        viewAllMonsters();
-        String monsterName = input.nextLine();
-        for (Monster m : allMonsters) {
-            if (monsterName.equals(m.getName())) {
-                return m;
-            }
-        }
-        if (monsterName.equals("%20Mew%20")) {
-            return triggerEvent();
-        }
-        System.out.println("No monsters with that name were found! Please try again!");
-        viewAllMonsters();
-        System.out.println();
-        return getMonster();
-    }
-
     // EFFECTS: displays secret event
     private Monster triggerEvent() {
         System.out.println("You feel dizzy... s.m..hing is ha..eni.g...");
@@ -334,17 +395,23 @@ public class MonstermonApp {
     private Monster interaction(Monster mew) {
         System.out.println("You have been magically transported to the land of Pokémon!");
         System.out.println("You encounter a majestic beast! It looks almost... divine.");
-        System.out.println("???: \"Ş̴̛͔̮̤͙͔̬̺̯̓́̔̉̈̒̈͜͝C̴̨̻̰̞͔̮̟̝͙͕̓̅̓̓͘R̴̡̛̬̖͈̼̭̿̌͊̇͂̄̓͝͝Ȩ̸̯̱̘̭̾̿E̸̹̜͉͙̭͎͖̐͋̐̈́̋̽͊̋̚È̷͇͖̬̟͚̃̋̐̉́̔́̈́̕Ę̴̛̫̫̭̳̣̾̆̄͛̄̈́̌E̸̵̩̭̬͓̻͚̘̾͆́͑͑̆̄̓̑̈́̒͗̋̋̚\"");
+        System.out.println(colorPink
+                + "???: "
+                + "\"S̴͔̬̺̯̓́̔̉̈̒̈͝C̴̨̮̟̝͙͕̓̅̓R̷̴̡̛̛̬̖͈̼̹̜͉͙̭͎͖͇͖̬̟͚̫̫͂̄̓̐͋̐̈́̋̽͊̋̀̃̋̐̉́̔́̈́̾̆̄͛̄̈́̌̚̕͝E̸E̵̩̭̬͓̻̘̓̑̈́̚\""
+                + colorReset);
         System.out.println("You have no idea what it's trying to say!");
         System.out.println("You: \"What are you!\"");
-        System.out.println("???: \"I am Mew. This is my world. You are \uD835\uDD93\uD835\uDD94\uD835\uDD99 " +
-                "welcome.\"");
+        System.out.println(colorPink + "???: \"I am Mew. This is my world. You are "
+                + "not welcome.\"" + colorReset);
         System.out.println("You: \"I don't even know how I got here!\"");
-        System.out.println("Mew: \"You were transported to this land for breaking the rules of Monstermon.\"");
-        System.out.println("You: \"I apologize! It was a typo I swear to God, I mean, I swear to ... " +
-                "\uD835\uDCCE\uD835\uDC5C\uD835\uDCCA?\"");
-        System.out.println("Mew: \"I believe you. You seem interesting... I wonder, could you be the one...\"");
-        System.out.println("Mew: \"Tell me child, was it you that solved CPSC-110's PSet 9?\" \t\t\t [Y/N]");
+        System.out.println(colorPink + "Mew: \"You were transported to this land for breaking the rules of Monstermon."
+                + "\"" + colorReset);
+        System.out.println("You: \"I apologize! It was a typo I swear to God, I mean, I swear to ... "
+                + "you?\"");
+        System.out.println(colorPink + "Mew: \"I believe you. You seem interesting... "
+                + "I wonder, could you be the one...\"");
+        System.out.println("Mew: \"Tell me child, was it you that solved CPSC-110's PSet 9?\"" + colorReset
+                + "\t\t\t [Y/N]");
         return (initiateDiscussion(mew));
     }
 
@@ -352,66 +419,19 @@ public class MonstermonApp {
     private Monster initiateDiscussion(Monster mew) {
         String answer = input.nextLine().toLowerCase();
         if (answer.equals("y")) {
-            System.out.println("Mew: \"...\"");
+            System.out.println(colorPink + "Mew: \"...\"" + colorReset);
             System.out.println("You captured Mew!");
             return mew;
         } else if (answer.equals("n")) {
-            System.out.println("Mew: \"Perhaps you aren't the hero of legend...\"");
+            System.out.println(colorPink + "Mew: \"Perhaps you aren't the hero of legend...\"" + colorReset);
             System.out.println();
-            System.out.println("Monstermon Adventures has suddenly stopped responding!");
+            System.out.println(colorRed + "Monstermon Adventures has suddenly stopped responding!" + colorReset);
             System.exit(0);
         } else {
             System.out.println("You're talking to the literal God of Pokémon, pay your respects!");
             System.out.println("Mew: \"Hm?\"");
         }
         return initiateDiscussion(mew);
-    }
-
-    // EFFECTS: gets the team that the monster is attempted to be added to
-    private Team getTeam() {
-        checkAtLeastOneTeamExists();
-        System.out.println("Which team would you like to add this monster to?");
-        viewAllTeams();
-        String teamName = input.nextLine();
-        Team t = findTeam(teamName, "getTeam");
-        return t;
-    }
-
-    // EFFECTS:
-    private Team findTeam(String teamName, String calledBy) {
-        for (Team t : allTeams) {
-            if (teamName.equals(t.getTeamName())) {
-                return t;
-            }
-        }
-        System.out.println("No teams with that name were found! Please try again!");
-        viewAllTeams();
-        System.out.println();
-        if (calledBy.equals("getTeam")) {
-            return getTeam();
-        }
-        return getParticularTeam();
-    }
-
-    // MODIFIES: this
-    // EFFECTS: makes sure that at least one team exists
-    private void checkAtLeastOneTeamExists() {
-        if (allTeams.size() == 0) {
-            System.out.println("You do not have any existing teams, please create one first!");
-            createTeam();
-        }
-    }
-
-    // EFFECTS: displays the rules to user
-    private void displayRules() {
-        System.out.println("Thank you for taking the time to look at the rules of Monstermon!");
-        System.out.println("The first step in playing Monstermon is to create a monster.");
-        System.out.println("In order to create a monster, you must decide its name, type and number of health points!");
-        System.out.println("A monster can be of one of three types: Fire, Water and Grass. " +
-                "\t\t\t[alpha: more types coming soon!]");
-        System.out.println("Your monster must have a minimum of 1 health point, and a maximum of 400." +
-                "\t[alpha: attack, defense and speed coming soon!]");
-        System.out.println("That's about it! Now, go on and leap into the world of Monstermon!\n");
     }
 
     // MODIFIES: this
@@ -422,8 +442,7 @@ public class MonstermonApp {
         String name = input.nextLine();
         System.out.println("What is your monster's type? \t\t[FIRE/GRASS/WATER]");
         String type = input.nextLine().toLowerCase();
-        System.out.println("How many health points does your monster have? \t[1-400]");
-        int hp = input.nextInt();
+        int hp = getHealthPoints();
 
         if (type.equals("fire") && hp > 0 && hp <= 400) {
             Monster m = new Monster(name, FIRE, hp);
@@ -440,4 +459,75 @@ public class MonstermonApp {
         input.nextLine();
         System.out.println();
     }
+
+    // EFFECTS: gets the heatlh points from the user for the monster
+    private int getHealthPoints() {
+        int hp;
+        while (true) {
+            try {
+                System.out.println("How many health points does your monster have? \t[1-400]");
+                hp = input.nextInt();
+                break;
+            } catch (Exception e) {
+                System.out.println("That is not a valid number of health points.");
+                input.nextLine();
+            }
+        }
+        return hp;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates a new team
+    private void createTeam() {
+        System.out.println("Wonderful! You have decided to make a new team!");
+        System.out.println("What is this team's name?");
+        String teamName = input.nextLine();
+        Team t = new Team(teamName);
+        allTeams.add(t);
+        System.out.println("Team successfully created!");
+        System.out.println();
+    }
+
+    // TODO: From here on, implementations are for further expansions.
+
+    private void getMonsterCharacteristics() {
+        System.out.println("Which monster's characteristics would you like to view?");
+        viewAllMonsters();
+        if (allMonsters.size() == 0) {
+            System.out.println("You have not created any monsters yet! Please create one first.");
+            createMonster();
+            viewAllMonsters();
+        }
+        String monsterName = input.nextLine();
+        Monster m = findMonster(monsterName);
+        MonsterType monsterType = m.getType();
+
+        String monsterTypeInString;
+        if (monsterType == FIRE) {
+            monsterTypeInString = "Fire";
+        } else if (monsterType == WATER) {
+            monsterTypeInString = "Water";
+        } else {
+            monsterTypeInString = "Grass";
+        }
+        int monsterHealthPoints = m.getHealthPoints();
+        System.out.println(m.getName() + "'s characteristics: ");
+        System.out.println("\t Type: " + monsterTypeInString);
+        System.out.println("\t HP: " + monsterHealthPoints);
+    }
+
+    private void clearAllMonsters() {
+        System.out.println("\"Are you ABSOLUTELY CERTAIN, with every fiber of your being, that you desire to "
+                + "ERADICATE and ANNIHILATE each and every one of those TINY, INNOCENT creatures that you TOILED OVER, "
+                + "pouring HEART and SOUL into CREATING with UNBELIEVABLE AMOUNTS of TIME and EFFORT?!!!\" \t [Y/N]");
+        String choice = input.nextLine().toLowerCase();
+        if (choice.equals("y")) {
+            allMonsters.clear();
+        } else if (choice.equals("n")) {
+            displayMenu();
+        } else {
+            System.out.println("Invalid input! Please try again!");
+        }
+    }
+
 }

@@ -6,7 +6,7 @@ public class Monster {
     private MonsterType type;
     private int healthPoints;
 
-    private final int BASE_DAMAGE = 50;
+    private final int baseDamage = 50;
 
     public Monster(String name) {
         this.name = name;
@@ -20,6 +20,7 @@ public class Monster {
     }
 
     //getters
+
     public String getName() {
         return this.name;
     }

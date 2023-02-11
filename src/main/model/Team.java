@@ -14,6 +14,7 @@ public class Team {
     }
 
     //getters
+
     public String getTeamName() {
         return this.name;
     }
