@@ -15,10 +15,12 @@ public class Team {
 
     //getters
 
+    // EFFECTS: gets the name of this team
     public String getTeamName() {
         return this.name;
     }
 
+    // EFFECTS: gets the list of all monsters on this team
     public List<Monster> getAllMonsters() {
         return this.monsters;
     }

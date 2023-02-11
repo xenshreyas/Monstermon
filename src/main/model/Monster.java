@@ -21,14 +21,17 @@ public class Monster {
 
     //getters
 
+    // EFFECTS: gets the name of this monster
     public String getName() {
         return this.name;
     }
 
+    // EFFECTS: gets the type of this monster
     public MonsterType getType() {
         return this.type;
     }
 
+    // EFFECTS: gets the health points of this monster
     public int getHealthPoints() {
         return this.healthPoints;
     }

@@ -59,7 +59,7 @@
 
 ### <span style="color:Beige"> Future Expansions </span>
 <li>As a user, I want to be able to engage in thrilling battles against other teams of monsters.</li>
-<li>As a user, I want to be able to view the characteristics of individual monsters within my team, such as their name, type and health points.</li>
+<li>As a user, I want to be able to view the characteristics of individual monsters within my collection, such as their name, type and health points.</li>
 </ul>
 </div>
 

@@ -459,6 +459,7 @@ public class MonstermonApp {
         System.out.println();
     }
 
+    // EFFECTS: gets the type from the user for the monster
     private String getType() {
         String type;
         while (true) {
@@ -512,6 +513,9 @@ public class MonstermonApp {
 
     // TODO: From here on, implementations are for further expansions.
 
+    // MODIFIES: this
+    // EFFECTS: displays the characteristics of the chosen monster by the user. if no monsters exist yet, redirects
+    //          user to first create a monster.
     private void getMonsterCharacteristics() {
         System.out.println("Which monster's characteristics would you like to view?");
         viewAllMonsters();
@@ -539,13 +543,31 @@ public class MonstermonApp {
         System.out.println("\t HP: " + monsterHealthPoints);
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes all monsters from allMonsters
     private void clearAllMonsters() {
-        System.out.println("\"Are you ABSOLUTELY CERTAIN, with every fiber of your being, that you desire to "
+        System.out.println("Are you ABSOLUTELY CERTAIN, with every fiber of your being, that you desire to "
                 + "ERADICATE and ANNIHILATE each and every one of those TINY, INNOCENT creatures that you TOILED OVER, "
-                + "pouring HEART and SOUL into CREATING with UNBELIEVABLE AMOUNTS of TIME and EFFORT?!!!\" \t [Y/N]");
+                + "pouring HEART and SOUL into CREATING with UNBELIEVABLE AMOUNTS of TIME and EFFORT?!!! \t [Y/N]");
         String choice = input.nextLine().toLowerCase();
         if (choice.equals("y")) {
             allMonsters.clear();
+        } else if (choice.equals("n")) {
+            displayMenu();
+        } else {
+            System.out.println("Invalid input! Please try again!");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: removes all teams from allTeams
+    private void clearAllTeams() {
+        System.out.println("Are you POSITIVELY, UNEQUIVOCALLY, IRREVOCABLY SURE that you wish to ERASE every last "
+                + "one of those GLORIOUS, MASTERFULLY ASSEMBLED teams of WONDERFUL monsters, crafted with LOVING CARE"
+                + " and EXQUISITE STRATEGY?!! \t [Y/N]");
+        String choice = input.nextLine().toLowerCase();
+        if (choice.equals("y")) {
+            allTeams.clear();
         } else if (choice.equals("n")) {
             displayMenu();
         } else {
