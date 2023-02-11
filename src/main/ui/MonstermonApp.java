@@ -282,7 +282,7 @@ public class MonstermonApp {
                 return m;
             }
         }
-        if (monsterName.equals("%20Mew%20")) {
+        if (monsterName.equals("%20%Mew%20%")) {
             return triggerEvent();
         }
         System.out.println("No monsters with that name were found! Please try again!");
