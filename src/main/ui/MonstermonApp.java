@@ -460,7 +460,7 @@ public class MonstermonApp {
         System.out.println();
     }
 
-    // EFFECTS: gets the heatlh points from the user for the monster
+    // EFFECTS: gets the health points from the user for the monster
     private int getHealthPoints() {
         int hp;
         while (true) {
