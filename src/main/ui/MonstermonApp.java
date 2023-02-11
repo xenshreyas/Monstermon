@@ -12,9 +12,9 @@ public class MonstermonApp {
     private Scanner input;
     private List<Monster> allMonsters;
     private List<Team> allTeams;
-    private String colorReset = "\u001B[37m";
-    private String colorPink = "\u001B[35m";
-    private String colorRed = "\033[0;31m";
+    private final String colorReset = "\u001B[37m";
+    private final String colorPink = "\u001B[35m";
+    private final String colorRed = "\033[0;31m";
 
 
     // EFFECTS: runs the monstermon application
@@ -22,7 +22,8 @@ public class MonstermonApp {
         try {
             runMonstermon();
         } catch (Exception e) {
-            System.out.println("It seems that something went wrong! We have taken you back to the main menu!");
+            System.out.println(colorRed + "It seems that something went wrong! "
+                    + "We have taken you back to the main menu!");
             displayMenu();
         }
     }
@@ -88,7 +89,7 @@ public class MonstermonApp {
                 + " begin!]");
         System.out.println("/rules -> Rules");
         System.out.println("/newmonster -> Create New Monster");
-        System.out.println("/getcharacteristics -> Get Monster's Characteristics");
+        System.out.println("/getstats -> Get Monster's Characteristics");
         System.out.println("/newteam -> Create New Team");
         System.out.println("/addmonster -> Add Monster to a Team");
         System.out.println("/removemonster -> Remove Monster from a Team");
@@ -132,7 +133,7 @@ public class MonstermonApp {
             viewAllTeams();
         } else if (command.equals("/newteam")) {
             createTeam();
-        } else if (command.equals("/getcharacteristics")) {
+        } else if (command.equals("/getstats")) {
             getMonsterCharacteristics();
         } else {
             System.out.println("Invalid input! Please try again!\n");
@@ -306,7 +307,8 @@ public class MonstermonApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: TODO: make this better
+    // EFFECTS: gets the team that is being looked for by teamName, if not found, retries. If no team has been created,
+    //          will direct user to first create a team
     private Team findTeam(String teamName, String calledBy) {
         for (Team t : allTeams) {
             if (teamName.equals(t.getTeamName())) {
@@ -370,7 +372,6 @@ public class MonstermonApp {
     private void checkTeamUnderCapacity(Team t) {
         if (t.getAllMonsters().size() == 5) {
             System.out.println("This team is full! Try another team!\n");
-            return;
         }
     }
 
@@ -378,7 +379,6 @@ public class MonstermonApp {
     private void checkMonsterInTeamAlready(Team t, Monster m) {
         if (t.getAllMonsters().contains(m)) {
             System.out.println("This monster has already been added to this team!\n");
-            return;
         }
     }
 
@@ -440,17 +440,16 @@ public class MonstermonApp {
         System.out.println("Wonderful! You've decided to create a monster!");
         System.out.println("What is your monster's name?");
         String name = input.nextLine();
-        System.out.println("What is your monster's type? \t\t[FIRE/GRASS/WATER]");
-        String type = input.nextLine().toLowerCase();
+        String type = getType();
         int hp = getHealthPoints();
 
-        if (type.equals("fire") && hp > 0 && hp <= 400) {
+        if (type.equals("fire")) {
             Monster m = new Monster(name, FIRE, hp);
             allMonsters.add(m);
-        } else if (type.equals("water") && hp > 0 && hp <= 400) {
+        } else if (type.equals("water")) {
             Monster m = new Monster(name, WATER, hp);
             allMonsters.add(m);
-        } else if (type.equals("grass") && hp > 0 && hp <= 400) {
+        } else if (type.equals("grass")) {
             Monster m = new Monster(name, GRASS, hp);
             allMonsters.add(m);
         } else {
@@ -460,6 +459,23 @@ public class MonstermonApp {
         System.out.println();
     }
 
+    private String getType() {
+        String type;
+        while (true) {
+            try {
+                System.out.println("What is your monster's type? \t\t[FIRE/GRASS/WATER]");
+                type = input.nextLine().toLowerCase();
+                if ((type.equals("grass")) || (type.equals("fire")) || (type.equals("water"))) {
+                    return type;
+                } else {
+                    throw new InvalidTypeException();
+                }
+            } catch (InvalidTypeException e) {
+                System.out.println("That is not a valid type.");
+            }
+        }
+    }
+
     // EFFECTS: gets the health points from the user for the monster
     private int getHealthPoints() {
         int hp;
@@ -467,9 +483,15 @@ public class MonstermonApp {
             try {
                 System.out.println("How many health points does your monster have? \t[1-400]");
                 hp = input.nextInt();
+                if (hp <= 0 || hp > 400) {
+                    throw new InvalidNumberOfHealthPointsException();
+                }
                 break;
-            } catch (Exception e) {
+            } catch (InvalidNumberOfHealthPointsException e) {
                 System.out.println("That is not a valid number of health points.");
+                input.nextLine();
+            } catch (Exception e) {
+                System.out.println("Health points must be a number between 0 and 400.");
                 input.nextLine();
             }
         }
@@ -497,6 +519,7 @@ public class MonstermonApp {
             System.out.println("You have not created any monsters yet! Please create one first.");
             createMonster();
             viewAllMonsters();
+            System.out.println("Which monster's characteristics would you like to view?");
         }
         String monsterName = input.nextLine();
         Monster m = findMonster(monsterName);
