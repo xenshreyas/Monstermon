@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static model.MonsterType.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+// Testing class for methods in the Monster Class
 class MonsterTest {
     private Monster testMonster;
     private String testName;

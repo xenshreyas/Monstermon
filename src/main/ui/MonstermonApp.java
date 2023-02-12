@@ -1,8 +1,8 @@
 package ui;
 
 import model.*;
-import ui.exceptions.InvalidNumberOfHealthPointsException;
-import ui.exceptions.InvalidTypeException;
+import exceptions.InvalidNumberOfHealthPointsException;
+import exceptions.InvalidTypeException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -141,13 +141,13 @@ public class MonstermonApp {
         } else if (command.equals("/getstats")) {
             getMonsterCharacteristics();
         } else {
-            processOtherCommands(command);
+            processMoreCommands(command);
         }
     }
 
     // MODIFIES: this
     // EFFECTS: processes more user commands
-    private void processOtherCommands(String command) {
+    private void processMoreCommands(String command) {
         if (command.equals("/clearmonsters")) {
             clearAllMonsters();
         } else if (command.equals("/clearteams")) {
@@ -157,41 +157,48 @@ public class MonstermonApp {
         }
     }
 
-    // EFFECTS: displays all monsters that have been made
+    // EFFECTS: displays all monsters that have been made, if none have been made, tells user that none have been made
     private void viewAllMonsters() {
-        System.out.println("All your cherished monsters in one place!");
         if (allMonsters.size() == 0) {
             System.out.println("You have not created any monsters yet!");
         } else {
-            for (Monster m : allMonsters) {
-                System.out.println(m.getName());
-            }
+            System.out.println("All your cherished monsters in one place!");
+            printMonsters();
         }
         System.out.println();
     }
 
-    // EFFECTS: displays all teams that have been made
+    // EFFECTS: displays all teams that have been made, if none have been made, tells user that none have been made
     private void viewAllTeams() {
-        System.out.println("All your fabulous teams in one place!");
         if (allTeams.size() == 0) {
             System.out.println("You have not created any teams yet!");
         } else {
+            System.out.println("All your fabulous teams in one place!");
             printTeams();
         }
         System.out.println();
+    }
+
+    // EFFECTS: displays all monsters that have been made
+    private void printMonsters() {
+        System.out.print("[");
+        for (Monster m : allMonsters) {
+            System.out.println(m.getName());
+        }
+        System.out.println("]");
     }
 
     // EFFECTS: displays all teams that have been made
     private void printTeams() {
         for (Team t : allTeams) {
             System.out.print(t.getTeamName() + ": [");
-            printMonsters(t);
+            printMonstersInTeam(t);
             System.out.println("]");
         }
     }
 
     // EFFECTS: displays all the monsters in the given team
-    private void printMonsters(Team t) {
+    private void printMonstersInTeam(Team t) {
         for (Monster m : t.getAllMonsters()) {
             List<Monster> allMonstersInTeam = t.getAllMonsters();
             if (allMonstersInTeam.indexOf(m) == allMonstersInTeam.size() - 1) {
@@ -411,7 +418,7 @@ public class MonstermonApp {
     // EFFECTS: displays mysterious interaction
     private Monster interaction(Monster mew) {
         System.out.println("You have been magically transported to the land of Pokémon!");
-        System.out.println("You encounter a majestic beast! It looks almost... divine.");
+        System.out.println("You encounter a majestic beast! It looks ... divine.");
         System.out.println(colorPink
                 + "???: "
                 + "\"S̴͔̬̺̯̓́̔̉̈̒̈͝C̴̨̮̟̝͙͕̓̅̓R̷̴̡̛̛̬̖͈̼̹̜͉͙̭͎͖͇͖̬̟͚̫̫͂̄̓̐͋̐̈́̋̽͊̋̀̃̋̐̉́̔́̈́̾̆̄͛̄̈́̌̚̕͝E̸E̵̩̭̬͓̻̘̓̑̈́̚\""

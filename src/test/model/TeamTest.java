@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Testing class for methods in the Team Class
 public class TeamTest {
     private Monster testMonster1;
     private Monster testMonster2;
