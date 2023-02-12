@@ -1,8 +1,8 @@
 package ui;
 
 import model.*;
-import model.exceptions.InvalidNumberOfHealthPointsException;
-import model.exceptions.InvalidTypeException;
+import ui.exceptions.InvalidNumberOfHealthPointsException;
+import ui.exceptions.InvalidTypeException;
 
 import java.util.ArrayList;
 import java.util.List;
