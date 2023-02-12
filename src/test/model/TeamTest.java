@@ -65,6 +65,10 @@ public class TeamTest {
     public void testRemoveMonsterFromTeam() {
         assertFalse(testTeam.removeMonsterFromTeam(testMonster1));
 
+        testTeam.addMonsterToTeam(testMonster2);
+        assertFalse(testTeam.removeMonsterFromTeam(testMonster1));
+        assertTrue(testTeam.removeMonsterFromTeam(testMonster2));
+
         assertTrue(testTeam.addMonsterToTeam(testMonster3));
         assertTrue(testTeam.removeMonsterFromTeam(testMonster3));
         assertEquals(0, testTeam.getAllMonsters().size());
