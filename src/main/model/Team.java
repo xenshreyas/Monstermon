@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents a team of monsters, with a name and a List of monsters
 public class Team {
 
     private String name;

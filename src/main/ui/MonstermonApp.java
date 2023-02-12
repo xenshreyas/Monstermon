@@ -8,11 +8,12 @@ import java.util.Scanner;
 
 import static model.MonsterType.*;
 
+// Monstermon application
 public class MonstermonApp {
     private Scanner input;
     private List<Monster> allMonsters;
     private List<Team> allTeams;
-    private final String colorReset = "\u001B[37m";
+    private final String colorReset = "\u001b[0m";
     private final String colorPink = "\u001B[35m";
     private final String colorRed = "\033[0;31m";
 
@@ -97,6 +98,8 @@ public class MonstermonApp {
         System.out.println("/renameteam -> Rename Team");
         System.out.println("/viewteams -> View all Teams");
         System.out.println("/viewmonsters -> View all Monsters");
+        System.out.println("/clearmonsters -> Clear all Monsters");
+        System.out.println("/clearteams -> Clear all Teams");
         System.out.println("/quit -> Quit\n");
     }
 
@@ -136,7 +139,19 @@ public class MonstermonApp {
         } else if (command.equals("/getstats")) {
             getMonsterCharacteristics();
         } else {
-            System.out.println("Invalid input! Please try again!\n");
+            processOtherCommands(command);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: processes more user commands
+    private void processOtherCommands(String command) {
+        if (command.equals("/clearmonsters")) {
+            clearAllMonsters();
+        } else if (command.equals("/clearteams")) {
+            clearAllTeams();
+        } else {
+            System.out.println("Invalid input");
         }
     }
 
@@ -511,7 +526,7 @@ public class MonstermonApp {
         System.out.println();
     }
 
-    // TODO: From here on, implementations are for further expansions.
+    // From here on, implementations are for stretch goals.
 
     // MODIFIES: this
     // EFFECTS: displays the characteristics of the chosen monster by the user. if no monsters exist yet, redirects
@@ -547,13 +562,15 @@ public class MonstermonApp {
     // EFFECTS: removes all monsters from allMonsters
     private void clearAllMonsters() {
         System.out.println("Are you ABSOLUTELY CERTAIN, with every fiber of your being, that you desire to "
-                + "ERADICATE and ANNIHILATE each and every one of those TINY, INNOCENT creatures that you TOILED OVER, "
-                + "pouring HEART and SOUL into CREATING with UNBELIEVABLE AMOUNTS of TIME and EFFORT?!!! \t [Y/N]");
+                + "ERADICATE and ANNIHILATE each and every one of those TINY, INNOCENT creatures that you TOILED "
+                + "OVER, pouring HEART and SOUL into CREATING with UNBELIEVABLE AMOUNTS of TIME and EFFORT?!!! "
+                + "\t [Y/N]");
         String choice = input.nextLine().toLowerCase();
         if (choice.equals("y")) {
+            System.out.println(colorRed + "All your monsters have been erased." + colorReset + "\n");
             allMonsters.clear();
         } else if (choice.equals("n")) {
-            displayMenu();
+            System.out.println("Phew!\n");
         } else {
             System.out.println("Invalid input! Please try again!");
         }
@@ -562,17 +579,23 @@ public class MonstermonApp {
     // MODIFIES: this
     // EFFECTS: removes all teams from allTeams
     private void clearAllTeams() {
-        System.out.println("Are you POSITIVELY, UNEQUIVOCALLY, IRREVOCABLY SURE that you wish to ERASE every last "
-                + "one of those GLORIOUS, MASTERFULLY ASSEMBLED teams of WONDERFUL monsters, crafted with LOVING CARE"
+        System.out.println("Are you POSITIVELY, UNEQUIVOCALLY, IRREVOCABLY SURE that you wish to ERASE every last\n"
+                + "one of those GLORIOUS, MASTERFULLY ASSEMBLED teams of WONDERFUL monsters, crafted with LOVING CARE\n"
                 + " and EXQUISITE STRATEGY?!! \t [Y/N]");
         String choice = input.nextLine().toLowerCase();
         if (choice.equals("y")) {
+            System.out.println(colorRed + "All your teams have been erased." + colorReset + "\n");
             allTeams.clear();
         } else if (choice.equals("n")) {
-            displayMenu();
+            System.out.println("Phew!\n");
         } else {
             System.out.println("Invalid input! Please try again!");
         }
+    }
+
+    // TODO: specification and implementation
+    private void battle() {
+
     }
 
 }

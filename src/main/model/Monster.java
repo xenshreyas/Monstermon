@@ -1,5 +1,6 @@
 package model;
 
+// Represents a monster having a name, type and health points
 public class Monster {
 
     private String name;
