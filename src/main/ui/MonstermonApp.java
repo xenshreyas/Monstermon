@@ -15,9 +15,12 @@ public class MonstermonApp {
     private Scanner input;
     private List<Monster> allMonsters;
     private List<Team> allTeams;
+
+    // The following colors are from: https://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html
     private final String colorReset = "\u001b[0m";
     private final String colorPink = "\u001B[35m";
     private final String colorRed = "\033[0;31m";
+    private final String colorYellow = "\u001b[33m";
 
 
     // EFFECTS: runs the monstermon application
@@ -26,7 +29,7 @@ public class MonstermonApp {
             runMonstermon();
         } catch (Exception e) {
             System.out.println(colorRed + "It seems that something went wrong! "
-                    + "We have taken you back to the main menu!");
+                    + "We have taken you back to the main menu!" + colorReset);
             displayMenu();
         }
     }
@@ -66,24 +69,21 @@ public class MonstermonApp {
         // IDEA: can have background music playing. This would be done by calling another method in order to stick to
         //       the 25 line limit per method. playBackgroundMusic();
 
-        System.out.println("Hello there! It's so very nice to meet you!");
-        System.out.println("Welcome to the fascinating world of Monstermon!");
-        System.out.println("My name is Mahogany. However, everyone just calls me the Monstermon Professor.");
-        System.out.println("This world is widely inhabited by creatures known as Monstermon!");
-        System.out.println("We humans live alongside Monstermon as friends. At times we play together, and at other "
-                + "times, we work together.");
-        System.out.println("Some people use their Monstermon to battle and develop closer bonds with them!");
-
-        System.out.println();
         // IDEA: can have the user enter some details about themselves that are used to greet them
         //       every time the app is opened. Not sure how I would do this though.
 
-        System.out.println("All right. The time has come. Your very own tale of grand adventure is about to unfold!");
-        System.out.println("On your journey, you will meet countless monsters. I'm sure that along the way, "
-                + "you will discover many things, maybe even things that weren't meant to be discovered!");
-        System.out.println("Now, go on and leap into the world of Monstermon!");
-        System.out.println();
-        System.out.println();
+        System.out.println(colorYellow + "Greetings! It's a pleasure to make your acquaintance.");
+        System.out.println("Welcome to the captivating realm of Monstermon, where humans and creatures known as "
+                + "Monstermon coexist as friends.");
+        System.out.println("I am Mahogany, but you may call me the Monstermon Professor.");
+        System.out.println("In this world, some people engage in battles with their Monstermon to strengthen their"
+                + " bond, while others simply play and work together.");
+        System.out.println("It's time for your own epic adventure to commence.");
+        System.out.println("As you embark on your journey, be prepared to encounter a diverse array of Monstermon "
+                + "and to uncover mysteries and secrets along the way.");
+        System.out.println("So, without further ado, dive into the world of Monstermon and let the adventure begin!"
+                + colorReset);
+        System.out.println("\n\n");
     }
 
     // EFFECTS: displays the menu of options to user
@@ -153,7 +153,7 @@ public class MonstermonApp {
         } else if (command.equals("/clearteams")) {
             clearAllTeams();
         } else {
-            System.out.println("Invalid input");
+            System.out.println("Invalid input\n");
         }
     }
 
@@ -183,7 +183,11 @@ public class MonstermonApp {
     private void printMonsters() {
         System.out.print("[");
         for (Monster m : allMonsters) {
-            System.out.println(m.getName());
+            if (allMonsters.indexOf(m) == allMonsters.size() - 1) {
+                System.out.print(m.getName());
+            } else {
+                System.out.print(m.getName() + ", ");
+            }
         }
         System.out.println("]");
     }
@@ -354,8 +358,10 @@ public class MonstermonApp {
         Monster m = getMonster();
         Team t = getTeam();
         checkTeamUnderCapacity(t);
-        checkMonsterInTeamAlready(t, m);
-        t.addMonsterToTeam(m);
+        if (!checkMonsterInTeamAlready(t, m)) {
+            t.addMonsterToTeam(m);
+            System.out.println(m.getName() + " has been successfully added to " + t.getTeamName() + "!\n");
+        }
     }
 
     // MODIFIES: this
@@ -372,6 +378,7 @@ public class MonstermonApp {
             return;
         }
         t.removeMonsterFromTeam(m);
+        System.out.println(m.getName() + " has been successfully removed from " + t.getTeamName() + "!\n");
     }
 
     // MODIFIES: this
@@ -400,10 +407,12 @@ public class MonstermonApp {
     }
 
     // EFFECTS: checks whether the monster has already been added to the team
-    private void checkMonsterInTeamAlready(Team t, Monster m) {
+    private boolean checkMonsterInTeamAlready(Team t, Monster m) {
         if (t.getAllMonsters().contains(m)) {
             System.out.println("This monster has already been added to this team!\n");
+            return true;
         }
+        return false;
     }
 
     // EFFECTS: displays secret event
@@ -439,7 +448,7 @@ public class MonstermonApp {
         return (initiateDiscussion(mew));
     }
 
-    // EFFECTS: displays mysterious discussion
+    // EFFECTS: displays mysterious discussion (since Mew is a "glitch-only" monster, it doesn't appear in allMonsters)
     private Monster initiateDiscussion(Monster mew) {
         String answer = input.nextLine().toLowerCase();
         if (answer.equals("y")) {
@@ -466,21 +475,20 @@ public class MonstermonApp {
         String name = input.nextLine();
         String type = getType();
         int hp = getHealthPoints();
-
+        Monster m;
         if (type.equals("fire")) {
-            Monster m = new Monster(name, FIRE, hp);
-            allMonsters.add(m);
+            m = new Monster(name, FIRE, hp);
         } else if (type.equals("water")) {
-            Monster m = new Monster(name, WATER, hp);
-            allMonsters.add(m);
+            m = new Monster(name, WATER, hp);
         } else if (type.equals("grass")) {
-            Monster m = new Monster(name, GRASS, hp);
-            allMonsters.add(m);
+            m = new Monster(name, GRASS, hp);
         } else {
             System.out.println("Invalid input! Please try again!\n");
+            return;
         }
         input.nextLine();
-        System.out.println();
+        allMonsters.add(m);
+        System.out.println(m.getName() + " has been successfully created!\n");
     }
 
     // EFFECTS: gets the type from the user for the monster
@@ -535,7 +543,7 @@ public class MonstermonApp {
         System.out.println();
     }
 
-    // From here on, implementations are for stretch goals.
+    // FROM HERE ON, IMPLEMENTATIONS ARE FOR STRETCH GOALS
 
     // MODIFIES: this
     // EFFECTS: displays the characteristics of the chosen monster by the user. if no monsters exist yet, redirects
@@ -570,8 +578,8 @@ public class MonstermonApp {
     // MODIFIES: this
     // EFFECTS: removes all monsters from allMonsters
     private void clearAllMonsters() {
-        System.out.println("Are you ABSOLUTELY CERTAIN, with every fiber of your being, that you desire to "
-                + "ERADICATE and ANNIHILATE each and every one of those TINY, INNOCENT creatures that you TOILED "
+        System.out.println("Are you ABSOLUTELY CERTAIN, with every fiber of your being, that you desire to\n"
+                + "ERADICATE and ANNIHILATE each and every one of those TINY, INNOCENT creatures that you TOILED\n"
                 + "OVER, pouring HEART and SOUL into CREATING with UNBELIEVABLE AMOUNTS of TIME and EFFORT?!!! "
                 + "\t [Y/N]");
         String choice = input.nextLine().toLowerCase();
@@ -590,7 +598,7 @@ public class MonstermonApp {
     private void clearAllTeams() {
         System.out.println("Are you POSITIVELY, UNEQUIVOCALLY, IRREVOCABLY SURE that you wish to ERASE every last\n"
                 + "one of those GLORIOUS, MASTERFULLY ASSEMBLED teams of WONDERFUL monsters, crafted with LOVING CARE\n"
-                + " and EXQUISITE STRATEGY?!! \t [Y/N]");
+                + "and EXQUISITE STRATEGY?!! \t [Y/N]");
         String choice = input.nextLine().toLowerCase();
         if (choice.equals("y")) {
             System.out.println(colorRed + "All your teams have been erased." + colorReset + "\n");
@@ -600,11 +608,6 @@ public class MonstermonApp {
         } else {
             System.out.println("Invalid input! Please try again!");
         }
-    }
-
-    // TODO: specification and implementation
-    private void battle() {
-
     }
 
 }
