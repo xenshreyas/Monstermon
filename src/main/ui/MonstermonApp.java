@@ -1,8 +1,6 @@
 package ui;
 
 import model.*;
-import exceptions.InvalidNumberOfHealthPointsException;
-import exceptions.InvalidTypeException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -501,10 +499,10 @@ public class MonstermonApp {
                 if ((type.equals("grass")) || (type.equals("fire")) || (type.equals("water"))) {
                     return type;
                 } else {
-                    throw new InvalidTypeException();
+                    throw new Exception();
                 }
-            } catch (InvalidTypeException e) {
-                System.out.println("That is not a valid type.");
+            } catch (Exception e) {
+                System.out.println("That is not a valid type.\n");
             }
         }
     }
@@ -517,14 +515,11 @@ public class MonstermonApp {
                 System.out.println("How many health points does your monster have? \t[1-400]");
                 hp = input.nextInt();
                 if (hp <= 0 || hp > 400) {
-                    throw new InvalidNumberOfHealthPointsException();
+                    throw new Exception();
                 }
                 break;
-            } catch (InvalidNumberOfHealthPointsException e) {
-                System.out.println("That is not a valid number of health points.");
-                input.nextLine();
             } catch (Exception e) {
-                System.out.println("Health points must be a number between 0 and 400.");
+                System.out.println("Health points must be a number between 0 and 400.\n");
                 input.nextLine();
             }
         }
