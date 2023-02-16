@@ -98,8 +98,8 @@ public class MonstermonApp {
         System.out.println("/renameteam -> Rename Team");
         System.out.println("/viewteams -> View all Teams");
         System.out.println("/viewmonsters -> View all Monsters");
-        System.out.println("/clearmonsters -> Clear all Monsters");
-        System.out.println("/clearteams -> Clear all Teams");
+        System.out.println("/clearmonsters -> Clear all Monsters [Beta]");
+        System.out.println("/clearteams -> Clear all Teams   \t [Beta]");
         System.out.println("/quit -> Quit\n");
     }
 
@@ -425,7 +425,7 @@ public class MonstermonApp {
     // EFFECTS: displays mysterious interaction
     private Monster interaction(Monster mew) {
         System.out.println("You have been magically transported to the land of Pokémon!");
-        System.out.println("You encounter a majestic beast! It looks ... divine.");
+        System.out.println("You encounter a majestic beast! It looks ... " + colorYellow + "divine." + colorReset);
         System.out.println(colorPink
                 + "???: "
                 + "\"S̴͔̬̺̯̓́̔̉̈̒̈͝C̴̨̮̟̝͙͕̓̅̓R̷̴̡̛̛̬̖͈̼̹̜͉͙̭͎͖͇͖̬̟͚̫̫͂̄̓̐͋̐̈́̋̽͊̋̀̃̋̐̉́̔́̈́̾̆̄͛̄̈́̌̚̕͝E̸E̵̩̭̬͓̻̘̓̑̈́̚\""
@@ -519,7 +519,7 @@ public class MonstermonApp {
                 }
                 break;
             } catch (Exception e) {
-                System.out.println("Health points must be a number between 0 and 400.\n");
+                System.out.println("Health points must be a number between 1 and 400.\n");
                 input.nextLine();
             }
         }
