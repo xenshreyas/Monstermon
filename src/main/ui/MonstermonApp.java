@@ -1,10 +1,7 @@
 package ui;
 
 import model.*;
-import persistence.*;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,18 +10,9 @@ import static model.MonsterType.*;
 
 // Monstermon application
 public class MonstermonApp {
-
-    private static final String JSON_STORE_MONSTERS = "./data/monsters.json";
-    private static final String JSON_STORE_TEAMS = "./data/teams.json";
     private Scanner input;
-    private Monsters monsters;
-    private Teams teams;
     private List<Monster> allMonsters;
     private List<Team> allTeams;
-    private JsonWriterMonsters jsonWriterMonsters;
-    private JsonReaderMonsters jsonReaderMonsters;
-    private JsonWriterTeams jsonWriterTeams;
-    private JsonReaderTeams jsonReaderTeams;
 
     // The following colors are from: https://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html
     private final String colorReset = "\u001b[0m";
@@ -32,16 +20,10 @@ public class MonstermonApp {
     private final String colorRed = "\033[0;31m";
     private final String colorYellow = "\u001b[33m";
 
-    // EFFECTS: runs the Monstermon application
-    public MonstermonApp() throws FileNotFoundException {
+
+    // EFFECTS: runs the monstermon application
+    public MonstermonApp() {
         try {
-            input = new Scanner(System.in);
-            Monsters monsters = new Monsters();
-            Teams teams = new Teams();
-            jsonWriterMonsters = new JsonWriterMonsters(JSON_STORE_MONSTERS);
-            jsonReaderMonsters = new JsonReaderMonsters(JSON_STORE_MONSTERS);
-            jsonWriterTeams = new JsonWriterTeams(JSON_STORE_TEAMS);
-            jsonReaderTeams = new JsonReaderTeams(JSON_STORE_TEAMS);
             runMonstermon();
         } catch (Exception e) {
             System.out.println(colorRed + "It seems that something went wrong! "
@@ -76,10 +58,7 @@ public class MonstermonApp {
     // EFFECTS: initializes allTeams, allMonsters and creates an object to obtain user input from console
     private void init() {
         allTeams = new ArrayList<>();
-        monsters = new Monsters();
-        teams = new Teams();
-        allMonsters = monsters.getMonsters();
-        allTeams = teams.getTeams();
+        allMonsters = new ArrayList<>();
         input = new Scanner(System.in);
     }
 
@@ -119,10 +98,8 @@ public class MonstermonApp {
         System.out.println("/renameteam -> Rename Team");
         System.out.println("/viewteams -> View all Teams");
         System.out.println("/viewmonsters -> View all Monsters");
-        System.out.println("/clearmonsters -> Clear all Monsters");
-        System.out.println("/clearteams -> Clear all Teams");
-        System.out.println("/save -> Save the current state");
-        System.out.println("/load -> Load the current state");
+        System.out.println("/clearmonsters -> Clear all Monsters [Beta]");
+        System.out.println("/clearteams -> Clear all Teams   \t [Beta]");
         System.out.println("/quit -> Quit\n");
     }
 
@@ -173,10 +150,6 @@ public class MonstermonApp {
             clearAllMonsters();
         } else if (command.equals("/clearteams")) {
             clearAllTeams();
-        } else if (command.equals("/save")) {
-            saveState();
-        } else if (command.equals("/load")) {
-            loadState();
         } else {
             System.out.println("Invalid input\n");
         }
@@ -220,7 +193,7 @@ public class MonstermonApp {
     // EFFECTS: displays all teams that have been made
     private void printTeams() {
         for (Team t : allTeams) {
-            System.out.print(t.getName() + ": [");
+            System.out.print(t.getTeamName() + ": [");
             printMonstersInTeam(t);
             System.out.println("]");
         }
@@ -253,7 +226,7 @@ public class MonstermonApp {
         System.out.println("What would you like to rename " + teamName + " to?");
         String newName = input.nextLine();
         for (Team t : allTeams) {
-            if (t.getName().equals(teamName)) {
+            if (t.getTeamName().equals(teamName)) {
                 t.renameTeam(newName);
                 System.out.println("Team successfully renamed!");
                 return;
@@ -364,7 +337,7 @@ public class MonstermonApp {
     //          will direct user to first create a team
     private Team findTeam(String teamName, String calledBy) {
         for (Team t : allTeams) {
-            if (teamName.equals(t.getName())) {
+            if (teamName.equals(t.getTeamName())) {
                 return t;
             }
         }
@@ -385,7 +358,7 @@ public class MonstermonApp {
         checkTeamUnderCapacity(t);
         if (!checkMonsterInTeamAlready(t, m)) {
             t.addMonsterToTeam(m);
-            System.out.println(m.getName() + " has been successfully added to " + t.getName() + "!\n");
+            System.out.println(m.getName() + " has been successfully added to " + t.getTeamName() + "!\n");
         }
     }
 
@@ -403,7 +376,7 @@ public class MonstermonApp {
             return;
         }
         t.removeMonsterFromTeam(m);
-        System.out.println(m.getName() + " has been successfully removed from " + t.getName() + "!\n");
+        System.out.println(m.getName() + " has been successfully removed from " + t.getTeamName() + "!\n");
     }
 
     // MODIFIES: this
@@ -629,35 +602,6 @@ public class MonstermonApp {
             System.out.println("Phew!\n");
         } else {
             System.out.println("Invalid input! Please try again!");
-        }
-    }
-
-    // EFFECTS: saves the monsters and teams to file
-    private void saveState() {
-        try {
-            jsonWriterMonsters.open();
-            jsonWriterMonsters.write(monsters);
-            jsonWriterMonsters.close();
-            jsonWriterTeams.open();
-            jsonWriterTeams.write(teams);
-            jsonWriterTeams.close();
-            System.out.println("Saved Monsters and Teams to memory. \n");
-        } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to memory. \n");
-        }
-    }
-
-    // MODIFIES: this
-    // EFFECTS: loads monsters and teams from file
-    private void loadState() {
-        try {
-            System.out.println("Loaded Monsters and Teams from memory. \n");
-            monsters = jsonReaderMonsters.read();
-            allMonsters = monsters.getMonsters();
-            teams = jsonReaderTeams.read();
-            allTeams = teams.getTeams();
-        } catch (IOException e) {
-            System.out.println("Unable to read from memory. \n");
         }
     }
 
