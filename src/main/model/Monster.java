@@ -1,7 +1,13 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
+import java.util.ArrayList;
+import java.util.List;
+
 // Represents a monster having a name, type and health points
-public class Monster {
+public class Monster implements Writable {
 
     private String name;
     private MonsterType type;
@@ -57,4 +63,14 @@ public class Monster {
     public void setHealthPoints(int healthPoints) {
         this.healthPoints = healthPoints;
     }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("type", type);
+        json.put("healthPoints", healthPoints);
+        return json;
+    }
+
 }
