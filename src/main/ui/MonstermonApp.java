@@ -1,7 +1,11 @@
 package ui;
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,9 +14,14 @@ import static model.MonsterType.*;
 
 // Monstermon application
 public class MonstermonApp {
+
+    private static final String JSON_STORE = "./data/monsters.json";
     private Scanner input;
+    private Monsters monsters;
     private List<Monster> allMonsters;
     private List<Team> allTeams;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // The following colors are from: https://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html
     private final String colorReset = "\u001b[0m";
@@ -20,10 +29,13 @@ public class MonstermonApp {
     private final String colorRed = "\033[0;31m";
     private final String colorYellow = "\u001b[33m";
 
-
     // EFFECTS: runs the monstermon application
-    public MonstermonApp() {
+    public MonstermonApp() throws FileNotFoundException {
         try {
+            input = new Scanner(System.in);
+            Monsters monsters = new Monsters();
+            jsonWriter = new JsonWriter(JSON_STORE);
+            jsonReader = new JsonReader(JSON_STORE);
             runMonstermon();
         } catch (Exception e) {
             System.out.println(colorRed + "It seems that something went wrong! "
@@ -58,7 +70,8 @@ public class MonstermonApp {
     // EFFECTS: initializes allTeams, allMonsters and creates an object to obtain user input from console
     private void init() {
         allTeams = new ArrayList<>();
-        allMonsters = new ArrayList<>();
+        monsters = new Monsters();
+        allMonsters = monsters.getMonsters();
         input = new Scanner(System.in);
     }
 
@@ -100,6 +113,8 @@ public class MonstermonApp {
         System.out.println("/viewmonsters -> View all Monsters");
         System.out.println("/clearmonsters -> Clear all Monsters [Beta]");
         System.out.println("/clearteams -> Clear all Teams   \t [Beta]");
+        System.out.println("/save -> Save the current state");
+        System.out.println("/load -> Load the current state");
         System.out.println("/quit -> Quit\n");
     }
 
@@ -150,6 +165,10 @@ public class MonstermonApp {
             clearAllMonsters();
         } else if (command.equals("/clearteams")) {
             clearAllTeams();
+        } else if (command.equals("/save")) {
+            saveMonsters();
+        } else if (command.equals("/load")) {
+            loadMonsters();
         } else {
             System.out.println("Invalid input\n");
         }
@@ -602,6 +621,30 @@ public class MonstermonApp {
             System.out.println("Phew!\n");
         } else {
             System.out.println("Invalid input! Please try again!");
+        }
+    }
+
+    // EFFECTS: saves the monsters to file
+    private void saveMonsters() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(monsters);
+            jsonWriter.close();
+            System.out.println("Saved Monsters to " + JSON_STORE + "\n");
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE + "\n");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads monsters from file
+    private void loadMonsters() {
+        try {
+            monsters = jsonReader.read();
+            System.out.println("Loaded Monsters from " + JSON_STORE + "\n");
+            allMonsters = monsters.getMonsters();
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE + "\n");
         }
     }
 
