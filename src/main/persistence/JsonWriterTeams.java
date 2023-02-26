@@ -1,19 +1,19 @@
 package persistence;
 
-import model.Monsters;
+import model.Teams;
 import org.json.JSONObject;
 
 
 import java.io.*;
 
-// Represents a writer that writes JSON representation of monster to file
-public class JsonWriter {
+// Represents a writer that writes JSON representation of teams to file
+public class JsonWriterTeams {
     private static final int TAB = 4;
     private PrintWriter writer;
     private String destination;
 
     // EFFECTS: constructs writer to write to destination file
-    public JsonWriter(String destination) {
+    public JsonWriterTeams(String destination) {
         this.destination = destination;
     }
 
@@ -25,9 +25,9 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of monster to file
-    public void write(Monsters ml) {
-        JSONObject json = ml.toJson();
+    // EFFECTS: writes JSON representation of teams to file
+    public void write(Teams teams) {
+        JSONObject json = teams.toJson();
         saveToFile(json.toString(TAB));
     }
 

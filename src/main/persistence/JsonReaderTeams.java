@@ -10,21 +10,21 @@ import java.util.stream.Stream;
 
 import org.json.*;
 
-// Represents a reader that reads monsters from JSON data stored in file
-public class JsonReader {
+// Represents a reader that reads teams from JSON data stored in file
+public class JsonReaderTeams {
     private String source;
 
     // EFFECTS: constructs reader to read from source file
-    public JsonReader(String source) {
+    public JsonReaderTeams(String source) {
         this.source = source;
     }
 
-    // EFFECTS: reads monsters from file and returns it;
+    // EFFECTS: reads teams from file and returns it;
     // throws IOException if an error occurs reading data from file
-    public Monsters read() throws IOException {
+    public Teams read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
-        return parseMonsters(jsonObject);
+        return parseTeams(jsonObject);
     }
 
     // EFFECTS: reads source file as string and returns it
@@ -38,26 +38,39 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses monsters from JSON object and returns it
-    private Monsters parseMonsters(JSONObject jsonObject) {
-        Monsters ml = new Monsters();
-        addMonsters(ml, jsonObject);
-        return ml;
+    // EFFECTS: parses teams from JSON object and returns it
+    private Teams parseTeams(JSONObject jsonObject) {
+        Teams teams = new Teams();
+        addTeams(teams, jsonObject);
+        return teams;
     }
 
-    // MODIFIES: ml
+    // MODIFIES: teams
     // EFFECTS: parses monster from JSON object and adds them to monsters
-    private void addMonsters(Monsters ml, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("Monsters");
+    private void addTeams(Teams teams, JSONObject jsonObject) {
+        JSONArray jsonArray = jsonObject.getJSONArray("Teams");
+        for (Object json : jsonArray) {
+            JSONObject nextTeam = (JSONObject) json;
+            addTeam(teams, nextTeam);
+        }
+    }
+
+    // MODIFIES: teams
+    // EFFECTS: parses team from JSON object and adds it to teams
+    private void addTeam(Teams teams, JSONObject jsonObject) {
+        JSONArray jsonArray = jsonObject.getJSONArray("monsters");
+        String name = jsonObject.getString("name");
+        Team t = new Team(name);
         for (Object json : jsonArray) {
             JSONObject nextMonster = (JSONObject) json;
-            addMonster(ml, nextMonster);
+            addMonster(t, nextMonster);
         }
+        teams.addTeam(t);
     }
 
     // MODIFIES: ml
     // EFFECTS: parses monster from JSON object and adds it to monsters
-    private void addMonster(Monsters ml, JSONObject jsonObject) {
+    private void addMonster(Team t, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         String type = jsonObject.getString("type");
         int healthPoints = jsonObject.getInt("healthPoints");
@@ -73,6 +86,7 @@ public class JsonReader {
             m = new Monster(name, MonsterType.PSYCH, healthPoints);
         }
 
-        ml.addMonster(m);
+        t.addMonsterToTeam(m);
     }
+
 }

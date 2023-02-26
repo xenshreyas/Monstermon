@@ -1,8 +1,7 @@
 package ui;
 
 import model.*;
-import persistence.JsonReader;
-import persistence.JsonWriter;
+import persistence.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,13 +14,17 @@ import static model.MonsterType.*;
 // Monstermon application
 public class MonstermonApp {
 
-    private static final String JSON_STORE = "./data/monsters.json";
+    private static final String JSON_STORE_MONSTERS = "./data/monsters.json";
+    private static final String JSON_STORE_TEAMS = "./data/teams.json";
     private Scanner input;
     private Monsters monsters;
+    private Teams teams;
     private List<Monster> allMonsters;
     private List<Team> allTeams;
-    private JsonWriter jsonWriter;
-    private JsonReader jsonReader;
+    private JsonWriterMonsters jsonWriterMonsters;
+    private JsonReaderMonsters jsonReaderMonsters;
+    private JsonWriterTeams jsonWriterTeams;
+    private JsonReaderTeams jsonReaderTeams;
 
     // The following colors are from: https://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html
     private final String colorReset = "\u001b[0m";
@@ -34,8 +37,11 @@ public class MonstermonApp {
         try {
             input = new Scanner(System.in);
             Monsters monsters = new Monsters();
-            jsonWriter = new JsonWriter(JSON_STORE);
-            jsonReader = new JsonReader(JSON_STORE);
+            Teams teams = new Teams();
+            jsonWriterMonsters = new JsonWriterMonsters(JSON_STORE_MONSTERS);
+            jsonReaderMonsters = new JsonReaderMonsters(JSON_STORE_MONSTERS);
+            jsonWriterTeams = new JsonWriterTeams(JSON_STORE_TEAMS);
+            jsonReaderTeams = new JsonReaderTeams(JSON_STORE_TEAMS);
             runMonstermon();
         } catch (Exception e) {
             System.out.println(colorRed + "It seems that something went wrong! "
@@ -71,7 +77,9 @@ public class MonstermonApp {
     private void init() {
         allTeams = new ArrayList<>();
         monsters = new Monsters();
+        teams = new Teams();
         allMonsters = monsters.getMonsters();
+        allTeams = teams.getTeams();
         input = new Scanner(System.in);
     }
 
@@ -166,9 +174,9 @@ public class MonstermonApp {
         } else if (command.equals("/clearteams")) {
             clearAllTeams();
         } else if (command.equals("/save")) {
-            saveMonsters();
+            saveState();
         } else if (command.equals("/load")) {
-            loadMonsters();
+            loadState();
         } else {
             System.out.println("Invalid input\n");
         }
@@ -624,27 +632,32 @@ public class MonstermonApp {
         }
     }
 
-    // EFFECTS: saves the monsters to file
-    private void saveMonsters() {
+    // EFFECTS: saves the monsters and teams to file
+    private void saveState() {
         try {
-            jsonWriter.open();
-            jsonWriter.write(monsters);
-            jsonWriter.close();
-            System.out.println("Saved Monsters to " + JSON_STORE + "\n");
+            jsonWriterMonsters.open();
+            jsonWriterMonsters.write(monsters);
+            jsonWriterMonsters.close();
+            jsonWriterTeams.open();
+            jsonWriterTeams.write(teams);
+            jsonWriterTeams.close();
+            System.out.println("Saved Monsters and Teams to " + JSON_STORE_MONSTERS + "\n");
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE + "\n");
+            System.out.println("Unable to write to file: " + JSON_STORE_MONSTERS + "\n");
         }
     }
 
     // MODIFIES: this
-    // EFFECTS: loads monsters from file
-    private void loadMonsters() {
+    // EFFECTS: loads monsters and teams from file
+    private void loadState() {
         try {
-            monsters = jsonReader.read();
-            System.out.println("Loaded Monsters from " + JSON_STORE + "\n");
+            System.out.println("Loaded Monsters and Teams from memory. \n");
+            monsters = jsonReaderMonsters.read();
             allMonsters = monsters.getMonsters();
+            teams = jsonReaderTeams.read();
+            allTeams = teams.getTeams();
         } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE + "\n");
+            System.out.println("Unable to read from memory. \n");
         }
     }
 

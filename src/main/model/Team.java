@@ -1,10 +1,13 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a team of monsters, with a name and a List of monsters
-public class Team {
+public class Team implements Writable {
 
     private String name;
     private final List<Monster> monsters;
@@ -57,5 +60,13 @@ public class Team {
     // EFFECTS: renames this team to given name
     public void renameTeam(String name) {
         this.name = name;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("monsters", monsters);
+        return json;
     }
 }
