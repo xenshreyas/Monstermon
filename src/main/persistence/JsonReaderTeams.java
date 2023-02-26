@@ -76,11 +76,11 @@ public class JsonReaderTeams {
         int healthPoints = jsonObject.getInt("healthPoints");
 
         Monster m;
-        if (type.equals("grass")) {
+        if (type.equals("GRASS")) {
             m = new Monster(name, MonsterType.GRASS, healthPoints);
-        } else if (type.equals("water")) {
+        } else if (type.equals("WATER")) {
             m = new Monster(name, MonsterType.WATER, healthPoints);
-        } else if (type.equals("fire")) {
+        } else if (type.equals("FIRE")) {
             m = new Monster(name, MonsterType.FIRE, healthPoints);
         } else {
             m = new Monster(name, MonsterType.PSYCH, healthPoints);

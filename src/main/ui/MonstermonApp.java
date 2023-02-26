@@ -641,9 +641,9 @@ public class MonstermonApp {
             jsonWriterTeams.open();
             jsonWriterTeams.write(teams);
             jsonWriterTeams.close();
-            System.out.println("Saved Monsters and Teams to " + JSON_STORE_MONSTERS + "\n");
+            System.out.println("Saved Monsters and Teams to memory. \n");
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to write to file: " + JSON_STORE_MONSTERS + "\n");
+            System.out.println("Unable to write to memory. \n");
         }
     }
 
