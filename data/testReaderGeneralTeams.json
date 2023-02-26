@@ -3,43 +3,11 @@
     "Teams": [
         {
             "name": "Team 1",
-            "monsters": [
-                {
-                    "healthPoints": 45,
-                    "name": "Bulbasaur",
-                    "type": "GRASS"
-                },
-                {
-                    "healthPoints": 50,
-                    "name": "Charmander",
-                    "type": "FIRE"
-                },
-                {
-                    "healthPoints": 70,
-                    "name": "yruhere",
-                    "type": "PSYCH"
-                }
-            ]
+            "monsters": []
         },
         {
             "name": "Team 2",
-            "monsters": [
-                {
-                    "healthPoints": 45,
-                    "name": "Bulbasaur",
-                    "type": "GRASS"
-                },
-                {
-                    "healthPoints": 50,
-                    "name": "Charmander",
-                    "type": "FIRE"
-                },
-                {
-                    "healthPoints": 30,
-                    "name": "Squirtle",
-                    "type": "WATER"
-                }
-            ]
+            "monsters": []
         }
     ]
 }

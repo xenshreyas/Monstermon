@@ -32,7 +32,7 @@ public class MonstermonApp {
     private final String colorRed = "\033[0;31m";
     private final String colorYellow = "\u001b[33m";
 
-    // EFFECTS: runs the monstermon application
+    // EFFECTS: runs the Monstermon application
     public MonstermonApp() throws FileNotFoundException {
         try {
             input = new Scanner(System.in);
@@ -119,8 +119,8 @@ public class MonstermonApp {
         System.out.println("/renameteam -> Rename Team");
         System.out.println("/viewteams -> View all Teams");
         System.out.println("/viewmonsters -> View all Monsters");
-        System.out.println("/clearmonsters -> Clear all Monsters [Beta]");
-        System.out.println("/clearteams -> Clear all Teams   \t [Beta]");
+        System.out.println("/clearmonsters -> Clear all Monsters");
+        System.out.println("/clearteams -> Clear all Teams");
         System.out.println("/save -> Save the current state");
         System.out.println("/load -> Load the current state");
         System.out.println("/quit -> Quit\n");
@@ -220,7 +220,7 @@ public class MonstermonApp {
     // EFFECTS: displays all teams that have been made
     private void printTeams() {
         for (Team t : allTeams) {
-            System.out.print(t.getTeamName() + ": [");
+            System.out.print(t.getName() + ": [");
             printMonstersInTeam(t);
             System.out.println("]");
         }
@@ -253,7 +253,7 @@ public class MonstermonApp {
         System.out.println("What would you like to rename " + teamName + " to?");
         String newName = input.nextLine();
         for (Team t : allTeams) {
-            if (t.getTeamName().equals(teamName)) {
+            if (t.getName().equals(teamName)) {
                 t.renameTeam(newName);
                 System.out.println("Team successfully renamed!");
                 return;
@@ -364,7 +364,7 @@ public class MonstermonApp {
     //          will direct user to first create a team
     private Team findTeam(String teamName, String calledBy) {
         for (Team t : allTeams) {
-            if (teamName.equals(t.getTeamName())) {
+            if (teamName.equals(t.getName())) {
                 return t;
             }
         }
@@ -385,7 +385,7 @@ public class MonstermonApp {
         checkTeamUnderCapacity(t);
         if (!checkMonsterInTeamAlready(t, m)) {
             t.addMonsterToTeam(m);
-            System.out.println(m.getName() + " has been successfully added to " + t.getTeamName() + "!\n");
+            System.out.println(m.getName() + " has been successfully added to " + t.getName() + "!\n");
         }
     }
 
@@ -403,7 +403,7 @@ public class MonstermonApp {
             return;
         }
         t.removeMonsterFromTeam(m);
-        System.out.println(m.getName() + " has been successfully removed from " + t.getTeamName() + "!\n");
+        System.out.println(m.getName() + " has been successfully removed from " + t.getName() + "!\n");
     }
 
     // MODIFIES: this
