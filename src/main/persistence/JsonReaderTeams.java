@@ -10,8 +10,6 @@ import java.util.stream.Stream;
 
 import org.json.*;
 
-// adapted from: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
-
 // Represents a reader that reads teams from JSON data stored in file
 public class JsonReaderTeams {
     private String source;
@@ -70,25 +68,25 @@ public class JsonReaderTeams {
         teams.addTeam(t);
     }
 
-    // MODIFIES: team
+    // MODIFIES: ml
     // EFFECTS: parses monster from JSON object and adds it to monsters
-    private void addMonster(Team team, JSONObject jsonObject) {
+    private void addMonster(Team t, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         String type = jsonObject.getString("type");
         int healthPoints = jsonObject.getInt("healthPoints");
 
         Monster m;
-        if (type.equals("GRASS")) {
+        if (type.equals("grass")) {
             m = new Monster(name, MonsterType.GRASS, healthPoints);
-        } else if (type.equals("WATER")) {
+        } else if (type.equals("water")) {
             m = new Monster(name, MonsterType.WATER, healthPoints);
-        } else if (type.equals("FIRE")) {
+        } else if (type.equals("fire")) {
             m = new Monster(name, MonsterType.FIRE, healthPoints);
         } else {
             m = new Monster(name, MonsterType.PSYCH, healthPoints);
         }
 
-        team.addMonsterToTeam(m);
+        t.addMonsterToTeam(m);
     }
 
 }

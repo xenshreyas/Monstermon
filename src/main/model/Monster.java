@@ -3,9 +3,6 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.util.ArrayList;
-import java.util.List;
-
 // Represents a monster having a name, type and health points
 public class Monster implements Writable {
 

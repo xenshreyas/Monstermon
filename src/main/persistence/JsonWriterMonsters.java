@@ -6,9 +6,7 @@ import org.json.JSONObject;
 
 import java.io.*;
 
-// adapted from: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
-
-// Represents a writer that writes JSON representation of monsters to file
+// Represents a writer that writes JSON representation of monster to file
 public class JsonWriterMonsters {
     private static final int TAB = 4;
     private PrintWriter writer;
@@ -27,9 +25,9 @@ public class JsonWriterMonsters {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of monsters to file
-    public void write(Monsters monsters) {
-        JSONObject json = monsters.toJson();
+    // EFFECTS: writes JSON representation of monster to file
+    public void write(Monsters ml) {
+        JSONObject json = ml.toJson();
         saveToFile(json.toString(TAB));
     }
 
