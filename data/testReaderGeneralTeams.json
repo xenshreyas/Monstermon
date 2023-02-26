@@ -1,0 +1,13 @@
+{
+    "name": "Teams",
+    "Teams": [
+        {
+            "name": "Team 1",
+            "monsters": []
+        },
+        {
+            "name": "Team 2",
+            "monsters": []
+        }
+    ]
+}

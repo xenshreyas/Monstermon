@@ -20,7 +20,7 @@ public class Team implements Writable {
     //getters
 
     // EFFECTS: gets the name of this team
-    public String getTeamName() {
+    public String getName() {
         return this.name;
     }
 

@@ -6,7 +6,7 @@ import org.json.JSONObject;
 
 import java.io.*;
 
-// Represents a writer that writes JSON representation of monster to file
+// Represents a writer that writes JSON representation of monsters to file
 public class JsonWriterMonsters {
     private static final int TAB = 4;
     private PrintWriter writer;
@@ -25,9 +25,9 @@ public class JsonWriterMonsters {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of monster to file
-    public void write(Monsters ml) {
-        JSONObject json = ml.toJson();
+    // EFFECTS: writes JSON representation of monsters to file
+    public void write(Monsters monsters) {
+        JSONObject json = monsters.toJson();
         saveToFile(json.toString(TAB));
     }
 

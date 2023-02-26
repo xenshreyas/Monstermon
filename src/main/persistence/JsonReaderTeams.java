@@ -68,9 +68,9 @@ public class JsonReaderTeams {
         teams.addTeam(t);
     }
 
-    // MODIFIES: ml
+    // MODIFIES: team
     // EFFECTS: parses monster from JSON object and adds it to monsters
-    private void addMonster(Team t, JSONObject jsonObject) {
+    private void addMonster(Team team, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         String type = jsonObject.getString("type");
         int healthPoints = jsonObject.getInt("healthPoints");
@@ -86,7 +86,7 @@ public class JsonReaderTeams {
             m = new Monster(name, MonsterType.PSYCH, healthPoints);
         }
 
-        t.addMonsterToTeam(m);
+        team.addMonsterToTeam(m);
     }
 
 }

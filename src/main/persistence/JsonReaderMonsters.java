@@ -40,24 +40,24 @@ public class JsonReaderMonsters {
 
     // EFFECTS: parses monsters from JSON object and returns it
     private Monsters parseMonsters(JSONObject jsonObject) {
-        Monsters ml = new Monsters();
-        addMonsters(ml, jsonObject);
-        return ml;
+        Monsters monsters = new Monsters();
+        addMonsters(monsters, jsonObject);
+        return monsters;
     }
 
-    // MODIFIES: ml
+    // MODIFIES: monsters
     // EFFECTS: parses monster from JSON object and adds them to monsters
-    private void addMonsters(Monsters ml, JSONObject jsonObject) {
+    private void addMonsters(Monsters monsters, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("Monsters");
         for (Object json : jsonArray) {
             JSONObject nextMonster = (JSONObject) json;
-            addMonster(ml, nextMonster);
+            addMonster(monsters, nextMonster);
         }
     }
 
-    // MODIFIES: ml
+    // MODIFIES: monsters
     // EFFECTS: parses monster from JSON object and adds it to monsters
-    private void addMonster(Monsters ml, JSONObject jsonObject) {
+    private void addMonster(Monsters monsters, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         String type = jsonObject.getString("type");
         int healthPoints = jsonObject.getInt("healthPoints");
@@ -67,13 +67,11 @@ public class JsonReaderMonsters {
             m = new Monster(name, MonsterType.GRASS, healthPoints);
         } else if (type.equals("WATER")) {
             m = new Monster(name, MonsterType.WATER, healthPoints);
-        } else if (type.equals("FIRE")) {
-            m = new Monster(name, MonsterType.FIRE, healthPoints);
         } else {
-            m = new Monster(name, MonsterType.PSYCH, healthPoints);
+            m = new Monster(name, MonsterType.FIRE, healthPoints);
         }
 
-        ml.addMonster(m);
+        monsters.addMonster(m);
     }
 
 }

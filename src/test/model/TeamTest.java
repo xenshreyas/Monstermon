@@ -30,14 +30,14 @@ public class TeamTest {
 
     @Test
     public void testGetTeamName() {
-        assertEquals(testName, testTeam.getTeamName());
+        assertEquals(testName, testTeam.getName());
     }
 
     @Test
     public void testRenameTeam() {
-        assertEquals(testName, testTeam.getTeamName());
+        assertEquals(testName, testTeam.getName());
         testTeam.renameTeam("Team 2");
-        assertEquals("Team 2", testTeam.getTeamName());
+        assertEquals("Team 2", testTeam.getName());
     }
 
     @Test
