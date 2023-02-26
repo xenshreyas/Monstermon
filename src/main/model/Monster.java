@@ -10,8 +10,6 @@ public class Monster implements Writable {
     private MonsterType type;
     private int healthPoints;
 
-    private final int baseDamage = 50;
-
     public Monster(String name) {
         this.name = name;
     }

@@ -56,13 +56,13 @@
 <li>As a user, I want to be able to assemble a team of monsters, carefully selected from my collection. </li>
 <li>As a user, I want to have the ability to remove any monsters that do not meet my standards from my team, allowing me to fine-tune and optimize my team's composition.</li>
 <li>As a user, I want to be able to rename a monster or an entire team to give it a personal touch.</li>
+<li>As a user, I want to be able to view the characteristics of individual monsters within my collection, such as their name, type and health points.</li>
 <li>As a user, I want the ability to save my collection of unique monsters and carefully assembled teams to a file for future use (if I so choose).</li>
-<li>As a user, I want the ability to load my previously saved Monsters and Teams from a file, so that I can easily resume my gameplay (if I so choose).</li>
-
+<li>As a user, I want the ability to load my previously saved monsters and teams from a file, so that I can easily resume my gameplay (if I so choose).</li>
 
 ### <span style="color:Beige"> Future Expansions </span>
 <li>As a user, I want to be able to engage in thrilling battles against other teams of monsters.</li>
-<li>As a user, I want to be able to view the characteristics of individual monsters within my collection, such as their name, type and health points.</li>
+
 </ul>
 </div>
 
