@@ -9,6 +9,8 @@ public class Main {
             new MonstermonApp();
         } catch (FileNotFoundException e) {
             System.out.println("Unable to run application: file not found");
+        } catch (Exception e) {
+            System.out.println("Something went wrong. Please run the application again.");
         }
     }
 }
