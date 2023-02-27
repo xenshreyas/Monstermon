@@ -6,6 +6,8 @@ import org.json.JSONObject;
 
 import java.io.*;
 
+// adapted from: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+
 // Represents a writer that writes JSON representation of monsters to file
 public class JsonWriterMonsters {
     private static final int TAB = 4;
