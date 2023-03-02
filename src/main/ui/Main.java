@@ -2,7 +2,7 @@ package ui;
 
 import java.io.FileNotFoundException;
 
-// Main class that creates a new MonstermonApp Object to run the application
+// Main class that creates a new MonstermonApp object to run the application
 public class Main {
     public static void main(String[] args) {
         try {
