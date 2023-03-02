@@ -1,0 +1,104 @@
+Index: src/test/persistence/JsonWriterMonstersTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package persistence;\n\nimport org.junit.jupiter.api.Test;\n\nimport java.io.IOException;\nimport java.util.List;\n\nimport model.*;\n\nimport static model.MonsterType.*;\nimport static org.junit.jupiter.api.Assertions.*;\n\n// Testing class to test whether monsters are being written correctly\nclass JsonWriterMonstersTest extends JsonTest {\n    //NOTE TO CPSC 210 STUDENTS: the strategy in designing tests for the JsonWriter is to\n    //write data to a file and then use the reader to read it back in and check that we\n    //read in a copy of what was written out.\n\n    @Test\n    void testWriterInvalidFile() {\n        try {\n            Monsters monsters = new Monsters();\n            JsonWriterMonsters writer = new JsonWriterMonsters(\"./data/my\\0illegal:fileName.json\");\n            writer.open();\n            fail(\"IOException was expected\");\n        } catch (IOException e) {\n            // pass\n        }\n    }\n\n    @Test\n    void testWriterEmptyMonsters() {\n        try {\n            Monsters monsters = new Monsters();\n            JsonWriterMonsters writer = new JsonWriterMonsters(\"./data/testWriterEmptyMonsters.json\");\n            writer.open();\n            writer.write(monsters);\n            writer.close();\n\n            JsonReaderMonsters reader = new JsonReaderMonsters(\"./data/testWriterEmptyMonsters.json\");\n            monsters = reader.read();\n            assertEquals(0, monsters.getMonsters().size());\n        } catch (IOException e) {\n            fail(\"Exception should not have been thrown\");\n        }\n    }\n\n    @Test\n    void testWriterGeneralMonsters() {\n        try {\n            Monsters monsters = new Monsters();\n            monsters.addMonster(new Monster(\"Bulbasaur\", GRASS, 45));\n            monsters.addMonster(new Monster(\"Charmander\", FIRE, 50));\n            monsters.addMonster(new Monster(\"Squirtle\", WATER, 30));\n            JsonWriterMonsters writer = new JsonWriterMonsters(\"./data/testWriterGeneralMonsters.json\");\n            writer.open();\n            writer.write(monsters);\n            writer.close();\n\n            JsonReaderMonsters reader = new JsonReaderMonsters(\"./data/testWriterGeneralMonsters.json\");\n            monsters = reader.read();\n            List<Monster> allMonsters = monsters.getMonsters();\n            assertEquals(3, allMonsters.size());\n            checkMonster(\"Bulbasaur\", GRASS, 45, allMonsters.get(0));\n            checkMonster(\"Charmander\", FIRE, 50, allMonsters.get(1));\n            checkMonster(\"Squirtle\", WATER, 30, allMonsters.get(2));\n\n        } catch (IOException e) {\n            fail(\"Exception should not have been thrown\");\n        }\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/persistence/JsonWriterMonstersTest.java b/src/test/persistence/JsonWriterMonstersTest.java
+--- a/src/test/persistence/JsonWriterMonstersTest.java	(revision 608791ffce659ef1a4d67040b546745bba083297)
++++ b/src/test/persistence/JsonWriterMonstersTest.java	(date 1677733036460)
+@@ -12,9 +12,8 @@
+ 
+ // Testing class to test whether monsters are being written correctly
+ class JsonWriterMonstersTest extends JsonTest {
+-    //NOTE TO CPSC 210 STUDENTS: the strategy in designing tests for the JsonWriter is to
+-    //write data to a file and then use the reader to read it back in and check that we
+-    //read in a copy of what was written out.
++    // to design tests for JsonWriter, write data to a file and then use the reader to read it back in and
++    // check that we read in a copy of what was written out.
+ 
+     @Test
+     void testWriterInvalidFile() {
+Index: src/main/model/Battle.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/model/Battle.java b/src/main/model/Battle.java
+new file mode 100644
+--- /dev/null	(date 1677447358379)
++++ b/src/main/model/Battle.java	(date 1677447358379)
+@@ -0,0 +1,72 @@
++package model;
++
++import static model.MonsterType.*;
++
++// Represents a battle between two teams
++public class Battle {
++    private Team team1;
++    private Team team2;
++
++    private final int baseDamage = 50;
++
++    // EFFECTS: creates a new Battle object
++    public Battle(Team team1, Team team2) {
++        this.team1 = team1;
++        this.team2 = team2;
++    }
++
++    // REQUIRES: both teams must be of the same size
++    // EFFECTS: battles two teams, returns the team that won. If the score of both teams is the same, returns
++    //          a new team named "Draw".
++    public Team battleTeams() {
++        int t1score = 0;
++        int t2score = 0;
++        int i = 0;
++        for (Monster m1 : team1.getAllMonsters()) {
++            Monster m2 = team2.getAllMonsters().get(i);
++            String m1Name = m1.getName();
++            String m2Name = m2.getName();
++            if (battleMonsters(m1, m2).getName().equals(m1Name)) {
++                t1score++;
++            } else if (battleMonsters(m1, m2).getName().equals(m2Name)) {
++                t2score++;
++            } else {
++                t1score++;
++                t2score++;
++            }
++        }
++
++        if (t1score > t2score) {
++            return team1;
++        } else if (t1score < t2score) {
++            return team2;
++        }
++        return new Team("Draw");
++    }
++
++    // EFFECTS: battles two monsters, returns the monster that won. If neither won, returns a new monster named "Draw"
++    public Monster battleMonsters(Monster m1, Monster m2) {
++        int m1Hp = m1.getHealthPoints();
++        int m2Hp = m2.getHealthPoints();
++        int m1Damage = baseDamage;
++        int m2Damage = baseDamage;
++
++        if (m1.getType().equals(GRASS) && m2.getType().equals(FIRE)) {
++            m1Damage /= 2;
++            m2Damage *= 2;
++        }
++
++        while (m1Hp > 0 || m2Hp > 0) {
++            if (m1Hp <= 0) {
++                return m2;
++            } else if (m2Hp <= 0) {
++                return m1;
++            } else {
++                m1Hp -= m2Damage;
++                m2Hp -= m1Damage;
++            }
++        }
++        return new Monster("Draw");
++    }
++
++}
