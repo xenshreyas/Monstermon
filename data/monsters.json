@@ -1,4 +1,8 @@
 {
-    "Monsters": [],
+    "Monsters": [{
+        "healthPoints": 45,
+        "name": "Basfj",
+        "type": "GRASS"
+    }],
     "name": "Monsters"
 }

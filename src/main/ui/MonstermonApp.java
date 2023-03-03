@@ -410,6 +410,9 @@ public class MonstermonApp {
         for (Monster m : monsters) {
             if (m.getName().equals(name)) {
                 t.removeMonsterFromTeam(m);
+                // After removing the monster from the list, we cannot continue to loop over the list of monsters as is
+                // so, we return. This works in this scenario, as every team can only have any particular monster
+                // present once
                 return;
             }
         }
