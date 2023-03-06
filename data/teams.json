@@ -1,11 +1,4 @@
 {
     "name": "Teams",
-    "Teams": [{
-        "name": "Team1",
-        "monsters": [{
-            "healthPoints": 45,
-            "name": "Basfj",
-            "type": "GRASS"
-        }]
-    }]
+    "Teams": []
 }
