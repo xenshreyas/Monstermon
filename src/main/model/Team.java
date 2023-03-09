@@ -5,6 +5,7 @@ import persistence.Writable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 // Represents a team of monsters, with a name and a List of monsters
 public class Team implements Writable {
@@ -42,6 +43,25 @@ public class Team implements Writable {
             return true;
         }
         return false;
+    }
+
+    // EFFECTS: returns true if two teams are the same, else false
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Team team = (Team) o;
+        return name.equals(team.name) && monsters.equals(team.monsters);
+    }
+
+    // EFFECTS: generates hashCode for the team
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, monsters);
     }
 
     // MODIFIES: this
