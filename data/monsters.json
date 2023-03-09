@@ -1,15 +1,4 @@
 {
-    "Monsters": [
-        {
-            "healthPoints": 45,
-            "name": "Bulbasaur",
-            "type": "GRASS"
-        },
-        {
-            "healthPoints": 45,
-            "name": "Charmander",
-            "type": "FIRE"
-        }
-    ],
+    "Monsters": [],
     "name": "Monsters"
 }
