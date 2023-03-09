@@ -62,7 +62,10 @@ class MonsterTest {
         Monster m = new Monster ("Bulbasaur", GRASS, 45);
         assertEquals(m, new Monster("Bulbasaur", GRASS, 45));
         assertFalse(m.equals(new Monster("Charmander", FIRE, 45)));
+        assertFalse(m.equals(new Monster("Snivy", GRASS, 45)));
+        assertFalse(m.equals(new Monster("Bulbasaur", GRASS, 60)));
         assertFalse(m.equals(null));
+        assertFalse(m.equals(new Team("Team 1")));
     }
 
     @Test

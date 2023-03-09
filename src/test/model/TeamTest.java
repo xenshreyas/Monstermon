@@ -104,6 +104,8 @@ public class TeamTest {
         t2.addMonsterToTeam(c);
         t2.addMonsterToTeam(s);
         assertTrue(t1.equals(t2));
+        assertTrue(t1.equals(t1));
+        assertFalse(t1.equals(new Monster("Bulbasaur", GRASS, 45)));
         assertFalse(t1.equals(new Team("Team 3")));
         assertFalse(t1.equals(null));
     }
