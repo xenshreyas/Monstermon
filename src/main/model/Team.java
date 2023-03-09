@@ -89,4 +89,5 @@ public class Team implements Writable {
         json.put("monsters", monsters);
         return json;
     }
+
 }
