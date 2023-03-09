@@ -1,4 +1,18 @@
 {
     "name": "Teams",
-    "Teams": []
+    "Teams": [{
+        "name": "Team 1",
+        "monsters": [
+            {
+                "healthPoints": 45,
+                "name": "Bulbasaur",
+                "type": "GRASS"
+            },
+            {
+                "healthPoints": 45,
+                "name": "Charmander",
+                "type": "FIRE"
+            }
+        ]
+    }]
 }

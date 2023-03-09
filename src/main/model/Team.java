@@ -25,6 +25,25 @@ public class Team implements Writable {
         return this.name;
     }
 
+    // EFFECTS: returns true if two teams are equal based on their fields
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Team team = (Team) o;
+        return name.equals(team.name) && monsters.equals(team.monsters);
+    }
+
+    // EFFECTS: generates hashCode for team
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, monsters);
+    }
+
     // EFFECTS: gets the list of all monsters on this team
     public List<Monster> getAllMonsters() {
         return this.monsters;

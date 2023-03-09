@@ -3,6 +3,10 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static model.MonsterType.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 // Testing class for methods in the Team Class
@@ -83,7 +87,31 @@ public class TeamTest {
         assertEquals(0, testTeam.getAllMonsters().size());
 
         testTeam.addMonsterToTeam(testMonster1);
+    }
 
+    @Test
+    public void testEquals() {
+        List<Monster> monsters = new ArrayList<>();
+        Team t1 = new Team("Team 1");
+        t1.addMonsterToTeam(new Monster("Bulbasaur", GRASS, 45));
+        t1.addMonsterToTeam(new Monster("Charmander", FIRE, 45));
+        t1.addMonsterToTeam(new Monster("Squirtle", WATER, 45));
+        Monster b = new Monster ("Bulbasaur", GRASS, 45);
+        Monster c = new Monster ("Charmander", FIRE, 45);
+        Monster s = new Monster ("Squirtle", WATER, 45);
+        Team t2 = new Team("Team 1");
+        t2.addMonsterToTeam(b);
+        t2.addMonsterToTeam(c);
+        t2.addMonsterToTeam(s);
+        assertTrue(t1.equals(t2));
+        assertFalse(t1.equals(new Team("Team 3")));
+        assertFalse(t1.equals(null));
+    }
+
+    @Test
+    public void testHashCode() {
+        Team t = new Team ("Team");
+        assertEquals(t.hashCode(), new Team("Team").hashCode());
     }
 
 }

@@ -395,37 +395,12 @@ public class MonstermonApp {
         Team t = getParticularTeam();
         if (t.getAllMonsters().size() == 0) {
             System.out.println("This team is empty! Try another team!");
-        } else if (containsMonster(t.getAllMonsters(), m)) {
-            removeMonster(t, m.getName());
+        } else if (t.getAllMonsters().contains(m)) {
+            t.removeMonsterFromTeam(m);
             System.out.println(m.getName() + " has been successfully removed from " + t.getName() + "!\n");
         } else {
             System.out.println("That monster is not in this team!");
         }
-    }
-
-    // MODIFIES: t
-    // EFFECTS: removes the monster of given name from the given team
-    private void removeMonster(Team t, String name) {
-        List<Monster> monsters = t.getAllMonsters();
-        for (Monster m : monsters) {
-            if (m.getName().equals(name)) {
-                t.removeMonsterFromTeam(m);
-                // After removing the monster from the list, we cannot continue to loop over the list of monsters as is
-                // so, we return. This works in this scenario, as every team can only have any particular monster
-                // present once
-                return;
-            }
-        }
-    }
-
-    // EFFECTS: returns true if the given list of monsters contains the given monster, else returns false
-    private boolean containsMonster(List<Monster> monsters, Monster m) {
-        for (Monster mon : monsters) {
-            if (mon.getName().equals(m.getName())) {
-                return true;
-            }
-        }
-        return false;
     }
 
     // MODIFIES: this

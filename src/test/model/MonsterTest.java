@@ -56,4 +56,18 @@ class MonsterTest {
         testMonster.setHealthPoints(200);
         assertEquals(200, testMonster.getHealthPoints());
     }
+
+    @Test
+    public void testEquals() {
+        Monster m = new Monster ("Bulbasaur", GRASS, 45);
+        assertEquals(m, new Monster("Bulbasaur", GRASS, 45));
+        assertFalse(m.equals(new Monster("Charmander", FIRE, 45)));
+        assertFalse(m.equals(null));
+    }
+
+    @Test
+    public void testHashCode() {
+        Monster m = new Monster ("Bulbasaur", GRASS, 45);
+        assertEquals(m.hashCode(), new Monster("Bulbasaur", GRASS, 45).hashCode());
+    }
 }

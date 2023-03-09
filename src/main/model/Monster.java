@@ -63,6 +63,25 @@ public class Monster implements Writable {
         this.healthPoints = healthPoints;
     }
 
+    // EFFECTS: returns true if two monsters are equal based on their fields
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Monster monster = (Monster) o;
+        return healthPoints == monster.healthPoints && name.equals(monster.name) && type == monster.type;
+    }
+
+    // EFFECTS: generates hashCode for monster
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, type, healthPoints);
+    }
+
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
