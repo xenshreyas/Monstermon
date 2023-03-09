@@ -45,25 +45,6 @@ public class Team implements Writable {
         return false;
     }
 
-    // EFFECTS: returns true if two teams are the same, else false
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Team team = (Team) o;
-        return name.equals(team.name) && monsters.equals(team.monsters);
-    }
-
-    // EFFECTS: generates hashCode for the team
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, monsters);
-    }
-
     // MODIFIES: this
     // EFFECTS: removes the monster from this team
     public boolean removeMonsterFromTeam(Monster monster) {

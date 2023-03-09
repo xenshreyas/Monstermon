@@ -13,23 +13,6 @@ public class Monster implements Writable {
     private int healthPoints;
 
     // EFFECTS: returns true if two monsters are the same, else false
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Monster monster = (Monster) o;
-        return healthPoints == monster.healthPoints && name.equals(monster.name) && type == monster.type;
-    }
-
-    // EFFECTS: generates hashCode for the monster
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, type, healthPoints);
-    }
 
     public Monster(String name) {
         this.name = name;
