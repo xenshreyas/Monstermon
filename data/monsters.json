@@ -1,4 +1,8 @@
 {
-    "Monsters": [],
+    "Monsters": [{
+        "healthPoints": 45,
+        "name": "NotPikamonster",
+        "type": "FIRE"
+    }],
     "name": "Monsters"
 }

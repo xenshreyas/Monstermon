@@ -1,4 +1,11 @@
 {
     "name": "Teams",
-    "Teams": []
+    "Teams": [{
+        "name": "Team 1",
+        "monsters": [{
+            "healthPoints": 999,
+            "name": "Mew",
+            "type": "PSYCH"
+        }]
+    }]
 }
