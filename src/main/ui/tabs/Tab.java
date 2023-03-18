@@ -20,6 +20,7 @@ public abstract class Tab extends JPanel {
     //EFFECTS: creates and returns row with button included
     public JPanel formatButtonRow(JButton b) {
         JPanel p = new JPanel();
+        p.setBackground(new Color(126, 191, 255)); // background for middle 1/3rd
         p.setLayout(new FlowLayout());
         p.add(b);
 

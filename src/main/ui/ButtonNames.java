@@ -1,12 +1,9 @@
 package ui;
 
 public enum ButtonNames {
-    ARRIVE("Arrive Home"),
-    LEAVE("Leave Home"),
-    GO_TO_REPORT("Current Report"),
-    GENERATE_REPORT("Appliance Status"),
-    ON("On"),
-    OFF("Off");
+    CREATEMONSTER("Create Monster!"),
+    CREATETEAM("Create Team!"),
+    GO_TO_REPORT("Current Report");
 
     private final String name;
 

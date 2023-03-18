@@ -7,12 +7,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class NewTeamTab extends Tab {
+public class WelcomeTab extends Tab {
 
     private JLabel greeting;
 
     //EFFECTS: constructs a home tab for console with buttons and a greeting
-    public NewTeamTab(MonstermonUI controller) {
+    public WelcomeTab(MonstermonUI controller) {
         super(controller);
 
         setLayout(new GridLayout(3, 1));

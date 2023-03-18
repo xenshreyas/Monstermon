@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class HomeTab extends Tab {
 
-    private static final String INIT_GREETING = "Are you arriving or leaving home?";
+    private static final String INIT_GREETING = "Welcome to Monstermon Adventures!";
     private JLabel greeting;
 
     //EFFECTS: constructs a home tab for console with buttons and a greeting
@@ -17,6 +17,7 @@ public class HomeTab extends Tab {
         super(controller);
 
         setLayout(new GridLayout(3, 1));
+        setBackground(new Color(126, 191, 255)); // background of top 1/3rd
 
         placeGreeting();
         placeHomeButtons();
@@ -32,16 +33,16 @@ public class HomeTab extends Tab {
 
     //EFFECTS: creates Arrive and Leave buttons that change greeting message when clicked
     private void placeHomeButtons() {
-        JButton b1 = new JButton(ButtonNames.ARRIVE.getValue());
-        JButton b2 = new JButton(ButtonNames.LEAVE.getValue());
+        JButton b1 = new JButton(ButtonNames.CREATEMONSTER.getValue());
+        JButton b2 = new JButton(ButtonNames.CREATETEAM.getValue());
 
         JPanel buttonRow = formatButtonRow(b1);
         buttonRow.add(b2);
         buttonRow.setSize(WIDTH, HEIGHT / 6);
 
-        b1.addActionListener(e -> greeting.setText("Welcome!"));
+        b1.addActionListener(e -> greeting.setText("Create Monster!"));
 
-        b2.addActionListener(e -> greeting.setText("Goodbye!"));
+        b2.addActionListener(e -> greeting.setText("Create Team!"));
 
         this.add(buttonRow);
     }
@@ -63,5 +64,7 @@ public class HomeTab extends Tab {
         });
 
         this.add(statusBlock);
+        statusBlock.setBackground(new Color(126, 191, 255)); // background of bottom 1/3rd
     }
+
 }
