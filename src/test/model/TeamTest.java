@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static model.MonsterType.*;
@@ -108,6 +109,42 @@ public class TeamTest {
         assertFalse(t1.equals(new Monster("Bulbasaur", GRASS, 45)));
         assertFalse(t1.equals(new Team("Team 3")));
         assertFalse(t1.equals(null));
+    }
+
+    @Test
+    public void testEqualsMore() {
+        Monster monster1 = new Monster("Bulbasaur", GRASS, 45);
+        Monster monster2 = new Monster("Charmander", FIRE, 50);
+        Team team1 = new Team("Team A");
+        Team team2 = new Team("Team A");
+        team1.addMonsterToTeam(monster1);
+        team1.addMonsterToTeam(monster2);
+        team2.addMonsterToTeam(monster1);
+        team2.addMonsterToTeam(monster2);
+
+        assertTrue(team1.equals(team1));
+        assertFalse(team1.equals(null));
+
+        assertFalse(team1.equals(""));
+
+        Team team3 = new Team("Team B");
+        team3.addMonsterToTeam(monster1);
+        team3.addMonsterToTeam(monster2);
+        assertFalse(team1.equals(team3));
+
+        Team team4 = new Team("Team A");
+        team4.addMonsterToTeam(monster1);
+        assertFalse(team1.equals(team4));
+
+        Monster monster3 = new Monster("Squirtle", WATER, 30);
+        Team team5 = new Team("Team A");
+        team5.addMonsterToTeam(monster3);
+        team5.addMonsterToTeam(monster2);
+
+        assertFalse(team1.equals(team5));
+
+        assertTrue(team1.equals(team2));
+
     }
 
     @Test
