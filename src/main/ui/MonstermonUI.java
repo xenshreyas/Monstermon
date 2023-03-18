@@ -4,7 +4,10 @@ import model.*;
 import ui.tabs.*;
 
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
+
+import static javax.swing.UIManager.put;
 
 // Represents the GUI for Monstermon Adventures
 public class MonstermonUI extends JFrame {
@@ -16,7 +19,7 @@ public class MonstermonUI extends JFrame {
     public static final int VIEW_MONSTERS_TAB = 4;
     public static final int VIEW_TEAMS_TAB = 5;
 
-    public static final int WIDTH = 600;
+    public static final int WIDTH = 650;
     public static final int HEIGHT = 400;
     private JTabbedPane sidebar;
     private Monstermon monstermon;
@@ -32,7 +35,6 @@ public class MonstermonUI extends JFrame {
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-
         monstermon = new Monstermon();
         // loadMonstersAndTeams();
 
