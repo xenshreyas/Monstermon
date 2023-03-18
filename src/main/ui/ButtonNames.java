@@ -1,9 +1,13 @@
 package ui;
 
 public enum ButtonNames {
-    CREATEMONSTER("Create Monster!"),
-    CREATETEAM("Create Team!"),
-    GO_TO_REPORT("Current Report");
+    ADDMONSTER("Add Monster"),
+    CREATEMONSTER("Create Monster"),
+    CREATETEAM("Create Team"),
+    VIEWMONSTERS("View Monsters"),
+    VIEWTEAMS("View Teams"),
+    SAVE("Save"),
+    LOAD("Load");
 
     private final String name;
 

@@ -9,11 +9,12 @@ import java.awt.*;
 // Represents the GUI for Monstermon Adventures
 public class MonstermonUI extends JFrame {
 
-    public static final int WELCOME_TAB_INDEX = 4;
     public static final int HOME_TAB_INDEX = 0;
     public static final int CREATE_MONSTER_TAB = 1;
     public static final int CREATE_TEAM_TAB = 2;
     public static final int ADD_MONSTER_TO_TEAM_TAB = 3;
+    public static final int VIEW_MONSTERS_TAB = 4;
+    public static final int VIEW_TEAMS_TAB = 5;
 
     public static final int WIDTH = 600;
     public static final int HEIGHT = 400;
@@ -30,6 +31,7 @@ public class MonstermonUI extends JFrame {
         super("Monstermon Adventures");
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         monstermon = new Monstermon();
         // loadMonstersAndTeams();
@@ -52,11 +54,12 @@ public class MonstermonUI extends JFrame {
     //MODIFIES: this
     //EFFECTS: adds home tab, settings tab and report tab to this UI
     private void loadTabs() {
-        JPanel welcomeTab = new WelcomeTab(this);
         JPanel homeTab = new HomeTab(this);
         JPanel newMonsterTab = new NewMonsterTab(this);
         JPanel newTeamTab = new NewTeamTab(this);
         JPanel addMonsterToTeamTab = new AddMonsterToTeamTab(this);
+        JPanel viewMonstersTab = new ViewMonstersTab(this);
+        JPanel viewTeamsTab = new ViewTeamsTab(this);
 
         sidebar.add(homeTab, HOME_TAB_INDEX);
         sidebar.setTitleAt(HOME_TAB_INDEX, "Home");
@@ -66,8 +69,11 @@ public class MonstermonUI extends JFrame {
         sidebar.setTitleAt(CREATE_TEAM_TAB, "New Team");
         sidebar.add(addMonsterToTeamTab, ADD_MONSTER_TO_TEAM_TAB);
         sidebar.setTitleAt(ADD_MONSTER_TO_TEAM_TAB, "Add Monster");
-        sidebar.add(welcomeTab, WELCOME_TAB_INDEX);
-        sidebar.setTitleAt(WELCOME_TAB_INDEX, "Welcome");
+        sidebar.add(viewMonstersTab, VIEW_MONSTERS_TAB);
+        sidebar.setTitleAt(VIEW_MONSTERS_TAB, "View Monsters");
+        sidebar.add(viewTeamsTab, VIEW_TEAMS_TAB);
+        sidebar.setTitleAt(VIEW_TEAMS_TAB, "View Teams");
+
     }
 
     //EFFECTS: returns sidebar of this UI
