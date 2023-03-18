@@ -17,11 +17,10 @@ public class HomeTab extends Tab {
         super(controller);
 
         setLayout(new GridLayout(3, 1));
-        setBackground(new Color(126, 191, 255)); // background of top 1/3rd
+        setBackground(new Color(155, 92, 197)); // background of top and bottom 1/3rd
 
         placeGreeting();
         placeHomeButtons();
-        placeStatusButton();
     }
 
     //EFFECTS: creates greeting at top of console
@@ -40,31 +39,11 @@ public class HomeTab extends Tab {
         buttonRow.add(b2);
         buttonRow.setSize(WIDTH, HEIGHT / 6);
 
-        b1.addActionListener(e -> greeting.setText("Create Monster!"));
+        b1.addActionListener(e -> getController().getTabbedPane().setSelectedIndex(MonstermonUI.CREATE_MONSTER_TAB));
 
-        b2.addActionListener(e -> greeting.setText("Create Team!"));
+        b2.addActionListener(e -> getController().getTabbedPane().setSelectedIndex(MonstermonUI.CREATE_TEAM_TAB));
 
         this.add(buttonRow);
-    }
-
-    //EFFECTS: constructs a status button that switches to the report tab on the console
-    private void placeStatusButton() {
-        JPanel statusBlock = new JPanel();
-        JButton statusButton = new JButton(ButtonNames.GO_TO_REPORT.getValue());
-        statusBlock.add(formatButtonRow(statusButton));
-
-        statusButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String buttonPressed = e.getActionCommand();
-                if (buttonPressed.equals(ButtonNames.GO_TO_REPORT.getValue())) {
-                    getController().getTabbedPane().setSelectedIndex(MonstermonUI.CREATE_MONSTER_TAB);
-                }
-            }
-        });
-
-        this.add(statusBlock);
-        statusBlock.setBackground(new Color(126, 191, 255)); // background of bottom 1/3rd
     }
 
 }
