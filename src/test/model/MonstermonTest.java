@@ -49,4 +49,18 @@ public class MonstermonTest {
         assertEquals(1, monstermon.getAllTeams().size());
     }
 
+    @Test
+    public void testGetAllMonstersAsStrings() {
+        List<String> monsterNames = new ArrayList<>();
+        monsterNames.add("Bulbasaur");
+        monsterNames.add("Charmander");
+        monsterNames.add("Squirtle");
+
+        monstermon.addMonster(new Monster("Bulbasaur", MonsterType.GRASS, 45));
+        monstermon.addMonster(new Monster("Charmander", MonsterType.FIRE, 45));
+        monstermon.addMonster(new Monster("Squirtle", MonsterType.WATER, 45));
+
+        assertEquals(monsterNames, monstermon.getAllMonstersAsStrings());
+
+    }
 }
