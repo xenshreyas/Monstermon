@@ -84,24 +84,30 @@ public class NewTeamTab extends Tab {
     public void actionListener() {
         JTabbedPane pane = getController().getTabbedPane();
         submitButton.addActionListener(e -> {
-            makeTeam(getName());
+            Team t = makeTeam(getName());
             nameField.setText("");
 
-            message.setText("Team created successfully!");
-            Timer timer = new Timer(1000, ev -> pane.setSelectedIndex(MonstermonUI.HOME_TAB_INDEX));
-            timer.setRepeats(false);
-            timer.start();
+            if (t != null) {
+                message.setForeground(new Color(30, 61, 52, 255));
+                message.setText("Team created successfully!");
+                Timer timer = new Timer(1000, ev -> pane.setSelectedIndex(MonstermonUI.HOME_TAB_INDEX));
+                timer.setRepeats(false);
+                timer.start();
+            } else {
+                message.setForeground(new Color(148, 47, 47));
+                message.setText("Invalid input. Please try again.");
+            }
         });
     }
 
     // MODIFIES: this
     // EFFECTS: makes a new team and adds it to monstermon
-    public void makeTeam(String name) {
+    public Team makeTeam(String name) {
         if (name.equals("")) {
-            return;
+            return null;
         }
         Team t = new Team(name);
         monstermon.addTeam(t);
+        return t;
     }
-
 }

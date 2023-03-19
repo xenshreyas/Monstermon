@@ -136,6 +136,7 @@ public class NewMonsterTab extends Tab {
 
             if (m != null) {
                 // add monster to entries
+                message.setForeground(new Color(30, 61, 52, 255));
                 message.setText("Monster created successfully!");
                 Timer timer = new Timer(1000, ev -> {
                     pane.setSelectedIndex(MonstermonUI.HOME_TAB_INDEX);
@@ -144,6 +145,7 @@ public class NewMonsterTab extends Tab {
                 timer.setRepeats(false);
                 timer.start();
             } else {
+                message.setForeground(new Color(148, 47, 47));
                 message.setText("Invalid input. Please try again.");
             }
         });
