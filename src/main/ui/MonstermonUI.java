@@ -19,8 +19,8 @@ public class MonstermonUI extends JFrame {
     public static final int VIEW_MONSTERS_TAB = 4;
     public static final int VIEW_TEAMS_TAB = 5;
 
-    public static final int WIDTH = 650;
-    public static final int HEIGHT = 400;
+    private static final int WIDTH = 650;
+    private static final int HEIGHT = 400;
     private JTabbedPane sidebar;
     private Monstermon monstermon;
 
@@ -56,7 +56,7 @@ public class MonstermonUI extends JFrame {
 
     //MODIFIES: this
     //EFFECTS: adds home tab, settings tab and report tab to this UI
-    private void loadTabs() {
+    public void loadTabs() {
         JPanel homeTab = new HomeTab(this);
         JPanel newMonsterTab = new NewMonsterTab(this);
         JPanel newTeamTab = new NewTeamTab(this);

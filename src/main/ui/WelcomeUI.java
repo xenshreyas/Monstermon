@@ -6,13 +6,13 @@ import ui.components.RoundedButton;
 import javax.swing.*;
 import java.awt.*;
 
-// Represents the GUI for Monstermon Adventures
+// Represents the GUI for Monstermon Adventures (intro page)
 public class WelcomeUI extends JFrame {
 
-    public static final int WIDTH = 650;
-    public static final int HEIGHT = 450;
+    private static final int WIDTH = 650;
+    private static final int HEIGHT = 450;
 
-    JButton enter;
+    private JButton enter;
 
     //MODIFIES: this
     //EFFECTS: creates MonstermonUI, displays sidebar and tabs
@@ -33,6 +33,8 @@ public class WelcomeUI extends JFrame {
         actionListener();
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the introductory page of Monstermon Adventures
     public void initialize() {
 
         JLabel intro = new FancyLabel("Monstermon Adventures");
@@ -68,13 +70,16 @@ public class WelcomeUI extends JFrame {
         setVisible(true);
     }
 
-    private void actionListener() {
+    // MODIFIES: this
+    // EFFECTS: sets the action listener to redirect user to the main application and dispose the current page
+    public void actionListener() {
         enter.addActionListener(e -> {
             new MonstermonUI();
             dispose();
         });
     }
 
+    // EFFECTS: runs the application
     public static void main(String[] args) {
         new WelcomeUI();
     }

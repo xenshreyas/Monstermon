@@ -1,106 +1,130 @@
 package ui.tabs;
 
 import model.Monster;
-import model.Monstermon;
-import ui.*;
+import ui.MonstermonUI;
 import ui.components.FancyField;
 import ui.components.FancyLabel;
 import ui.components.RoundedButton;
-import ui.components.SubmitButton;
 
 import javax.swing.*;
 import java.awt.*;
 
 import static model.MonsterType.*;
 
+// Represents the New Monster Tab that allows the user to create a monster
 public class NewMonsterTab extends Tab {
 
     private JTextField nameField;
     private JTextField typeField;
     private JTextField healthField;
-    JButton submitButton;
-    GridBagConstraints gbc;
+    private JButton submitButton;
+    private JLabel message;
 
-    //EFFECTS: constructs a home tab for console with buttons and a greeting
+    // MODIFIES: this
+    // EFFECTS: initializes the NewMonsterTab
     public NewMonsterTab(MonstermonUI controller) {
         super(controller);
-
         setLayout(new GridBagLayout());
-        setBackground(new Color(24, 24, 24)); // background of top and bottom 1/3rd
+        setBackground(new Color(24, 24, 24));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        gbc = new GridBagConstraints();
+        GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(5, 5, 5, 5); // add spacing between components
+        gbc.insets = new Insets(5, 5, 5, 5);
 
-        initialize();
-        initializeButton();
+        initializeLabels(gbc);
+        initializeFields(gbc);
+        initializeButton(gbc);
+        addBottomLabel(gbc);
+        actionListener();
     }
 
-    public void initialize() {
-
+    // MODIFIES: this
+    // EFFECTS: initializes the name, type, and health points labels
+    public void initializeLabels(GridBagConstraints gbc) {
         JLabel nameLabel = new FancyLabel("Name:");
         JLabel typeLabel = new FancyLabel("Type:");
         JLabel healthLabel = new FancyLabel("Health Points:");
-
         nameLabel.setFont(new Font("Nanum Myeongjo", Font.CENTER_BASELINE, 15));
         typeLabel.setFont(new Font("Nanum Myeongjo", Font.CENTER_BASELINE, 15));
         healthLabel.setFont(new Font("Nanum Myeongjo", Font.CENTER_BASELINE, 15));
-
-        nameField = new FancyField(20);
-        typeField = new FancyField(20);
-        healthField = new FancyField(20);
-
         gbc.fill = GridBagConstraints.HORIZONTAL;
         add(nameLabel, gbc);
-        gbc.gridx = 1;
-        add(nameField, gbc);
-
         gbc.gridx = 0;
         gbc.gridy = 1;
         add(typeLabel, gbc);
-        gbc.gridx = 1;
-        add(typeField, gbc);
-
         gbc.gridx = 0;
         gbc.gridy = 2;
         add(healthLabel, gbc);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: initializes the name, type, and health points fields
+    public void initializeFields(GridBagConstraints gbc) {
+        nameField = new FancyField(20);
+        typeField = new FancyField(20);
+        healthField = new FancyField(20);
         gbc.gridx = 1;
+        gbc.gridy = 0;
+        add(nameField, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        add(typeField, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 2;
         add(healthField, gbc);
     }
 
-    public void initializeButton() {
+    // MODIFIES: this
+    // EFFECTS: initializes the create monster button
+    public void initializeButton(GridBagConstraints gbc) {
+        submitButton = new RoundedButton("Create Monster");
+        submitButton.setPreferredSize(new Dimension(150, 30));
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.NONE;
-
-        submitButton = new RoundedButton("Create Monster");
-        submitButton.setPreferredSize(new Dimension(150, 30));
         add(submitButton, gbc);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the message label to the NewMonsterTab
+    public void addBottomLabel(GridBagConstraints gbc) {
+        message = new FancyLabel("");
+        message.setFont(new Font("Nanum Myeongjo", Font.CENTER_BASELINE, 15));
+        message.setForeground(new Color(30, 61, 52, 255));
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.fill = GridBagConstraints.NONE;
+        add(message, gbc);
+    }
 
+    // EFFECTS: returns the name
     public String getName() {
         return nameField.getText();
     }
 
+    // EFFECTS: returns the type
     public String getType() {
         return typeField.getText();
     }
 
+    // EFFECTS: returns the health points or -1 if the entered value is not a valid integer
     public int getHealthPoints() {
         String healthStr = healthField.getText();
         try {
             return Integer.parseInt(healthStr);
         } catch (NumberFormatException e) {
-            return 0;
+            return -1;
         }
     }
 
-    private void actionListener() {
+    // EFFECTS: sets action listener for the submit button
+    public void actionListener() {
         JTabbedPane pane = getController().getTabbedPane();
         submitButton.addActionListener(e -> {
             Monster m = makeMonster(getName(), getType(), getHealthPoints());
@@ -108,14 +132,24 @@ public class NewMonsterTab extends Tab {
             typeField.setText("");
             healthField.setText("");
 
-            pane.setSelectedIndex(MonstermonUI.HOME_TAB_INDEX);
-            if (!(m == null)) {
+            if (m != null) {
                 // add monster to entries
+                message.setText("Monster created successfully!");
+                Timer timer = new Timer(1000, ev -> {
+                    pane.setSelectedIndex(MonstermonUI.HOME_TAB_INDEX);
+                    message.setText("");
+                });
+                timer.setRepeats(false);
+                timer.start();
+            } else {
+                message.setText("Invalid input. Please try again.");
             }
         });
     }
 
-    private Monster makeMonster(String name, String mtype, int hp) {
+    // EFFECTS: creates and returns a new monster with the given name, type, and health points, or null
+    //          if the input is invalid
+    public Monster makeMonster(String name, String mtype, int hp) {
         if (name.equals("") || hp == 0 || hp > 400) {
             return null;
         }
