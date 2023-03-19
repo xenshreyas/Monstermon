@@ -10,6 +10,7 @@ public class HomeTab extends Tab {
 
     private static final String INIT_GREETING = "Monstermon Adventures";
     private JLabel greeting;
+
     JButton createMonsterButton;
     JButton createTeamButton;
     JButton viewMonstersButton;
@@ -17,6 +18,10 @@ public class HomeTab extends Tab {
     JButton saveButton;
     JButton loadButton;
     JButton addMonsterButton;
+
+    JPanel buttonPanelAbove;
+    JPanel buttonPanelMiddle;
+    JPanel buttonPanelBelow;
 
     //EFFECTS: constructs a home tab for console with buttons and a greeting
     public HomeTab(MonstermonUI controller) {
@@ -35,7 +40,18 @@ public class HomeTab extends Tab {
         temp.setBackground(new Color(24,24,24));
         add(temp);
 
+        initializePanels();
         placeHomeButtons();
+    }
+
+    private void initializePanels() {
+        buttonPanelAbove = new JPanel();
+        buttonPanelMiddle = new JPanel();
+        buttonPanelBelow = new JPanel();
+
+        buttonPanelAbove.setBackground(new Color(24,24,24));
+        buttonPanelMiddle.setBackground(new Color(24,24,24));
+        buttonPanelBelow.setBackground(new Color(24,24,24));
     }
 
     //EFFECTS: creates greeting at top of console
@@ -49,7 +65,6 @@ public class HomeTab extends Tab {
     }
 
     //EFFECTS: creates Arrive and Leave buttons that change greeting message when clicked
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     private void placeHomeButtons() {
         createMonsterButton = new RoundedButton(ButtonNames.CREATEMONSTER.getValue());
         createTeamButton = new RoundedButton(ButtonNames.CREATETEAM.getValue());
@@ -58,14 +73,6 @@ public class HomeTab extends Tab {
         saveButton = new RoundedButton(ButtonNames.SAVE.getValue());
         loadButton = new RoundedButton(ButtonNames.LOAD.getValue());
         addMonsterButton = new RoundedButton(ButtonNames.ADDMONSTER.getValue());
-
-        JPanel buttonPanelAbove = new JPanel();
-        JPanel buttonPanelMiddle = new JPanel();
-        JPanel buttonPanelBelow = new JPanel();
-
-        buttonPanelAbove.setBackground(new Color(24,24,24));
-        buttonPanelMiddle.setBackground(new Color(24,24,24));
-        buttonPanelBelow.setBackground(new Color(24,24,24));
 
         buttonPanelAbove.add(createMonsterButton);
         buttonPanelAbove.add(addMonsterButton);
