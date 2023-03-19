@@ -48,7 +48,7 @@ public class MonstermonUI extends JFrame {
         setVisible(true);
     }
 
-    //EFFECTS: returns SmartHome object controlled by this UI
+    //EFFECTS: returns Monstermon object controlled by this UI
     public Monstermon getMonstermon() {
         return monstermon;
     }

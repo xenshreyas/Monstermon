@@ -1,6 +1,6 @@
 package ui.tabs;
 
-import model.Monster;
+import model.Monstermon;
 import model.Team;
 import ui.*;
 import ui.components.FancyBox;
@@ -15,10 +15,12 @@ public class AddMonsterToTeamTab extends Tab {
     private JTextField nameField;
     JButton submitButton;
     private JComboBox<String> monsterList;
+    private Monstermon monstermon;
 
     //EFFECTS: constructs a home tab for console with buttons and a greeting
     public AddMonsterToTeamTab(MonstermonUI controller) {
         super(controller);
+        monstermon = controller.getMonstermon();
 
         setLayout(new GridLayout(5, 1));
         setBackground(new Color(24, 24, 24)); // background of top and bottom 1/3rd
