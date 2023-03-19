@@ -1,7 +1,7 @@
 package ui.tabs;
 
 import ui.*;
-import ui.BetterComponents.RoundedButton;
+import ui.components.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;

@@ -2,8 +2,8 @@ package ui.tabs;
 
 import model.Team;
 import ui.*;
-import ui.BetterComponents.FancyBox;
-import ui.BetterComponents.FancyLabel;
+import ui.components.FancyBox;
+import ui.components.FancyLabel;
 
 import javax.swing.*;
 import java.util.List;

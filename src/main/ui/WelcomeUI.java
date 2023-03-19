@@ -1,7 +1,7 @@
 package ui;
 
-import ui.BetterComponents.FancyLabel;
-import ui.BetterComponents.RoundedButton;
+import ui.components.FancyLabel;
+import ui.components.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;

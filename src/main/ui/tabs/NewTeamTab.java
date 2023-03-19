@@ -2,9 +2,9 @@ package ui.tabs;
 
 import model.Team;
 import ui.*;
-import ui.BetterComponents.FancyField;
-import ui.BetterComponents.FancyLabel;
-import ui.BetterComponents.SubmitButton;
+import ui.components.FancyField;
+import ui.components.FancyLabel;
+import ui.components.SubmitButton;
 
 import javax.swing.*;
 import java.awt.*;

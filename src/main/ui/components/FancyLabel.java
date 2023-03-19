@@ -1,4 +1,4 @@
-package ui.BetterComponents;
+package ui.components;
 
 import javax.swing.*;
 import java.awt.*;
