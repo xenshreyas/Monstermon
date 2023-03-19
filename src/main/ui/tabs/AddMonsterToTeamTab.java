@@ -37,11 +37,11 @@ public class AddMonsterToTeamTab extends Tab {
     public void initializeLabels() {
 
         monsterList = new FancyBox();
+        add(monsterList);
         List<String> monsters = monstermon.getAllMonstersAsStrings();
         for (String name : monsters) {
             monsterList.addItem(name);
         }
-        add(monsterList);
 
         nameField = new JTextField();
         add(nameField);
@@ -70,10 +70,6 @@ public class AddMonsterToTeamTab extends Tab {
         }
         Team t = new Team(name);
         monstermon.addTeam(t);
-    }
-
-    public void addEntry(Monster m) {
-
     }
 
 }
