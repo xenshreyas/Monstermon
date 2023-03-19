@@ -36,6 +36,8 @@ public class WelcomeUI extends JFrame {
     public void initialize() {
 
         JLabel intro = new FancyLabel("Monstermon Adventures");
+        intro.setBackground(new Color(40, 40, 40));
+        intro.setForeground(new Color(200, 200, 200));
         setBackground(new Color(24,24,24));
         JPanel panel = new JPanel(new GridBagLayout());
 

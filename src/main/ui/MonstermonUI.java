@@ -76,7 +76,6 @@ public class MonstermonUI extends JFrame {
         sidebar.setTitleAt(VIEW_MONSTERS_TAB, "View Monsters");
         sidebar.add(viewTeamsTab, VIEW_TEAMS_TAB);
         sidebar.setTitleAt(VIEW_TEAMS_TAB, "View Teams");
-
     }
 
     //EFFECTS: returns sidebar of this UI

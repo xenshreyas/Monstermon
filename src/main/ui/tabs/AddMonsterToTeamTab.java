@@ -1,5 +1,6 @@
 package ui.tabs;
 
+import model.Monster;
 import model.Team;
 import ui.*;
 import ui.components.FancyBox;
@@ -69,6 +70,10 @@ public class AddMonsterToTeamTab extends Tab {
         }
         Team t = new Team(name);
         monstermon.addTeam(t);
+    }
+
+    public void addEntry(Monster m) {
+
     }
 
 }
