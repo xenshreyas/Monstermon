@@ -4,10 +4,9 @@ import model.*;
 import ui.tabs.*;
 
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 
-import static javax.swing.UIManager.put;
+// adapted from: https://github.students.cs.ubc.ca/CPSC210/LongFormProblemStarters.git
 
 // Represents the GUI for Monstermon Adventures
 public class MonstermonUI extends JFrame {

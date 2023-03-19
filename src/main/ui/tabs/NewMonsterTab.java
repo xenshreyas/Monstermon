@@ -11,6 +11,8 @@ import java.awt.*;
 
 import static model.MonsterType.*;
 
+// adapted from: https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
+
 // Represents the New Monster Tab that allows the user to create a monster
 public class NewMonsterTab extends Tab {
 
