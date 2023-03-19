@@ -1,11 +1,11 @@
 package ui.tabs;
 
-import model.Monster;
 import model.Team;
 import ui.*;
+import ui.BetterComponents.FancyBox;
+import ui.BetterComponents.FancyLabel;
 
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.awt.*;
 

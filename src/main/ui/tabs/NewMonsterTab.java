@@ -2,7 +2,9 @@ package ui.tabs;
 
 import model.Monster;
 import ui.*;
-import ui.SubmitButton;
+import ui.BetterComponents.FancyField;
+import ui.BetterComponents.FancyLabel;
+import ui.BetterComponents.SubmitButton;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,13 +1,10 @@
 package ui;
 
-import model.*;
-import ui.tabs.*;
+import ui.BetterComponents.FancyLabel;
+import ui.BetterComponents.RoundedButton;
 
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
-
-import static javax.swing.UIManager.put;
 
 // Represents the GUI for Monstermon Adventures
 public class WelcomeUI extends JFrame {
