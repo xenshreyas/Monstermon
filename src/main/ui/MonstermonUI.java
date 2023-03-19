@@ -30,13 +30,14 @@ public class MonstermonUI extends JFrame {
 
     //MODIFIES: this
     //EFFECTS: creates MonstermonUI, displays sidebar and tabs
-    private MonstermonUI() {
+    public MonstermonUI() {
         super("Monstermon Adventures");
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         monstermon = new Monstermon();
         // loadMonstersAndTeams();
+        setBackground(new Color(0, 0, 0));
 
         sidebar = new JTabbedPane();
         sidebar.setTabPlacement(JTabbedPane.TOP);

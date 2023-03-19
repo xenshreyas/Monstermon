@@ -2,6 +2,7 @@ package ui.tabs;
 
 import model.Monster;
 import ui.*;
+import ui.SubmitButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +22,7 @@ public class NewMonsterTab extends Tab {
 
         setLayout(new GridLayout(4, 1));
         setBackground(new Color(24, 24, 24)); // background of top and bottom 1/3rd
-        setBorder(BorderFactory.createEmptyBorder(10, 150, 10, 10));
+        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         initializeLabels();
         actionListener();
@@ -32,9 +33,9 @@ public class NewMonsterTab extends Tab {
         JLabel typeLabel = new FancyLabel("Type:");
         JLabel healthLabel = new FancyLabel("Health Points:");
 
-        nameField = new JTextField();
-        typeField = new JTextField();
-        healthField = new JTextField();
+        nameField = new FancyField();
+        typeField = new FancyField();
+        healthField = new FancyField();
 
         add(nameLabel);
         add(nameField);
@@ -43,7 +44,7 @@ public class NewMonsterTab extends Tab {
         add(healthLabel);
         add(healthField);
 
-        submitButton = new JButton("Create Monster");
+        submitButton = new SubmitButton("Create Monster");
         add(new JLabel());
         add(submitButton);
     }
@@ -72,6 +73,7 @@ public class NewMonsterTab extends Tab {
             nameField.setText("");
             typeField.setText("");
             healthField.setText("");
+
             pane.setSelectedIndex(MonstermonUI.HOME_TAB_INDEX);
         });
     }

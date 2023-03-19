@@ -19,6 +19,14 @@ public class Monstermon {
         return monsters;
     }
 
+    public List<String> getAllMonstersAsStrings() {
+        List<String> monsterNames = new ArrayList<>();
+        for (Monster m : monsters) {
+            monsterNames.add(m.getName());
+        }
+        return monsterNames;
+    }
+
     public List<Team> getAllTeams() {
         return teams;
     }

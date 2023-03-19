@@ -1,31 +1,74 @@
 package ui.tabs;
 
+import model.Monster;
+import model.Team;
 import ui.*;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class AddMonsterToTeamTab extends Tab {
 
-    private JLabel greeting;
+    private JTextField nameField;
+    JButton submitButton;
+    private JComboBox<String> monsterList;
 
     //EFFECTS: constructs a home tab for console with buttons and a greeting
     public AddMonsterToTeamTab(MonstermonUI controller) {
         super(controller);
 
-        setLayout(new GridLayout(3, 1));
+        setLayout(new GridLayout(5, 1));
+        setBackground(new Color(24, 24, 24)); // background of top and bottom 1/3rd
+        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        placeGreeting();
+        addHeader();
+        initializeLabels();
+        actionListener();
     }
 
-    //EFFECTS: creates greeting at top of console
-    private void placeGreeting() {
-        Icon image = new ImageIcon("/data/ProfessorBackground.png");
-        greeting = new JLabel((Icon) image, JLabel.CENTER);
-        greeting.setSize(WIDTH, HEIGHT);
-        this.add(greeting);
+    private void addHeader() {
+        JLabel header = new FancyLabel("Select a monster to add", JLabel.CENTER);
+        add(header);
+    }
+
+    public void initializeLabels() {
+
+        monsterList = new FancyBox();
+        List<String> monsters = monstermon.getAllMonstersAsStrings();
+        for (String name : monsters) {
+            monsterList.addItem(name);
+        }
+        add(monsterList);
+
+        nameField = new JTextField();
+        add(nameField);
+
+        submitButton = new JButton("Create Team");
+        add(new JLabel());
+        add(submitButton);
+    }
+
+    public String getName() {
+        return nameField.getText();
+    }
+
+    private void actionListener() {
+        JTabbedPane pane = getController().getTabbedPane();
+        submitButton.addActionListener(e -> {
+            makeTeam(getName());
+            nameField.setText("");
+            pane.setSelectedIndex(MonstermonUI.HOME_TAB_INDEX);
+        });
+    }
+
+    private void makeTeam(String name) {
+        if (name.equals("")) {
+            return;
+        }
+        Team t = new Team(name);
+        monstermon.addTeam(t);
     }
 
 }
