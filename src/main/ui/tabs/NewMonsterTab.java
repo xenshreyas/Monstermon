@@ -1,7 +1,6 @@
 package ui.tabs;
 
 import model.Monster;
-import model.Monstermon;
 import ui.MonstermonUI;
 import ui.components.FancyField;
 import ui.components.FancyLabel;
@@ -22,13 +21,13 @@ public class NewMonsterTab extends Tab {
     private JTextField healthField;
     private JButton submitButton;
     private JLabel message;
-    private Monstermon monstermon;
+    private MonstermonUI controller;
 
     // MODIFIES: this
     // EFFECTS: initializes the NewMonsterTab
     public NewMonsterTab(MonstermonUI controller) {
         super(controller);
-        monstermon = controller.getMonstermon();
+        this.controller = controller;
         setLayout(new GridBagLayout());
         setBackground(new Color(24, 24, 24));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -138,12 +137,12 @@ public class NewMonsterTab extends Tab {
             healthField.setText("");
 
             if (m != null) {
-                // add monster to entries
                 message.setForeground(new Color(30, 61, 52, 255));
                 message.setText("Monster created successfully!");
                 Timer timer = new Timer(1000, ev -> {
                     pane.setSelectedIndex(MonstermonUI.HOME_TAB_INDEX);
                     message.setText("");
+                    controller.getAddMonsterToTeamTab().updateMonsterList();
                 });
                 timer.setRepeats(false);
                 timer.start();
@@ -175,6 +174,7 @@ public class NewMonsterTab extends Tab {
             return null;
         }
         monstermon.addMonster(m);
+        System.out.println(monstermon.getAllMonstersAsStrings());
         return m;
     }
 

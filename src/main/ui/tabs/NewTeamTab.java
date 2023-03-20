@@ -1,6 +1,5 @@
 package ui.tabs;
 
-import model.Monstermon;
 import model.Team;
 import ui.*;
 import ui.components.FancyLabel;
@@ -19,13 +18,10 @@ public class NewTeamTab extends Tab {
     private GridBagConstraints gbc;
     private JLabel message;
 
-    private Monstermon monstermon;
-
     // MODIFIES: this
     // EFFECTS: initializes the NewMonsterTab
     public NewTeamTab(MonstermonUI controller) {
         super(controller);
-        monstermon = controller.getMonstermon();
         setLayout(new GridBagLayout());
         setBackground(new Color(24, 24, 24));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -112,6 +108,7 @@ public class NewTeamTab extends Tab {
         }
         Team t = new Team(name);
         monstermon.addTeam(t);
+        System.out.println(monstermon.getAllTeams());
         return t;
     }
 }

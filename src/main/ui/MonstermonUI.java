@@ -23,6 +23,8 @@ public class MonstermonUI extends JFrame {
     private JTabbedPane sidebar;
     private Monstermon monstermon;
 
+    private AddMonsterToTeamTab addMonsterToTeamTab;
+
     public static void main(String[] args) {
         new MonstermonUI();
     }
@@ -35,7 +37,6 @@ public class MonstermonUI extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         monstermon = new Monstermon();
-        // loadMonstersAndTeams();
         setBackground(new Color(0, 0, 0));
 
         sidebar = new JTabbedPane();
@@ -46,6 +47,10 @@ public class MonstermonUI extends JFrame {
         add(sidebar);
 
         setVisible(true);
+    }
+
+    private void loadMonstersAndTeams() {
+
     }
 
     //EFFECTS: returns Monstermon object controlled by this UI
@@ -59,7 +64,7 @@ public class MonstermonUI extends JFrame {
         JPanel homeTab = new HomeTab(this);
         JPanel newMonsterTab = new NewMonsterTab(this);
         JPanel newTeamTab = new NewTeamTab(this);
-        JPanel addMonsterToTeamTab = new AddMonsterToTeamTab(this);
+        addMonsterToTeamTab = new AddMonsterToTeamTab(this);
         JPanel viewMonstersTab = new ViewMonstersTab(this);
         JPanel viewTeamsTab = new ViewTeamsTab(this);
 
@@ -80,6 +85,10 @@ public class MonstermonUI extends JFrame {
     //EFFECTS: returns sidebar of this UI
     public JTabbedPane getTabbedPane() {
         return sidebar;
+    }
+
+    public AddMonsterToTeamTab getAddMonsterToTeamTab() {
+        return addMonsterToTeamTab;
     }
 
 }
