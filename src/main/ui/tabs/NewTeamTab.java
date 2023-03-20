@@ -17,11 +17,13 @@ public class NewTeamTab extends Tab {
     private JButton submitButton;
     private GridBagConstraints gbc;
     private JLabel message;
+    private MonstermonUI controller;
 
     // MODIFIES: this
     // EFFECTS: initializes the NewMonsterTab
     public NewTeamTab(MonstermonUI controller) {
         super(controller);
+        this.controller = controller;
         setLayout(new GridBagLayout());
         setBackground(new Color(24, 24, 24));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -30,24 +32,28 @@ public class NewTeamTab extends Tab {
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        initialize();
+        initializeLabelAndPanel();
+        initializeSubmitButton();
         actionListener();
         addMessageLabel();
     }
 
     // MODIFIES: this
     // EFFECTS: initializes the NewTeamTab
-    public void initialize() {
+    public void initializeLabelAndPanel() {
         JLabel nameLabel = new FancyLabel("Name:");
         nameLabel.setFont(new Font("Nanum Myeongjo", Font.CENTER_BASELINE, 15));
         nameField = new JTextField(20);
         nameField.setOpaque(true);
-        nameField.setBackground(new Color(40,40,40));
-        nameField.setForeground(new Color(179,179,179));
+        nameField.setBackground(new Color(40, 40, 40));
+        nameField.setForeground(new Color(179, 179, 179));
         gbc.fill = GridBagConstraints.HORIZONTAL;
         add(nameLabel, gbc);
         gbc.gridx = 1;
         add(nameField, gbc);
+    }
+
+    public void initializeSubmitButton() {
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 2;
@@ -86,11 +92,16 @@ public class NewTeamTab extends Tab {
         submitButton.addActionListener(e -> {
             Team t = makeTeam(getName());
             nameField.setText("");
+            controller.getAddMonsterToTeamTab().updateTeamList();
 
             if (t != null) {
                 message.setForeground(new Color(30, 61, 52, 255));
                 message.setText("Team created successfully!");
-                Timer timer = new Timer(1000, ev -> pane.setSelectedIndex(MonstermonUI.HOME_TAB_INDEX));
+                Timer timer = new Timer(1000, ev -> {
+                    pane.setSelectedIndex(MonstermonUI.HOME_TAB_INDEX);
+                    message.setText("");
+                    controller.getAddMonsterToTeamTab().updateTeamList();
+                });
                 timer.setRepeats(false);
                 timer.start();
             } else {

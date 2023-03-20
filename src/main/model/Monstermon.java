@@ -1,7 +1,5 @@
 package model;
 
-import model.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +25,14 @@ public class Monstermon {
         return monsterNames;
     }
 
+    public List<String> getAllTeamsAsStrings() {
+        List<String> teamNames = new ArrayList<>();
+        for (Team t : teams) {
+            teamNames.add(t.getName());
+        }
+        return teamNames;
+    }
+
     public List<Team> getAllTeams() {
         return teams;
     }
@@ -43,4 +49,53 @@ public class Monstermon {
         teams.add(t);
     }
 
+    public void addMonsterToTeam(String monsterName, String teamName) {
+        for (Monster m : monsters) {
+            for (Team t : teams) {
+                if (m.getName().equals(monsterName) && t.getName().equals(teamName)) {
+                    t.addMonsterToTeam(m);
+                }
+            }
+        }
+    }
+
+    public void printEverything() {
+        for (Team t : teams) {
+            for (Monster m : t.getAllMonsters()) {
+                System.out.println(m.getName());
+            }
+        }
+    }
+
+    public boolean teamAlreadyHasMonster(String monsterName, String teamName) {
+        Monster m = findMonster(monsterName);
+        Team t = findTeam(teamName);
+
+        if (m == null || t == null) {
+            return false;
+        }
+
+        if (t.getAllMonsters().contains(m)) {
+            return true;
+        }
+        return false;
+    }
+
+    public Monster findMonster(String monsterName) {
+        for (Monster m : monsters) {
+            if (m.getName().equals(monsterName)) {
+                return m;
+            }
+        }
+        return null;
+    }
+
+    public Team findTeam(String teamName) {
+        for (Team t : teams) {
+            if (t.getName().equals(teamName)) {
+                return t;
+            }
+        }
+        return null;
+    }
 }

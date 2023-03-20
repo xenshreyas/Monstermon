@@ -14,20 +14,18 @@ public class WelcomeUI extends JFrame {
 
     private JButton enter;
 
+    private GridBagConstraints gbc;
+
     //MODIFIES: this
     //EFFECTS: creates MonstermonUI, displays sidebar and tabs
     private WelcomeUI() {
-        super("Monstermon Adventures");
+        super("The Monsterdex");
+
+        gbc = new GridBagConstraints();
+
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-
-        JLabel title = new FancyLabel("Monstermon Adventures");
-        title.setHorizontalAlignment(JLabel.CENTER);
-        title.setVerticalAlignment(JLabel.CENTER);
-        title.setBackground(new Color(24,24,24));
-        title.setOpaque(true);
-        add(title, BorderLayout.NORTH);
 
         initialize();
         actionListener();
@@ -36,39 +34,31 @@ public class WelcomeUI extends JFrame {
     // MODIFIES: this
     // EFFECTS: initializes the introductory page of Monstermon Adventures
     public void initialize() {
-
         JLabel intro = new FancyLabel("Monstermon Adventures");
         intro.setBackground(new Color(40, 40, 40));
         intro.setForeground(new Color(200, 200, 200));
         setBackground(new Color(24,24,24));
-        JPanel panel = new JPanel(new GridBagLayout());
 
-        add(intro);
+        JPanel panel = new JPanel(new GridBagLayout());
+        gbc.anchor = GridBagConstraints.CENTER;
+
+        panel.add(new FancyLabel("Monstermon Adventures"), gbc);
 
         ImageIcon imageIcon = new ImageIcon("data/welcome.gif");
-
         JLabel imageLabel = new JLabel(imageIcon);
-
-        GridBagConstraints imageConstraints = new GridBagConstraints();
-        imageConstraints.gridx = 0;
-        imageConstraints.gridy = 0;
-        imageConstraints.insets = new Insets(0, 0, 20, 0);
-        imageConstraints.anchor = GridBagConstraints.CENTER;
-        panel.add(imageLabel, imageConstraints);
+        gbc.gridy = 1;
+        gbc.insets = new Insets(0, 0, 20, 0);
+        panel.add(imageLabel, gbc);
 
         enter = new RoundedButton("Start");
+        gbc.gridy = 2;
+        panel.add(enter, gbc);
 
-        GridBagConstraints buttonConstraints = new GridBagConstraints();
-        buttonConstraints.gridx = 0;
-        buttonConstraints.gridy = 1;
-        buttonConstraints.anchor = GridBagConstraints.CENTER;
-        panel.add(enter, buttonConstraints);
-
-        add(panel);
         panel.setBackground(new Color(24,24,24));
-
+        add(panel);
         setVisible(true);
     }
+
 
     // MODIFIES: this
     // EFFECTS: sets the action listener to redirect user to the main application and dispose the current page

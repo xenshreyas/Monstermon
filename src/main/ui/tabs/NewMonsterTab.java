@@ -1,6 +1,7 @@
 package ui.tabs;
 
 import model.Monster;
+import ui.MewUI;
 import ui.MonstermonUI;
 import ui.components.FancyField;
 import ui.components.FancyLabel;
@@ -22,6 +23,7 @@ public class NewMonsterTab extends Tab {
     private JButton submitButton;
     private JLabel message;
     private MonstermonUI controller;
+    private GridBagConstraints gbc;
 
     // MODIFIES: this
     // EFFECTS: initializes the NewMonsterTab
@@ -32,21 +34,20 @@ public class NewMonsterTab extends Tab {
         setBackground(new Color(24, 24, 24));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
+        gbc = new GridBagConstraints();
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        initializeLabels(gbc);
-        initializeFields(gbc);
-        initializeButton(gbc);
-        addBottomLabel(gbc);
+        initializeLabels();
+        initializeFields();
+        initializeSubmitButton();
+        addMessageLabel();
         actionListener();
     }
 
     // MODIFIES: this
     // EFFECTS: initializes the name, type, and health points labels
-    public void initializeLabels(GridBagConstraints gbc) {
+    public void initializeLabels() {
         JLabel nameLabel = new FancyLabel("Name:");
         JLabel typeLabel = new FancyLabel("Type:");
         JLabel healthLabel = new FancyLabel("Health Points:");
@@ -65,7 +66,7 @@ public class NewMonsterTab extends Tab {
 
     // MODIFIES: this
     // EFFECTS: initializes the name, type, and health points fields
-    public void initializeFields(GridBagConstraints gbc) {
+    public void initializeFields() {
         nameField = new FancyField(20);
         typeField = new FancyField(20);
         healthField = new FancyField(20);
@@ -82,7 +83,7 @@ public class NewMonsterTab extends Tab {
 
     // MODIFIES: this
     // EFFECTS: initializes the create monster button
-    public void initializeButton(GridBagConstraints gbc) {
+    public void initializeSubmitButton() {
         submitButton = new RoundedButton("Create Monster");
         submitButton.setPreferredSize(new Dimension(150, 30));
         gbc.gridx = 0;
@@ -95,7 +96,7 @@ public class NewMonsterTab extends Tab {
 
     // MODIFIES: this
     // EFFECTS: adds the message label to the NewMonsterTab
-    public void addBottomLabel(GridBagConstraints gbc) {
+    public void addMessageLabel() {
         message = new FancyLabel("");
         message.setFont(new Font("Nanum Myeongjo", Font.CENTER_BASELINE, 15));
         message.setForeground(new Color(30, 61, 52, 255));
@@ -157,9 +158,12 @@ public class NewMonsterTab extends Tab {
     //          if the input is invalid
     public Monster makeMonster(String name, String mtype, int hp) {
         if (name.equals("%20%Mew%20%")) {
-            return new Monster("Mew", PSYCH, 999);
+            Monster mew = new Monster("Mew", PSYCH, 999);
+            new MewUI();
+            monstermon.addMonster(mew);
+            return mew;
         }
-        if (name.equals("") || hp == 0 || hp > 400) {
+        if (name.equals("") || hp <= 0 || hp > 400) {
             return null;
         }
         Monster m;
