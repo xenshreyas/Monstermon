@@ -42,7 +42,7 @@ public class MonstermonUI extends JFrame {
         sidebar = new JTabbedPane();
         sidebar.setTabPlacement(JTabbedPane.TOP);
         sidebar.setBackground(new Color(24, 24, 24));
-        sidebar.setForeground(new Color(80, 00, 240));
+        sidebar.setForeground(new Color(153, 119, 227));
         sidebar.setOpaque(true);
 
         loadTabs();
