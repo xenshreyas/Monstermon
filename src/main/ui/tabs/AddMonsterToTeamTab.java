@@ -27,7 +27,6 @@ public class AddMonsterToTeamTab extends Tab {
 
         setLayout(new GridBagLayout());
         setBackground(new Color(24, 24, 24));
-        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         gbc = new GridBagConstraints();
 
@@ -51,7 +50,6 @@ public class AddMonsterToTeamTab extends Tab {
 
     private void initializeMonsterBox() {
         monsterList = new FancyBox();
-        monsterList.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
         List<String> monsters = monstermon.getAllMonstersAsStrings();
 
@@ -68,7 +66,6 @@ public class AddMonsterToTeamTab extends Tab {
 
     private void initializeTeamBox() {
         teamList = new FancyBox();
-        teamList.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
         List<String> teams = monstermon.getAllTeamsAsStrings();
 
@@ -117,7 +114,6 @@ public class AddMonsterToTeamTab extends Tab {
         } else if (monsterName != "" && teamName != "") {
             message.setForeground(new Color(30, 61, 52, 255));
             monstermon.addMonsterToTeam(monsterName, teamName);
-            monstermon.printEverything();
             message.setText(monsterName + " was added to " + teamName + " successfully.");
             Timer timer = new Timer(1000, ev -> {
                 pane.setSelectedIndex(MonstermonUI.HOME_TAB_INDEX);

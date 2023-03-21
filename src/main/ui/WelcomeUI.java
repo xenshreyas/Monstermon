@@ -19,7 +19,7 @@ public class WelcomeUI extends JFrame {
     //MODIFIES: this
     //EFFECTS: creates MonstermonUI, displays sidebar and tabs
     private WelcomeUI() {
-        super("The Monsterdex");
+        super("Monstermon Adventures");
 
         gbc = new GridBagConstraints();
 

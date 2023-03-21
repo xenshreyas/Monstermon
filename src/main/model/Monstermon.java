@@ -5,21 +5,26 @@ import java.util.List;
 
 public class Monstermon {
 
-    private List<Monster> monsters;
-    private List<Team> teams;
+    private List<Monster> monsterList;
+    private List<Team> teamList;
+
+    private Monsters monsters;
+    private Teams teams;
 
     public Monstermon() {
-        monsters = new ArrayList<>();
-        teams = new ArrayList<>();
+        monsterList = new ArrayList<>();
+        teamList = new ArrayList<>();
+        monsters = new Monsters();
+        teams = new Teams();
     }
 
     public List<Monster> getAllMonsters() {
-        return monsters;
+        return monsterList;
     }
 
     public List<String> getAllMonstersAsStrings() {
         List<String> monsterNames = new ArrayList<>();
-        for (Monster m : monsters) {
+        for (Monster m : monsterList) {
             monsterNames.add(m.getName());
         }
         return monsterNames;
@@ -27,42 +32,36 @@ public class Monstermon {
 
     public List<String> getAllTeamsAsStrings() {
         List<String> teamNames = new ArrayList<>();
-        for (Team t : teams) {
+        for (Team t : teamList) {
             teamNames.add(t.getName());
         }
         return teamNames;
     }
 
     public List<Team> getAllTeams() {
-        return teams;
+        return teamList;
     }
 
     //MODIFIES: this
     //EFFECTS: adds an appliance to SmartHome
     public void addMonster(Monster m) {
-        monsters.add(m);
+        monsterList.add(m);
+        monsters.addMonster(m);
     }
 
     //MODIFIES: this
     //EFFECTS: adds an appliance to SmartHome
     public void addTeam(Team t) {
-        teams.add(t);
+        teamList.add(t);
+        teams.addTeam(t);
     }
 
     public void addMonsterToTeam(String monsterName, String teamName) {
-        for (Monster m : monsters) {
-            for (Team t : teams) {
+        for (Monster m : monsterList) {
+            for (Team t : teamList) {
                 if (m.getName().equals(monsterName) && t.getName().equals(teamName)) {
                     t.addMonsterToTeam(m);
                 }
-            }
-        }
-    }
-
-    public void printEverything() {
-        for (Team t : teams) {
-            for (Monster m : t.getAllMonsters()) {
-                System.out.println(m.getName());
             }
         }
     }
@@ -82,7 +81,7 @@ public class Monstermon {
     }
 
     public Monster findMonster(String monsterName) {
-        for (Monster m : monsters) {
+        for (Monster m : monsterList) {
             if (m.getName().equals(monsterName)) {
                 return m;
             }
@@ -91,11 +90,33 @@ public class Monstermon {
     }
 
     public Team findTeam(String teamName) {
-        for (Team t : teams) {
+        for (Team t : teamList) {
             if (t.getName().equals(teamName)) {
                 return t;
             }
         }
         return null;
+    }
+
+    public void loadMonsters(List<Monster> monsterList) {
+        for (Monster m : monsterList) {
+            this.monsterList.add(m);
+            this.monsters.addMonster(m);
+        }
+    }
+
+    public void loadTeams(List<Team> teamList) {
+        for (Team t : teamList) {
+            this.teamList.add(t);
+            this.teams.addTeam(t);
+        }
+    }
+
+    public Monsters getMonsters() {
+        return this.monsters;
+    }
+
+    public Teams getTeams() {
+        return this.teams;
     }
 }

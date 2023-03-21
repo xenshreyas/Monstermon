@@ -1,11 +1,21 @@
 {
     "name": "Teams",
-    "Teams": [{
-        "name": "Team 1",
-        "monsters": [{
-            "healthPoints": 999,
-            "name": "Mew",
-            "type": "PSYCH"
-        }]
-    }]
+    "Teams": [
+        {
+            "name": "Team 1",
+            "monsters": [{
+                "healthPoints": 999,
+                "name": "Mew",
+                "type": "PSYCH"
+            }]
+        },
+        {
+            "name": "Team 2",
+            "monsters": [{
+                "healthPoints": 45,
+                "name": "Bulbasaur",
+                "type": "GRASS"
+            }]
+        }
+    ]
 }

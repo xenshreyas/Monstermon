@@ -20,6 +20,9 @@ public class MewUI extends JFrame {
     private JLabel intro;
     private JLabel question;
 
+    private final String colorReset = "\u001b[0m";
+    private final String colorRed = "\033[0;31m";
+
     private GridBagConstraints gbc;
 
     //MODIFIES: this
@@ -31,6 +34,7 @@ public class MewUI extends JFrame {
 
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new Color(1,1,1));
         setResizable(false);
 
         initialize();
@@ -77,12 +81,14 @@ public class MewUI extends JFrame {
 
     private void initializeButtons() {
         yes = new RoundedButton("Yes");
-        gbc.gridx = 0;
+        gbc.insets = new Insets(0, 0, 20, 100);
+        gbc.gridx = 1;
         gbc.gridy = 3;
         panel.add(yes, gbc);
 
         no = new RoundedButton("No");
-        gbc.gridx = 2;
+        gbc.insets = new Insets(0, 100, 20, 0);
+        gbc.gridx = 1;
         gbc.gridy = 3;
         panel.add(no, gbc);
 
@@ -97,8 +103,8 @@ public class MewUI extends JFrame {
     public void actionListener() {
         yes.addActionListener(e -> dispose());
         no.addActionListener(e -> {
-            System.out.println("The game literally crashed. I have never seen that happen before. Guess some people"
-                    + " just aren't worthy...");
+            System.out.println(colorRed + "Bruh you crashed the game... The devs are kinda pissed... "
+                    + "And so is the literal GOD of Pokémon. What a disgrace..." + colorReset);
             System.exit(0);
             dispose();
         });

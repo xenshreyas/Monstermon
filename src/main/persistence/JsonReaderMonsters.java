@@ -69,8 +69,10 @@ public class JsonReaderMonsters {
             m = new Monster(name, MonsterType.GRASS, healthPoints);
         } else if (type.equals("WATER")) {
             m = new Monster(name, MonsterType.WATER, healthPoints);
-        } else {
+        } else if (type.equals("FIRE")) {
             m = new Monster(name, MonsterType.FIRE, healthPoints);
+        } else {
+            m = new Monster(name, MonsterType.PSYCH, healthPoints);
         }
 
         monsters.addMonster(m);

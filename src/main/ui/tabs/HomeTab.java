@@ -1,15 +1,36 @@
 package ui.tabs;
 
+import model.Monster;
+import model.Monsters;
+import model.Team;
+import model.Teams;
+import persistence.JsonReaderMonsters;
+import persistence.JsonReaderTeams;
+import persistence.JsonWriterMonsters;
+import persistence.JsonWriterTeams;
 import ui.*;
+import ui.components.FancyLabel;
 import ui.components.RoundedButton;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
 
 public class HomeTab extends Tab {
 
     private static final String INIT_GREETING = "Monstermon Adventures";
     private JLabel greeting;
+
+    private static final String JSON_STORE_MONSTERS = "./data/monsters.json";
+    private static final String JSON_STORE_TEAMS = "./data/teams.json";
+    private Monsters monsters;
+    private Teams teams;
+    private JsonWriterMonsters jsonWriterMonsters;
+    private JsonReaderMonsters jsonReaderMonsters;
+    private JsonWriterTeams jsonWriterTeams;
+    private JsonReaderTeams jsonReaderTeams;
 
     JButton createMonsterButton;
     JButton createTeamButton;
@@ -23,9 +44,19 @@ public class HomeTab extends Tab {
     JPanel buttonPanelMiddle;
     JPanel buttonPanelBelow;
 
+    private JLabel message;
+
+    MonstermonUI controller;
+
     //EFFECTS: constructs a home tab for console with buttons and a greeting
     public HomeTab(MonstermonUI controller) {
         super(controller);
+        this.controller = controller;
+
+        jsonWriterMonsters = new JsonWriterMonsters(JSON_STORE_MONSTERS);
+        jsonReaderMonsters = new JsonReaderMonsters(JSON_STORE_MONSTERS);
+        jsonWriterTeams = new JsonWriterTeams(JSON_STORE_TEAMS);
+        jsonReaderTeams = new JsonReaderTeams(JSON_STORE_TEAMS);
 
         setLayout(new GridLayout(8, 1));
         setBackground(new Color(24,24,24)); // background of top and bottom 1/3rd
@@ -87,6 +118,12 @@ public class HomeTab extends Tab {
         add(buttonPanelAbove);
         add(buttonPanelMiddle);
         add(buttonPanelBelow);
+
+        message = new FancyLabel("");
+        message.setHorizontalAlignment(JLabel.CENTER);
+        message.setFont(new Font("Nanum Myeongjo", Font.CENTER_BASELINE, 15));
+        add(message);
+
         actionListener();
     }
 
@@ -97,8 +134,51 @@ public class HomeTab extends Tab {
         addMonsterButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.ADD_MONSTER_TO_TEAM_TAB));
         viewMonstersButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.VIEW_MONSTERS_TAB));
         viewTeamsButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.VIEW_TEAMS_TAB));
-//        saveButton.addActionListener(e -> saveState());
-//        loadButton.addActionListener(e -> loadState());
+        saveButton.addActionListener(e -> {
+            if (monstermon.getMonsters() != null && monstermon.getTeams() != null) {
+                saveState();
+                message.setForeground(new Color(30, 61, 52, 255));
+                message.setText("Data saved successfully");
+            } else {
+                message.setForeground(new Color(148, 47, 47));
+                message.setText("Please make a monster and team first");
+            }
+        });
+        loadButton.addActionListener(e -> {
+            loadState();
+            message.setForeground(new Color(30, 61, 52, 255));
+            message.setText("Data loaded successfully");
+        });
+    }
+
+    private void saveState() {
+        try {
+            jsonWriterMonsters.open();
+            jsonWriterMonsters.write(monstermon.getMonsters());
+            jsonWriterMonsters.close();
+            jsonWriterTeams.open();
+            jsonWriterTeams.write(monstermon.getTeams());
+            jsonWriterTeams.close();
+        } catch (FileNotFoundException e) {
+            message.setForeground(new Color(148, 47, 47));
+            message.setText("The file was not found");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads monsters and teams from file
+    private void loadState() {
+        try {
+            monsters = jsonReaderMonsters.read();
+            monstermon.loadMonsters(monsters.getMonsters());
+            teams = jsonReaderTeams.read();
+            monstermon.loadTeams(teams.getTeams());
+            controller.getAddMonsterToTeamTab().updateTeamList();
+            controller.getAddMonsterToTeamTab().updateMonsterList();
+        } catch (IOException e) {
+            message.setForeground(new Color(148, 47, 47));
+            message.setText("The file was not found");
+        }
     }
 
 }
