@@ -92,6 +92,8 @@ public class MonstermonTest {
         monstermon.addMonster(bulbasaur);
         monstermon.addTeam(team1);
         monstermon.addMonsterToTeam(monsterName, teamName);
+        monstermon.addMonsterToTeam("Charmander", teamName);
+        monstermon.addMonsterToTeam(monsterName, "Team 2");
         Team getTeam = monstermon.getAllTeams().get(0);
 
         assertEquals(getTeam, team1);
