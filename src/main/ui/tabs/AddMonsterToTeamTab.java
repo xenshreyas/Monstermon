@@ -117,7 +117,6 @@ public class AddMonsterToTeamTab extends Tab {
             }
 
             addMonsterToTeam(monsterName, teamName);
-
         });
     }
 

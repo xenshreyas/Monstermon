@@ -23,8 +23,6 @@ public class ViewMonstersTab extends Tab {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 5, 5, 5);
-
-        initialize();
     }
 
     // MODIFIES: this
