@@ -96,6 +96,8 @@ public class MonstermonTest {
     @Test
     public void testTeamAlreadyHasMonster() {
         Monster m = new Monster("Bulbasaur", MonsterType.GRASS, 45);
+        Monster m2 = new Monster("Charmander", MonsterType.FIRE, 45);
+        monstermon.addMonster(m2);
         Team t = new Team("Team 1");
 
         assertFalse(monstermon.teamAlreadyHasMonster(null, "Team 1"));
@@ -107,6 +109,13 @@ public class MonstermonTest {
 
         assertTrue(monstermon.teamAlreadyHasMonster("Bulbasaur", "Team 1"));
         assertFalse(monstermon.teamAlreadyHasMonster("Charmander", "Team 1"));
+
+        Team team2 = new Team("Team 2");
+        Monster monster = new Monster("Bulbasaur");
+        team2.addMonsterToTeam(monster);
+        assertFalse(monstermon.teamAlreadyHasMonster("Monster B", "Team 2"));
+
+
     }
 
     @Test
