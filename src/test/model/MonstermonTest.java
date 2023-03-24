@@ -92,6 +92,9 @@ public class MonstermonTest {
         monstermon.addMonster(bulbasaur);
         monstermon.addTeam(team1);
         monstermon.addMonsterToTeam(monsterName, teamName);
+        Team getTeam = monstermon.getAllTeams().get(0);
+
+        assertEquals(getTeam, team1);
     }
 
     @Test
@@ -101,6 +104,7 @@ public class MonstermonTest {
         monstermon.addMonster(m2);
         Team t = new Team("Team 1");
 
+        assertFalse(monstermon.teamAlreadyHasMonster(null, null));
         assertFalse(monstermon.teamAlreadyHasMonster(null, "Team 1"));
         assertFalse(monstermon.teamAlreadyHasMonster("Bulbasaur", null));
 
