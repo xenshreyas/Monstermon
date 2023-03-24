@@ -94,6 +94,7 @@ public class MonstermonTest {
         monstermon.addMonsterToTeam(monsterName, teamName);
         monstermon.addMonsterToTeam("Charmander", teamName);
         monstermon.addMonsterToTeam(monsterName, "Team 2");
+        monstermon.addMonsterToTeam("Charmander", "Team 2");
         Team getTeam = monstermon.getAllTeams().get(0);
 
         assertEquals(getTeam, team1);
