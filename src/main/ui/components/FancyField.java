@@ -3,6 +3,7 @@ package ui.components;
 import javax.swing.*;
 import java.awt.*;
 
+// Represents a fancier JTextField, with a better color scheme
 public class FancyField extends JTextField {
     public FancyField(int columns) {
         super(null, null, columns);

@@ -3,6 +3,7 @@ package ui.components;
 import java.awt.*;
 import javax.swing.*;
 
+// Represents a fancier JButton, with a better color scheme
 public class RoundedButton extends JButton {
 
     public RoundedButton(String text) {
@@ -16,6 +17,8 @@ public class RoundedButton extends JButton {
         setFont(new Font("Enchanted", Font.CENTER_BASELINE, 12));
     }
 
+    // MODIFIES: g
+    // EFFECTS: paints the button such that it has rounded edges, and nicer colors
     @Override
     protected void paintComponent(Graphics g) {
         g.setColor(getBackground());

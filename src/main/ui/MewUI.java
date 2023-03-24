@@ -6,7 +6,7 @@ import ui.components.RoundedButton;
 import javax.swing.*;
 import java.awt.*;
 
-// Represents the GUI for Monstermon Adventures (intro page)
+// Represents the Mew UI, that the user is taken to when they interact with Mew
 public class MewUI extends JFrame {
 
     private static final int WIDTH = 650;
@@ -26,7 +26,7 @@ public class MewUI extends JFrame {
     private GridBagConstraints gbc;
 
     //MODIFIES: this
-    //EFFECTS: creates MewUI
+    //EFFECTS: creates MewUI, with a gif from https://pokemongifs.tumblr.com/post/90757099804/x-shiny-mew
     public MewUI() {
         super("???");
 
@@ -44,7 +44,7 @@ public class MewUI extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes the introductory page of Monstermon Adventures
+    // EFFECTS: initializes the MewUI page
     public void initialize() {
         intro = new FancyLabel("You've been teleported to the land of Pokémon");
         question = new FancyLabel("Mew: \"Tell me child, are you the one who solved CPSC-110's PSet 9?\"");
@@ -57,6 +57,8 @@ public class MewUI extends JFrame {
         setBackground(new Color(24, 24, 24));
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the text, image to the panel
     public void initializePanel() {
         panel = new JPanel(new GridBagLayout());
         gbc.anchor = GridBagConstraints.CENTER;
@@ -79,6 +81,8 @@ public class MewUI extends JFrame {
         panel.add(imageLabel, gbc);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the yes and no buttons to the panel
     private void initializeButtons() {
         yes = new RoundedButton("Yes");
         gbc.insets = new Insets(0, 0, 20, 100);
@@ -96,7 +100,6 @@ public class MewUI extends JFrame {
         add(panel);
         setVisible(true);
     }
-
 
     // MODIFIES: this
     // EFFECTS: sets the action listener to redirect user to the main application and dispose the current page

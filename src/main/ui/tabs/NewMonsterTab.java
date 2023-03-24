@@ -128,6 +128,7 @@ public class NewMonsterTab extends Tab {
         }
     }
 
+    // MODIFIES: this
     // EFFECTS: sets action listener for the submit button
     public void actionListener() {
         JTabbedPane pane = getController().getTabbedPane();
@@ -154,6 +155,7 @@ public class NewMonsterTab extends Tab {
         });
     }
 
+    // MODIFIES: this
     // EFFECTS: creates and returns a new monster with the given name, type, and health points, or null
     //          if the input is invalid
     public Monster makeMonster(String name, String mtype, int hp) {

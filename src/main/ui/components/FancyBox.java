@@ -3,7 +3,9 @@ package ui.components;
 import javax.swing.*;
 import java.awt.*;
 
+// Represents a fancier JComboBox, with a better color scheme
 public class FancyBox extends JComboBox<String> {
+
     public FancyBox() {
         super();
         setSize(WIDTH, HEIGHT / 3);

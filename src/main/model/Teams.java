@@ -6,8 +6,8 @@ import persistence.Writable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
+// Represents the Teams class that contains a list of teams
 public class Teams implements Writable {
     private List<Team> teams;
 

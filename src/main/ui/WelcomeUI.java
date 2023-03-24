@@ -17,7 +17,7 @@ public class WelcomeUI extends JFrame {
     private GridBagConstraints gbc;
 
     //MODIFIES: this
-    //EFFECTS: creates MonstermonUI, displays sidebar and tabs
+    //EFFECTS: creates WelcomeUI, with a gif from https://www.pokemon.com/us/pokemon-episodes/23_01-enter-pikachu/
     private WelcomeUI() {
         super("Monstermon Adventures");
 
@@ -32,7 +32,7 @@ public class WelcomeUI extends JFrame {
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes the introductory page of Monstermon Adventures
+    // EFFECTS: initializes the welcome page of Monstermon Adventures
     public void initialize() {
         JLabel intro = new FancyLabel("Monstermon Adventures");
         intro.setBackground(new Color(40, 40, 40));
@@ -58,7 +58,6 @@ public class WelcomeUI extends JFrame {
         add(panel);
         setVisible(true);
     }
-
 
     // MODIFIES: this
     // EFFECTS: sets the action listener to redirect user to the main application and dispose the current page

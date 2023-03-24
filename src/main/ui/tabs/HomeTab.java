@@ -1,27 +1,20 @@
 package ui.tabs;
 
-import model.Monster;
-import model.Monsters;
-import model.Team;
-import model.Teams;
-import persistence.JsonReaderMonsters;
-import persistence.JsonReaderTeams;
-import persistence.JsonWriterMonsters;
-import persistence.JsonWriterTeams;
+import model.*;
+import persistence.*;
 import ui.*;
-import ui.components.FancyLabel;
-import ui.components.RoundedButton;
+import ui.components.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
 
+// Represents the HomeTab that the user is normally at
 public class HomeTab extends Tab {
 
     private static final String INIT_GREETING = "Monstermon Adventures";
-    private JLabel greeting;
+    private JLabel title;
 
     private static final String JSON_STORE_MONSTERS = "./data/monsters.json";
     private static final String JSON_STORE_TEAMS = "./data/teams.json";
@@ -48,7 +41,7 @@ public class HomeTab extends Tab {
 
     MonstermonUI controller;
 
-    //EFFECTS: constructs a home tab for console with buttons and a greeting
+    //EFFECTS: constructs a home tab for console with buttons and the title
     public HomeTab(MonstermonUI controller) {
         super(controller);
         this.controller = controller;
@@ -65,16 +58,19 @@ public class HomeTab extends Tab {
         temp1.setBackground(new Color(24,24,24));
         add(temp1);
 
-        placeGreeting();
+        placeTitle();
 
         JPanel temp = new JPanel();
         temp.setBackground(new Color(24,24,24));
         add(temp);
 
         initializePanels();
-        placeHomeButtons();
+        placeButtons();
+        actionListener();
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the different panels to the console for alignment of different buttons
     private void initializePanels() {
         buttonPanelAbove = new JPanel();
         buttonPanelMiddle = new JPanel();
@@ -85,18 +81,21 @@ public class HomeTab extends Tab {
         buttonPanelBelow.setBackground(new Color(24,24,24));
     }
 
-    //EFFECTS: creates greeting at top of console
-    private void placeGreeting() {
-        greeting = new JLabel(INIT_GREETING, JLabel.CENTER);
-        greeting.setSize(WIDTH, HEIGHT / 3);
-        greeting.setFont(new Font("Nanum Myeongjo", Font.CENTER_BASELINE, 30));
-        greeting.setBackground(new Color(40,40,40));
-        greeting.setForeground(new Color(200, 200, 200));
-        this.add(greeting);
+    // MODIFIES: this
+    // EFFECTS: creates the title at top of console
+    private void placeTitle() {
+        title = new JLabel(INIT_GREETING, JLabel.CENTER);
+        title.setSize(WIDTH, HEIGHT / 3);
+        title.setFont(new Font("Nanum Myeongjo", Font.CENTER_BASELINE, 30));
+        title.setBackground(new Color(40,40,40));
+        title.setForeground(new Color(200, 200, 200));
+        this.add(title);
     }
 
-    //EFFECTS: creates Arrive and Leave buttons that change greeting message when clicked
-    private void placeHomeButtons() {
+    // MODIFIES: this
+    // EFFECTS: places the buttons for each of the tabs onto the console, as well as the message that is to be
+    //          displayed to the user
+    private void placeButtons() {
         createMonsterButton = new RoundedButton(ButtonNames.CREATEMONSTER.getValue());
         createTeamButton = new RoundedButton(ButtonNames.CREATETEAM.getValue());
         viewMonstersButton = new RoundedButton(ButtonNames.VIEWMONSTERS.getValue());
@@ -123,10 +122,12 @@ public class HomeTab extends Tab {
         message.setHorizontalAlignment(JLabel.CENTER);
         message.setFont(new Font("Nanum Myeongjo", Font.CENTER_BASELINE, 15));
         add(message);
-
-        actionListener();
     }
 
+    // MODIFIES: this
+    // EFFECTS: redirects user to the chosen page. If save button is clicked, makes sure that the monsters
+    //          and teams are not null, and saves the data. If not, prompts the user to first make a monster
+    //          and a team. If load button is clicked, loads the state of the application
     private void actionListener() {
         JTabbedPane pane = getController().getTabbedPane();
         createMonsterButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.CREATE_MONSTER_TAB));
@@ -151,6 +152,8 @@ public class HomeTab extends Tab {
         });
     }
 
+    // MODIFIES: this
+    // EFFECTS: saves the current state of the application, and displays to the user if the file was not found
     private void saveState() {
         try {
             jsonWriterMonsters.open();
@@ -166,7 +169,7 @@ public class HomeTab extends Tab {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads monsters and teams from file
+    // EFFECTS: loads the current state of the application, and displays to the user if the file was not found
     private void loadState() {
         try {
             monsters = jsonReaderMonsters.read();

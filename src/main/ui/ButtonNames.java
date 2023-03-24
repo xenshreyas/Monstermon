@@ -1,5 +1,6 @@
 package ui;
 
+// Represents the different button names that are present in the sidebar
 public enum ButtonNames {
     ADDMONSTER("Add Monster"),
     CREATEMONSTER("Create Monster"),
@@ -11,7 +12,9 @@ public enum ButtonNames {
 
     private final String name;
 
-    ButtonNames(String name) {
+    // MODIFIES: this
+    // EFFECTS: sets the button name to the given name
+    private ButtonNames(String name) {
         this.name = name;
     }
 

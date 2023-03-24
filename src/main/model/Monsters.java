@@ -6,8 +6,8 @@ import persistence.Writable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
+// Represents the Monsters class, that contains a list of monsters
 public class Monsters implements Writable {
     private List<Monster> monsters;
 

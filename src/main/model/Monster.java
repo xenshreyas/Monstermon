@@ -12,8 +12,6 @@ public class Monster implements Writable {
     private MonsterType type;
     private int healthPoints;
 
-    // EFFECTS: returns true if two monsters are the same, else false
-
     public Monster(String name) {
         this.name = name;
     }
@@ -24,8 +22,6 @@ public class Monster implements Writable {
         this.type = type;
         this.healthPoints = healthPoints;
     }
-
-    //getters
 
     // EFFECTS: gets the name of this monster
     public String getName() {
@@ -41,8 +37,6 @@ public class Monster implements Writable {
     public int getHealthPoints() {
         return this.healthPoints;
     }
-
-    //setters
 
     // MODIFIES: this
     // EFFECTS: renames this monster to given name

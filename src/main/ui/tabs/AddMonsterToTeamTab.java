@@ -11,6 +11,9 @@ import javax.swing.*;
 import java.util.List;
 import java.awt.*;
 
+// adapted from: https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
+
+// Represents the Add Monster to Team tab
 public class AddMonsterToTeamTab extends Tab {
 
     private JButton submitButton;
@@ -21,7 +24,8 @@ public class AddMonsterToTeamTab extends Tab {
     private List<Monster> monsters = monstermon.getAllMonsters();
     private List<Team> teams = monstermon.getAllTeams();
 
-    //EFFECTS: constructs a home tab for console with buttons and a greeting
+    // MODIFIES: this
+    // EFFECTS: constructs the AddMonsterToTeam tab for with drop-down lists, a submit button and a message
     public AddMonsterToTeamTab(MonstermonUI controller) {
         super(controller);
 
@@ -38,6 +42,8 @@ public class AddMonsterToTeamTab extends Tab {
         actionListener();
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the header to tell user to choose a monster to add to a team
     private void addHeader() {
         JLabel header = new FancyLabel("Select a monster from the list below, and then choose a team to add it to",
                 JLabel.CENTER);
@@ -48,6 +54,8 @@ public class AddMonsterToTeamTab extends Tab {
         add(header, gbc);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the drop-down box for selecting a monster
     private void initializeMonsterBox() {
         monsterList = new FancyBox();
 
@@ -64,6 +72,8 @@ public class AddMonsterToTeamTab extends Tab {
         add(monsterList, gbc);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the drop-down box for selecting a team
     private void initializeTeamBox() {
         teamList = new FancyBox();
 
@@ -80,6 +90,8 @@ public class AddMonsterToTeamTab extends Tab {
         add(teamList, gbc);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the submit button allowing the user to add a monster to the team
     public void initializeSubmitButton() {
         submitButton = new RoundedButton("Add Monster to Team");
         gbc.gridx = 0;
@@ -89,6 +101,9 @@ public class AddMonsterToTeamTab extends Tab {
         add(submitButton, gbc);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the selected monster to the selected team if possible and redirects user back to home page
+    //          otherwise sets the message to output red and invalid choice.
     public void actionListener() {
         submitButton.addActionListener(e -> {
             String monsterName = "";
@@ -106,6 +121,8 @@ public class AddMonsterToTeamTab extends Tab {
         });
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the selected monster to the selected team
     public void addMonsterToTeam(String monsterName, String teamName) {
         JTabbedPane pane = getController().getTabbedPane();
         if (monstermon.teamAlreadyHasMonster(monsterName, teamName)) {
@@ -127,6 +144,9 @@ public class AddMonsterToTeamTab extends Tab {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: updates the monsters list within this class each time a new monster is created
+    //          or the state of the application is loaded
     public void updateMonsterList() {
         monsterList.removeAllItems();
 
@@ -139,6 +159,9 @@ public class AddMonsterToTeamTab extends Tab {
         monsterList.repaint();
     }
 
+    // MODIFIES: this
+    // EFFECTS: updates the teams list within this class each time a new team is created
+    //          or the state of the application is loaded
     public void updateTeamList() {
         teamList.removeAllItems();
 
@@ -151,6 +174,8 @@ public class AddMonsterToTeamTab extends Tab {
         teamList.repaint();
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds the message label that allows user to get some feedback about their monster/team selection
     public void addMessageLabel() {
         message = new FancyLabel("");
         message.setFont(new Font("Nanum Myeongjo", Font.CENTER_BASELINE, 15));

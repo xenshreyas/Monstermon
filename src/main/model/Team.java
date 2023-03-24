@@ -18,8 +18,6 @@ public class Team implements Writable {
         monsters = new ArrayList<>();
     }
 
-    //getters
-
     // EFFECTS: gets the name of this team
     public String getName() {
         return this.name;

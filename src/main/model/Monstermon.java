@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents the Monstermon class, which has a monsterList, teamList, monsters and teams
 public class Monstermon {
 
     private List<Monster> monsterList;
@@ -11,6 +12,8 @@ public class Monstermon {
     private Monsters monsters;
     private Teams teams;
 
+    // MODIFIES: this
+    // EFFECTS: creates a new Monstermon object
     public Monstermon() {
         monsterList = new ArrayList<>();
         teamList = new ArrayList<>();
@@ -18,10 +21,12 @@ public class Monstermon {
         teams = new Teams();
     }
 
+    // EFFECTS: returns the list of monsters
     public List<Monster> getAllMonsters() {
         return monsterList;
     }
 
+    // EFFECTS: returns the list of all monster names
     public List<String> getAllMonstersAsStrings() {
         List<String> monsterNames = new ArrayList<>();
         for (Monster m : monsterList) {
@@ -30,6 +35,7 @@ public class Monstermon {
         return monsterNames;
     }
 
+    // EFFECTS: returns the list of all team names
     public List<String> getAllTeamsAsStrings() {
         List<String> teamNames = new ArrayList<>();
         for (Team t : teamList) {
@@ -38,24 +44,27 @@ public class Monstermon {
         return teamNames;
     }
 
+    // EFFECTS: returns the list of all teams
     public List<Team> getAllTeams() {
         return teamList;
     }
 
-    //MODIFIES: this
-    //EFFECTS: adds an appliance to SmartHome
+    // MODIFIES: this
+    // EFFECTS: adds a monster to the monsterList, and to monsters
     public void addMonster(Monster m) {
         monsterList.add(m);
         monsters.addMonster(m);
     }
 
-    //MODIFIES: this
-    //EFFECTS: adds an appliance to SmartHome
+    // MODIFIES: this
+    // EFFECTS: adds a team to the teamList, and to teams
     public void addTeam(Team t) {
         teamList.add(t);
         teams.addTeam(t);
     }
 
+    // MODIFIES: this
+    // EFFECTS: finds the given monster by name, and team by name, and then adds that monster to the team
     public void addMonsterToTeam(String monsterName, String teamName) {
         for (Monster m : monsterList) {
             for (Team t : teamList) {
@@ -66,6 +75,7 @@ public class Monstermon {
         }
     }
 
+    // EFFECTS: returns true if the given team has the given monster (specified by their names)
     public boolean teamAlreadyHasMonster(String monsterName, String teamName) {
         Monster m = findMonster(monsterName);
         Team t = findTeam(teamName);
@@ -81,6 +91,7 @@ public class Monstermon {
         }
     }
 
+    // EFFECTS: returns the monster that has the same name as monsterName
     public Monster findMonster(String monsterName) {
         for (Monster m : monsterList) {
             if (m.getName().equals(monsterName)) {
@@ -90,6 +101,7 @@ public class Monstermon {
         return null;
     }
 
+    // EFFECTS: returns the team that has the same name as teamName
     public Team findTeam(String teamName) {
         for (Team t : teamList) {
             if (t.getName().equals(teamName)) {
@@ -99,6 +111,8 @@ public class Monstermon {
         return null;
     }
 
+    // MODIFIES: this
+    // EFFECTS: for every monster in the parameter monsterList, adds that monster to monsterList and also to monsters
     public void loadMonsters(List<Monster> monsterList) {
         for (Monster m : monsterList) {
             this.monsterList.add(m);
@@ -106,6 +120,8 @@ public class Monstermon {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: for every team in the parameter teamList, adds that team to teamList and also to teams
     public void loadTeams(List<Team> teamList) {
         for (Team t : teamList) {
             this.teamList.add(t);
@@ -113,10 +129,12 @@ public class Monstermon {
         }
     }
 
+    // EFFECTS: returns monsters
     public Monsters getMonsters() {
         return this.monsters;
     }
 
+    // EFFECTS: returns teams
     public Teams getTeams() {
         return this.teams;
     }

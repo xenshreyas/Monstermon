@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Testing class to test the Monstermon class
 public class MonstermonTest {
 
     private Monstermon monstermon;

@@ -25,6 +25,7 @@ public class MonstermonUI extends JFrame {
 
     private AddMonsterToTeamTab addMonsterToTeamTab;
 
+    // EFFECTS: runs the MonstermonUI
     public static void main(String[] args) {
         new MonstermonUI();
     }
@@ -57,7 +58,7 @@ public class MonstermonUI extends JFrame {
     }
 
     //MODIFIES: this
-    //EFFECTS: adds home tab, settings tab and report tab to this UI
+    //EFFECTS: adds home tab, newMonsterTab, newTeamTab, viewMonstersTab and viewTeamsTab to this UI
     public void loadTabs() {
         JPanel homeTab = new HomeTab(this);
         JPanel newMonsterTab = new NewMonsterTab(this);
@@ -85,6 +86,7 @@ public class MonstermonUI extends JFrame {
         return sidebar;
     }
 
+    // EFFECTS: returns the AddMonsterToTeamTab associated with this UI
     public AddMonsterToTeamTab getAddMonsterToTeamTab() {
         return addMonsterToTeamTab;
     }
