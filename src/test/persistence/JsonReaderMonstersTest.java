@@ -41,10 +41,11 @@ class JsonReaderMonstersTest extends JsonTest {
         try {
             Monsters monsters = reader.read();
             List<Monster> allMonsters = monsters.getMonsters();
-            assertEquals(3, allMonsters.size());
+            assertEquals(4, allMonsters.size());
             checkMonster("Bulbasaur", GRASS, 45, allMonsters.get(0));
             checkMonster("Charmander", FIRE, 50, allMonsters.get(1));
             checkMonster("Squirtle", WATER, 30, allMonsters.get(2));
+            checkMonster("Mew", PSYCH, 999, allMonsters.get(3));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

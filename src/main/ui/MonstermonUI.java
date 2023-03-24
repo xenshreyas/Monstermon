@@ -51,10 +51,6 @@ public class MonstermonUI extends JFrame {
         setVisible(true);
     }
 
-    private void loadMonstersAndTeams() {
-
-    }
-
     //EFFECTS: returns Monstermon object controlled by this UI
     public Monstermon getMonstermon() {
         return monstermon;

@@ -14,7 +14,12 @@
             "healthPoints": 30,
             "name": "Squirtle",
             "type": "WATER"
-        }
+        },
+      {
+        "healthPoints": 999,
+        "name": "Mew",
+        "type": "PSYCH"
+      }
     ],
     "name": "Monsters"
 }

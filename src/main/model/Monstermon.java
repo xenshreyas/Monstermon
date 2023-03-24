@@ -76,8 +76,9 @@ public class Monstermon {
 
         if (t.getAllMonsters().contains(m)) {
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     public Monster findMonster(String monsterName) {
