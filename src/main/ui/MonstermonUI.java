@@ -24,6 +24,7 @@ public class MonstermonUI extends JFrame {
     private Monstermon monstermon;
 
     private AddMonsterToTeamTab addMonsterToTeamTab;
+    private ViewTeamsTab viewTeamsTab;
 
     // EFFECTS: runs the MonstermonUI
     public static void main(String[] args) {
@@ -65,7 +66,7 @@ public class MonstermonUI extends JFrame {
         JPanel newTeamTab = new NewTeamTab(this);
         addMonsterToTeamTab = new AddMonsterToTeamTab(this);
         JPanel viewMonstersTab = new ViewMonstersTab(this);
-        JPanel viewTeamsTab = new ViewTeamsTab(this);
+        viewTeamsTab = new ViewTeamsTab(this);
 
         sidebar.add(homeTab, HOME_TAB_INDEX);
         sidebar.setTitleAt(HOME_TAB_INDEX, "Home");
@@ -89,6 +90,10 @@ public class MonstermonUI extends JFrame {
     // EFFECTS: returns the AddMonsterToTeamTab associated with this UI
     public AddMonsterToTeamTab getAddMonsterToTeamTab() {
         return addMonsterToTeamTab;
+    }
+
+    public ViewTeamsTab getViewTeamsTab() {
+        return viewTeamsTab;
     }
 
 }

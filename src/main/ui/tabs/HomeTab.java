@@ -178,6 +178,7 @@ public class HomeTab extends Tab {
             monstermon.loadTeams(teams.getTeams());
             controller.getAddMonsterToTeamTab().updateTeamList();
             controller.getAddMonsterToTeamTab().updateMonsterList();
+            controller.getViewTeamsTab().updateTeamList();
         } catch (IOException e) {
             message.setForeground(new Color(148, 47, 47));
             message.setText("The file was not found");

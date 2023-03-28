@@ -93,6 +93,7 @@ public class NewTeamTab extends Tab {
             Team t = makeTeam(getName());
             nameField.setText("");
             controller.getAddMonsterToTeamTab().updateTeamList();
+            controller.getViewTeamsTab().updateTeamList();
 
             if (t != null) {
                 message.setForeground(new Color(30, 61, 52, 255));
@@ -101,6 +102,7 @@ public class NewTeamTab extends Tab {
                     pane.setSelectedIndex(MonstermonUI.HOME_TAB_INDEX);
                     message.setText("");
                     controller.getAddMonsterToTeamTab().updateTeamList();
+                    controller.getViewTeamsTab().updateTeamList();
                 });
                 timer.setRepeats(false);
                 timer.start();
