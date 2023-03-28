@@ -133,7 +133,7 @@ public class HomeTab extends Tab {
         createMonsterButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.CREATE_MONSTER_TAB));
         createTeamButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.CREATE_TEAM_TAB));
         addMonsterButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.ADD_MONSTER_TO_TEAM_TAB));
-        viewMonstersButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.VIEW_MONSTERS_TAB));
+//        viewMonstersButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.VIEW_MONSTERS_TAB));
         viewTeamsButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.VIEW_TEAMS_TAB));
         saveButton.addActionListener(e -> {
             if (monstermon.getMonsters() != null && monstermon.getTeams() != null) {

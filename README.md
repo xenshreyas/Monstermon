@@ -70,3 +70,15 @@
 <div style="text-align: justify">
 <p>In the future, I plan to expand the Monstermon universe by adding more types of monsters to the game, and creating a more complex system of type advantages and disadvantages. Furthermore, I aim to enhance the user interface by implementing visually appealing sprites and other graphics that will make the game more immersive. Additionally, I want to develop a system that allows monsters to have specific Skill Values such as attack, defense, and speed adding yet another layer of strategy and depth to the battling experience.</p>
 </div>
+
+## <span style="color:AliceBlue"> **Instructions for Grader**
+<ul>
+
+<li>You can add a Monster to a Team by navigating to the Add Monster tab, selecting a monster and a team from the two drop-down boxes, and click the "Add Monster" button.</li>
+<li>You can then view the Monsters in a particular Team by navigating to the View Teams tab, selecting a team, and clicking the "View Monsters" button. </li>
+<li>The second required action related to adding Monsters to a Team is adding Mew to a Team. Mew is a special monster that can be found by typing in the secret code in the next bullet point.</li>
+<li>The visual component can be found by typing in %20%Mew%20% in the New Monster tab.</li>
+<li>You can save the state of the application by clicking the "Save" button on the home page.</li>
+<li>You can load the state of the application by clicking the "Load" button on the home page.</li>
+
+</ul>

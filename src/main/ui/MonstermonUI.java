@@ -15,8 +15,8 @@ public class MonstermonUI extends JFrame {
     public static final int CREATE_MONSTER_TAB = 1;
     public static final int CREATE_TEAM_TAB = 2;
     public static final int ADD_MONSTER_TO_TEAM_TAB = 3;
-    public static final int VIEW_MONSTERS_TAB = 4;
-    public static final int VIEW_TEAMS_TAB = 5;
+//    public static final int VIEW_MONSTERS_TAB = 4;
+    public static final int VIEW_TEAMS_TAB = 4;
 
     private static final int WIDTH = 650;
     private static final int HEIGHT = 400;
@@ -76,8 +76,8 @@ public class MonstermonUI extends JFrame {
         sidebar.setTitleAt(CREATE_TEAM_TAB, "New Team");
         sidebar.add(addMonsterToTeamTab, ADD_MONSTER_TO_TEAM_TAB);
         sidebar.setTitleAt(ADD_MONSTER_TO_TEAM_TAB, "Add Monster");
-        sidebar.add(viewMonstersTab, VIEW_MONSTERS_TAB);
-        sidebar.setTitleAt(VIEW_MONSTERS_TAB, "View Monsters");
+//        sidebar.add(viewMonstersTab, VIEW_MONSTERS_TAB);
+//        sidebar.setTitleAt(VIEW_MONSTERS_TAB, "View Monsters");
         sidebar.add(viewTeamsTab, VIEW_TEAMS_TAB);
         sidebar.setTitleAt(VIEW_TEAMS_TAB, "View Teams");
     }
