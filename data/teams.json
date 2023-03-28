@@ -1,7 +1,4 @@
 {
     "name": "Teams",
-    "Teams": [{
-        "name": "Team 1",
-        "monsters": []
-    }]
+    "Teams": []
 }
