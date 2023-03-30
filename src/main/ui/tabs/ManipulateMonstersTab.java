@@ -48,8 +48,7 @@ public class ManipulateMonstersTab extends Tab {
     // MODIFIES: this
     // EFFECTS: adds the header to tell user to choose a monster to add to a team
     private void addHeader() {
-        JLabel header = new FancyLabel("Select a monster from the list below, and then choose a team to add it to",
-                JLabel.CENTER);
+        JLabel header = new FancyLabel("Select a Monster and a Team from the list below", JLabel.CENTER);
 
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -99,7 +98,7 @@ public class ManipulateMonstersTab extends Tab {
         submitButton = new RoundedButton("Add Monster to Team");
         gbc.gridx = 0;
         gbc.gridy = 3;
-        gbc.insets = new Insets(0, 280, 10, 0);
+        gbc.insets = new Insets(0, 240, 10, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.NONE;
         add(submitButton, gbc);
@@ -109,7 +108,7 @@ public class ManipulateMonstersTab extends Tab {
     // EFFECTS: adds the remove button allowing the user to remove a monster from the team
     public void initializeRemoveButton() {
         removeButton = new RoundedButton("Remove Monster from Team");
-        gbc.insets = new Insets(0, 0, 10, 240);
+        gbc.insets = new Insets(0, 0, 10, 200);
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.anchor = GridBagConstraints.CENTER;
