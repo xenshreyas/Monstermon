@@ -98,7 +98,6 @@ public class HomeTab extends Tab {
     private void placeButtons() {
         createMonsterButton = new RoundedButton(ButtonNames.CREATEMONSTER.getValue());
         createTeamButton = new RoundedButton(ButtonNames.CREATETEAM.getValue());
-        viewMonstersButton = new RoundedButton(ButtonNames.VIEWMONSTERS.getValue());
         viewTeamsButton = new RoundedButton(ButtonNames.VIEWTEAMS.getValue());
         saveButton = new RoundedButton(ButtonNames.SAVE.getValue());
         loadButton = new RoundedButton(ButtonNames.LOAD.getValue());
@@ -108,11 +107,10 @@ public class HomeTab extends Tab {
         buttonPanelAbove.add(addMonsterButton);
         buttonPanelAbove.add(createTeamButton);
 
-        buttonPanelMiddle.add(viewMonstersButton);
-        buttonPanelMiddle.add(viewTeamsButton);
+        buttonPanelBelow.add(viewTeamsButton);
 
-        buttonPanelBelow.add(saveButton);
-        buttonPanelBelow.add(loadButton);
+        buttonPanelMiddle.add(saveButton);
+        buttonPanelMiddle.add(loadButton);
 
         add(buttonPanelAbove);
         add(buttonPanelMiddle);
