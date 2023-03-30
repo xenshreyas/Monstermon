@@ -75,6 +75,18 @@ public class Monstermon {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: finds the given monster by name, and team by name, and then removes that monster from the team
+    public void removeMonsterFromTeam(String monsterName, String teamName) {
+        for (Monster m : monsterList) {
+            for (Team t : teamList) {
+                if (m.getName().equals(monsterName) && t.getName().equals(teamName)) {
+                    t.removeMonsterFromTeam(m);
+                }
+            }
+        }
+    }
+
     // EFFECTS: returns true if the given team has the given monster (specified by their names)
     public boolean teamAlreadyHasMonster(String monsterName, String teamName) {
         Monster m = findMonster(monsterName);

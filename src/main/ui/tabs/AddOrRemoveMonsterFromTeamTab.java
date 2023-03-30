@@ -13,10 +13,11 @@ import java.awt.*;
 
 // adapted from: https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
 
-// Represents the Add Monster to Team tab
-public class AddMonsterToTeamTab extends Tab {
+// Represents the Add or Remove Monster to or from Team tab
+public class AddOrRemoveMonsterFromTeamTab extends Tab {
 
     private JButton submitButton;
+    private JButton removeButton;
     private JComboBox<String> monsterList;
     private JComboBox<String> teamList;
     private JLabel message;
@@ -26,7 +27,7 @@ public class AddMonsterToTeamTab extends Tab {
 
     // MODIFIES: this
     // EFFECTS: constructs the AddMonsterToTeam tab for with drop-down lists, a submit button and a message
-    public AddMonsterToTeamTab(MonstermonUI controller) {
+    public AddOrRemoveMonsterFromTeamTab(MonstermonUI controller) {
         super(controller);
 
         setLayout(new GridBagLayout());
@@ -38,8 +39,10 @@ public class AddMonsterToTeamTab extends Tab {
         initializeMonsterBox();
         initializeTeamBox();
         initializeSubmitButton();
+        initializeRemoveButton();
         addMessageLabel();
-        actionListener();
+        actionListenerForSubmitButton();
+        actionListenerForRemoveButton();
     }
 
     // MODIFIES: this
@@ -96,15 +99,28 @@ public class AddMonsterToTeamTab extends Tab {
         submitButton = new RoundedButton("Add Monster to Team");
         gbc.gridx = 0;
         gbc.gridy = 3;
+        gbc.insets = new Insets(0, 280, 10, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.NONE;
         add(submitButton, gbc);
     }
 
     // MODIFIES: this
+    // EFFECTS: adds the remove button allowing the user to remove a monster from the team
+    public void initializeRemoveButton() {
+        removeButton = new RoundedButton("Remove Monster from Team");
+        gbc.insets = new Insets(0, 0, 10, 240);
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.fill = GridBagConstraints.NONE;
+        add(removeButton, gbc);
+    }
+
+    // MODIFIES: this
     // EFFECTS: adds the selected monster to the selected team if possible and redirects user back to home page
     //          otherwise sets the message to output red and invalid choice.
-    public void actionListener() {
+    public void actionListenerForSubmitButton() {
         submitButton.addActionListener(e -> {
             String monsterName = "";
             String teamName = "";
@@ -121,6 +137,25 @@ public class AddMonsterToTeamTab extends Tab {
     }
 
     // MODIFIES: this
+    // EFFECTS: removes the selected monster from the selected team if possible and redirects user back to home page
+    //          otherwise sets the message to output red and invalid choice.
+    public void actionListenerForRemoveButton() {
+        removeButton.addActionListener(e -> {
+            String monsterName = "";
+            String teamName = "";
+            try {
+                monsterName = monsterList.getSelectedItem().toString();
+                teamName = teamList.getSelectedItem().toString();
+            } catch (NullPointerException ex) {
+                message.setForeground(new Color(148, 47, 47));
+                message.setText("Invalid input. Please try again.");
+            }
+
+            removeMonsterFromTeam(monsterName, teamName);
+        });
+    }
+
+    // MODIFIES: this
     // EFFECTS: adds the selected monster to the selected team
     public void addMonsterToTeam(String monsterName, String teamName) {
         JTabbedPane pane = getController().getTabbedPane();
@@ -131,6 +166,29 @@ public class AddMonsterToTeamTab extends Tab {
             message.setForeground(new Color(30, 61, 52, 255));
             monstermon.addMonsterToTeam(monsterName, teamName);
             message.setText(monsterName + " was added to " + teamName + " successfully.");
+            Timer timer = new Timer(1000, ev -> {
+                pane.setSelectedIndex(MonstermonUI.HOME_TAB_INDEX);
+                message.setText("");
+            });
+            timer.setRepeats(false);
+            timer.start();
+        } else {
+            message.setForeground(new Color(148, 47, 47));
+            message.setText("Invalid input. Please try again.");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: removes the selected monster from the selected team
+    public void removeMonsterFromTeam(String monsterName, String teamName) {
+        JTabbedPane pane = getController().getTabbedPane();
+        if (!monstermon.teamAlreadyHasMonster(monsterName, teamName)) {
+            message.setForeground(new Color(148, 47, 47));
+            message.setText(monsterName + " is not in " + teamName + ".");
+        } else if (monsterName != "" && teamName != "") {
+            message.setForeground(new Color(30, 61, 52, 255));
+            monstermon.removeMonsterFromTeam(monsterName, teamName);
+            message.setText(monsterName + " was removed from " + teamName + " successfully.");
             Timer timer = new Timer(1000, ev -> {
                 pane.setSelectedIndex(MonstermonUI.HOME_TAB_INDEX);
                 message.setText("");
@@ -181,6 +239,7 @@ public class AddMonsterToTeamTab extends Tab {
         message.setForeground(new Color(30, 61, 52, 255));
         gbc.gridx = 0;
         gbc.gridy = 4;
+        gbc.insets = new Insets(0, 0, 10, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.NONE;
         add(message, gbc);

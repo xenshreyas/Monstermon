@@ -102,6 +102,32 @@ public class MonstermonTest {
     }
 
     @Test
+    public void testRemoveMonsterFromTeam() {
+        Monster bulbasaur = new Monster("Bulbasaur", MonsterType.GRASS, 45);
+        Monster charmander = new Monster("Charmander", MonsterType.FIRE, 45);
+        Team team1 = new Team("Team 1");
+        Team team2 = new Team("Team 2");
+
+        monstermon.addMonster(bulbasaur);
+        monstermon.addMonster(charmander);
+        monstermon.addTeam(team1);
+        monstermon.addTeam(team2);
+
+        monstermon.addMonsterToTeam("Bulbasaur", "Team 1");
+        monstermon.addMonsterToTeam("Charmander", "Team 1");
+        monstermon.addMonsterToTeam("Bulbasaur", "Team 2");
+        monstermon.addMonsterToTeam("Charmander", "Team 2");
+
+        monstermon.removeMonsterFromTeam("Bulbasaur", "Team 1");
+        monstermon.removeMonsterFromTeam("Charmander", "Team 1");
+        monstermon.removeMonsterFromTeam("Bulbasaur", "Team 2");
+        monstermon.removeMonsterFromTeam("Charmander", "Team 2");
+
+        assertEquals(0, monstermon.getAllTeams().get(0).getAllMonsters().size());
+        assertEquals(0, monstermon.getAllTeams().get(1).getAllMonsters().size());
+    }
+
+    @Test
     public void testTeamAlreadyHasMonster() {
         Monster m = new Monster("Bulbasaur", MonsterType.GRASS, 45);
         Monster m2 = new Monster("Charmander", MonsterType.FIRE, 45);
