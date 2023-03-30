@@ -121,7 +121,6 @@ public class NewTeamTab extends Tab {
         }
         Team t = new Team(name);
         monstermon.addTeam(t);
-        System.out.println(monstermon.getAllTeams());
         return t;
     }
 }

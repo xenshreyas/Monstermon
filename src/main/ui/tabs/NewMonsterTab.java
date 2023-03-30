@@ -180,7 +180,6 @@ public class NewMonsterTab extends Tab {
             return null;
         }
         monstermon.addMonster(m);
-        System.out.println(monstermon.getAllMonstersAsStrings());
         return m;
     }
 
