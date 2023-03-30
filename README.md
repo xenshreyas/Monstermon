@@ -74,9 +74,9 @@
 ## <span style="color:AliceBlue"> **Instructions for Grader**
 <ul>
 
-<li>You can add a Monster to a Team by navigating to the Add Monster tab, selecting a monster and a team from the two drop-down boxes, and click the "Add Monster" button.</li>
+<li>You can add a Monster to a Team by navigating to the Monsters tab, selecting a monster and a team from the two drop-down boxes, and clicking the "Add Monster" button.</li>
+<li>You can then remove a Monster from a Team by navigating to the Monsters tab, selecting a monster and a team from the two drop-down boxes, and clicking the "Remove Monster" button.</li>
 <li>You can then view the Monsters in a particular Team by navigating to the View Teams tab, selecting a team, and clicking the "View Monsters" button. </li>
-<li>The second required action related to adding Monsters to a Team is adding Mew to a Team. Mew is a special monster that can be found by typing in the secret code in the next bullet point.</li>
 <li>The visual component can be found by typing in %20%Mew%20% in the New Monster tab.</li>
 <li>You can save the state of the application by clicking the "Save" button on the home page.</li>
 <li>You can load the state of the application by clicking the "Load" button on the home page.</li>
