@@ -23,7 +23,7 @@ public class MonstermonUI extends JFrame {
     private JTabbedPane sidebar;
     private Monstermon monstermon;
 
-    private AddOrRemoveMonsterFromTeamTab addOrRemoveMonsterFromTeamTab;
+    private ManipulateMonstersTab manipulateMonstersTab;
     private ViewTeamsTab viewTeamsTab;
 
     // EFFECTS: runs the MonstermonUI
@@ -64,7 +64,7 @@ public class MonstermonUI extends JFrame {
         JPanel homeTab = new HomeTab(this);
         JPanel newMonsterTab = new NewMonsterTab(this);
         JPanel newTeamTab = new NewTeamTab(this);
-        addOrRemoveMonsterFromTeamTab = new AddOrRemoveMonsterFromTeamTab(this);
+        manipulateMonstersTab = new ManipulateMonstersTab(this);
         JPanel viewMonstersTab = new ViewMonstersTab(this);
         viewTeamsTab = new ViewTeamsTab(this);
 
@@ -74,12 +74,12 @@ public class MonstermonUI extends JFrame {
         sidebar.setTitleAt(CREATE_MONSTER_TAB, "New Monster");
         sidebar.add(newTeamTab, CREATE_TEAM_TAB);
         sidebar.setTitleAt(CREATE_TEAM_TAB, "New Team");
-        sidebar.add(addOrRemoveMonsterFromTeamTab, ADD_MONSTER_TO_TEAM_TAB);
-        sidebar.setTitleAt(ADD_MONSTER_TO_TEAM_TAB, "Add Monster");
+        sidebar.add(manipulateMonstersTab, ADD_MONSTER_TO_TEAM_TAB);
+        sidebar.setTitleAt(ADD_MONSTER_TO_TEAM_TAB, "Monsters");
 //        sidebar.add(viewMonstersTab, VIEW_MONSTERS_TAB);
 //        sidebar.setTitleAt(VIEW_MONSTERS_TAB, "View Monsters");
         sidebar.add(viewTeamsTab, VIEW_TEAMS_TAB);
-        sidebar.setTitleAt(VIEW_TEAMS_TAB, "View Teams");
+        sidebar.setTitleAt(VIEW_TEAMS_TAB, "Teams");
     }
 
     //EFFECTS: returns sidebar of this UI
@@ -88,8 +88,8 @@ public class MonstermonUI extends JFrame {
     }
 
     // EFFECTS: returns the AddMonsterToTeamTab associated with this UI
-    public AddOrRemoveMonsterFromTeamTab getAddMonsterToTeamTab() {
-        return addOrRemoveMonsterFromTeamTab;
+    public ManipulateMonstersTab getAddMonsterToTeamTab() {
+        return manipulateMonstersTab;
     }
 
     public ViewTeamsTab getViewTeamsTab() {

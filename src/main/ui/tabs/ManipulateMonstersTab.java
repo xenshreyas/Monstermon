@@ -14,7 +14,7 @@ import java.awt.*;
 // adapted from: https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
 
 // Represents the Add or Remove Monster to or from Team tab
-public class AddOrRemoveMonsterFromTeamTab extends Tab {
+public class ManipulateMonstersTab extends Tab {
 
     private JButton submitButton;
     private JButton removeButton;
@@ -27,7 +27,7 @@ public class AddOrRemoveMonsterFromTeamTab extends Tab {
 
     // MODIFIES: this
     // EFFECTS: constructs the AddMonsterToTeam tab for with drop-down lists, a submit button and a message
-    public AddOrRemoveMonsterFromTeamTab(MonstermonUI controller) {
+    public ManipulateMonstersTab(MonstermonUI controller) {
         super(controller);
 
         setLayout(new GridBagLayout());

@@ -2,11 +2,11 @@ package ui;
 
 // Represents the different button names that are present in the sidebar
 public enum ButtonNames {
-    ADDMONSTER("Add Monster"),
+    ADDMONSTER("Monsters"),
     CREATEMONSTER("Create Monster"),
     CREATETEAM("Create Team"),
     VIEWMONSTERS("View Monsters"),
-    VIEWTEAMS("View Teams"),
+    VIEWTEAMS("Teams"),
     SAVE("Save"),
     LOAD("Load");
 

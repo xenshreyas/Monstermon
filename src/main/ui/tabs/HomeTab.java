@@ -31,7 +31,7 @@ public class HomeTab extends Tab {
     JButton viewTeamsButton;
     JButton saveButton;
     JButton loadButton;
-    JButton addMonsterButton;
+    JButton manipulateMonstersButton;
 
     JPanel buttonPanelAbove;
     JPanel buttonPanelMiddle;
@@ -101,16 +101,16 @@ public class HomeTab extends Tab {
         viewTeamsButton = new RoundedButton(ButtonNames.VIEWTEAMS.getValue());
         saveButton = new RoundedButton(ButtonNames.SAVE.getValue());
         loadButton = new RoundedButton(ButtonNames.LOAD.getValue());
-        addMonsterButton = new RoundedButton(ButtonNames.ADDMONSTER.getValue());
+        manipulateMonstersButton = new RoundedButton(ButtonNames.ADDMONSTER.getValue());
 
         buttonPanelAbove.add(createMonsterButton);
-        buttonPanelAbove.add(addMonsterButton);
         buttonPanelAbove.add(createTeamButton);
 
-        buttonPanelBelow.add(viewTeamsButton);
+        buttonPanelMiddle.add(manipulateMonstersButton);
+        buttonPanelMiddle.add(viewTeamsButton);
 
-        buttonPanelMiddle.add(saveButton);
-        buttonPanelMiddle.add(loadButton);
+        buttonPanelBelow.add(saveButton);
+        buttonPanelBelow.add(loadButton);
 
         add(buttonPanelAbove);
         add(buttonPanelMiddle);
@@ -130,7 +130,7 @@ public class HomeTab extends Tab {
         JTabbedPane pane = getController().getTabbedPane();
         createMonsterButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.CREATE_MONSTER_TAB));
         createTeamButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.CREATE_TEAM_TAB));
-        addMonsterButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.ADD_MONSTER_TO_TEAM_TAB));
+        manipulateMonstersButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.ADD_MONSTER_TO_TEAM_TAB));
 //        viewMonstersButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.VIEW_MONSTERS_TAB));
         viewTeamsButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.VIEW_TEAMS_TAB));
         saveButton.addActionListener(e -> {
