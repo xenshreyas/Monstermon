@@ -2,6 +2,10 @@
     "name": "Teams",
     "Teams": [{
         "name": "Team 1",
-        "monsters": []
+        "monsters": [{
+            "healthPoints": 45,
+            "name": "Bulbasaur",
+            "type": "GRASS"
+        }]
     }]
 }

@@ -25,6 +25,7 @@ public class Teams implements Writable {
 
     @Override
     public JSONObject toJson() {
+        EventLog.getInstance().logEvent(new Event("Teams saved to JSON"));
         JSONObject json = new JSONObject();
         json.put("name", "Teams");
         json.put("Teams", monstersToJson());

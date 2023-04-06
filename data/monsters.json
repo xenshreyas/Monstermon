@@ -1,15 +1,8 @@
 {
-    "Monsters": [
-        {
-            "healthPoints": 45,
-            "name": "Bulbasaur",
-            "type": "GRASS"
-        },
-        {
-            "healthPoints": 999,
-            "name": "Mew",
-            "type": "PSYCH"
-        }
-    ],
+    "Monsters": [{
+        "healthPoints": 45,
+        "name": "Bulbasaur",
+        "type": "GRASS"
+    }],
     "name": "Monsters"
 }

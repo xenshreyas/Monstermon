@@ -137,6 +137,7 @@ public class Monstermon {
             this.monsterList.add(m);
             this.monsters.addMonster(m);
         }
+        EventLog.getInstance().logEvent(new Event("Monsters loaded into Monstermon"));
     }
 
     // MODIFIES: this
@@ -146,6 +147,7 @@ public class Monstermon {
             this.teamList.add(t);
             this.teams.addTeam(t);
         }
+        EventLog.getInstance().logEvent(new Event("Teams loaded into Monstermon"));
     }
 
     // EFFECTS: returns monsters
