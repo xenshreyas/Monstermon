@@ -8,6 +8,7 @@ import java.awt.*;
 
 // Represents the GUI for Monstermon Adventures (intro page)
 public class WelcomeUI extends JFrame {
+    // Singleton Design Pattern
 
     private static final int WIDTH = 650;
     private static final int HEIGHT = 450;
@@ -15,6 +16,8 @@ public class WelcomeUI extends JFrame {
     private JButton enter;
 
     private GridBagConstraints gbc;
+
+    private static WelcomeUI instance;
 
     //MODIFIES: this
     //EFFECTS: creates WelcomeUI, with a gif from https://www.pokemon.com/us/pokemon-episodes/23_01-enter-pikachu/
@@ -29,6 +32,14 @@ public class WelcomeUI extends JFrame {
 
         initialize();
         actionListener();
+    }
+
+    // EFFECTS: Returns the instance of WelcomeUI
+    public static WelcomeUI getInstance() {
+        if (instance == null) {
+            instance = new WelcomeUI();
+        }
+        return instance;
     }
 
     // MODIFIES: this
@@ -63,6 +74,7 @@ public class WelcomeUI extends JFrame {
     // EFFECTS: sets the action listener to redirect user to the main application and dispose the current page
     public void actionListener() {
         enter.addActionListener(e -> {
+            new MonstermonUI();
             dispose();
         });
     }
@@ -71,5 +83,6 @@ public class WelcomeUI extends JFrame {
     public static void main(String[] args) {
         new WelcomeUI();
     }
+
 
 }
