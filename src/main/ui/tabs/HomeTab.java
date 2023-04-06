@@ -27,7 +27,6 @@ public class HomeTab extends Tab {
 
     JButton createMonsterButton;
     JButton createTeamButton;
-    JButton viewMonstersButton;
     JButton viewTeamsButton;
     JButton saveButton;
     JButton loadButton;
@@ -45,28 +44,41 @@ public class HomeTab extends Tab {
     public HomeTab(MonstermonUI controller) {
         super(controller);
         this.controller = controller;
+        initializeReadersAndWriters();
+        addTopPanel();
+        placeTitle();
+        addBottomPanel();
+        initializePanels();
+        placeButtons();
+        actionListener();
+    }
 
-        jsonWriterMonsters = new JsonWriterMonsters(JSON_STORE_MONSTERS);
-        jsonReaderMonsters = new JsonReaderMonsters(JSON_STORE_MONSTERS);
-        jsonWriterTeams = new JsonWriterTeams(JSON_STORE_TEAMS);
-        jsonReaderTeams = new JsonReaderTeams(JSON_STORE_TEAMS);
+    // MODIFIES: this
+    // EFFECTS: adds the bottom panel to the console
+    private void addBottomPanel() {
+        JPanel temp = new JPanel();
+        temp.setBackground(new Color(24,24,24));
+        add(temp);
+    }
 
+    // MODIFIES: this
+    // EFFECTS: adds the top panel to the console
+    private void addTopPanel() {
         setLayout(new GridLayout(8, 1));
         setBackground(new Color(24,24,24)); // background of top and bottom 1/3rd
 
         JPanel temp1 = new JPanel();
         temp1.setBackground(new Color(24,24,24));
         add(temp1);
+    }
 
-        placeTitle();
-
-        JPanel temp = new JPanel();
-        temp.setBackground(new Color(24,24,24));
-        add(temp);
-
-        initializePanels();
-        placeButtons();
-        actionListener();
+    // MODIFIES: this
+    // EFFECTS: initializes the readers and writers for the console
+    private void initializeReadersAndWriters() {
+        jsonWriterMonsters = new JsonWriterMonsters(JSON_STORE_MONSTERS);
+        jsonReaderMonsters = new JsonReaderMonsters(JSON_STORE_MONSTERS);
+        jsonWriterTeams = new JsonWriterTeams(JSON_STORE_TEAMS);
+        jsonReaderTeams = new JsonReaderTeams(JSON_STORE_TEAMS);
     }
 
     // MODIFIES: this
@@ -131,7 +143,6 @@ public class HomeTab extends Tab {
         createMonsterButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.CREATE_MONSTER_TAB));
         createTeamButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.CREATE_TEAM_TAB));
         manipulateMonstersButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.ADD_MONSTER_TO_TEAM_TAB));
-//        viewMonstersButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.VIEW_MONSTERS_TAB));
         viewTeamsButton.addActionListener(e -> pane.setSelectedIndex(MonstermonUI.VIEW_TEAMS_TAB));
         saveButton.addActionListener(e -> {
             if (monstermon.getMonsters() != null && monstermon.getTeams() != null) {

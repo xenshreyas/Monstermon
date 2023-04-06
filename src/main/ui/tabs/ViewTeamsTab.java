@@ -28,16 +28,20 @@ public class ViewTeamsTab extends Tab {
     public ViewTeamsTab(MonstermonUI controller) {
         super(controller);
 
-        setLayout(new GridBagLayout());
-        setBackground(new Color(24, 24, 24));
-
-        gbc = new GridBagConstraints();
-
+        initializeGBC();
         addHeader();
         initializeTeamBox();
         initializeSubmitButton();
         addMessageLabel();
         actionListener();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: initializes the gbc
+    private void initializeGBC() {
+        setLayout(new GridBagLayout());
+        setBackground(new Color(24, 24, 24));
+        gbc = new GridBagConstraints();
     }
 
     // MODIFIES: this
@@ -147,5 +151,4 @@ public class ViewTeamsTab extends Tab {
         gbc.fill = GridBagConstraints.NONE;
         add(message, gbc);
     }
-
 }

@@ -4,11 +4,12 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
 // Represents a team of monsters, with a name and a List of monsters
-public class Team implements Writable {
+public class Team implements Writable, Iterable<Monster> {
 
     private String name;
     private final List<Monster> monsters;
@@ -93,4 +94,8 @@ public class Team implements Writable {
         return json;
     }
 
+    @Override
+    public Iterator<Monster> iterator() {
+        return monsters.iterator();
+    }
 }

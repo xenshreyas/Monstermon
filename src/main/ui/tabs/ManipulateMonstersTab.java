@@ -30,11 +30,7 @@ public class ManipulateMonstersTab extends Tab {
     public ManipulateMonstersTab(MonstermonUI controller) {
         super(controller);
 
-        setLayout(new GridBagLayout());
-        setBackground(new Color(24, 24, 24));
-
-        gbc = new GridBagConstraints();
-
+        initializeGBC();
         addHeader();
         initializeMonsterBox();
         initializeTeamBox();
@@ -43,6 +39,15 @@ public class ManipulateMonstersTab extends Tab {
         addMessageLabel();
         actionListenerForSubmitButton();
         actionListenerForRemoveButton();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: initializes the gbc
+    private void initializeGBC() {
+        setLayout(new GridBagLayout());
+        setBackground(new Color(24, 24, 24));
+
+        gbc = new GridBagConstraints();
     }
 
     // MODIFIES: this

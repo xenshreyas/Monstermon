@@ -30,6 +30,17 @@ public class NewMonsterTab extends Tab {
     public NewMonsterTab(MonstermonUI controller) {
         super(controller);
         this.controller = controller;
+        initializeGBC();
+        initializeLabels();
+        initializeFields();
+        initializeSubmitButton();
+        addMessageLabel();
+        actionListener();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: initializes the gbc
+    private void initializeGBC() {
         setLayout(new GridBagLayout());
         setBackground(new Color(24, 24, 24));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -37,12 +48,6 @@ public class NewMonsterTab extends Tab {
         gbc = new GridBagConstraints();
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 5, 5, 5);
-
-        initializeLabels();
-        initializeFields();
-        initializeSubmitButton();
-        addMessageLabel();
-        actionListener();
     }
 
     // MODIFIES: this

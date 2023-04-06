@@ -24,6 +24,16 @@ public class NewTeamTab extends Tab {
     public NewTeamTab(MonstermonUI controller) {
         super(controller);
         this.controller = controller;
+        initializeGBC();
+        initializeLabelAndPanel();
+        initializeSubmitButton();
+        actionListener();
+        addMessageLabel();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: initializes the gbc
+    private void initializeGBC() {
         setLayout(new GridBagLayout());
         setBackground(new Color(24, 24, 24));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -31,11 +41,6 @@ public class NewTeamTab extends Tab {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 5, 5, 5);
-
-        initializeLabelAndPanel();
-        initializeSubmitButton();
-        actionListener();
-        addMessageLabel();
     }
 
     // MODIFIES: this
@@ -53,6 +58,8 @@ public class NewTeamTab extends Tab {
         add(nameField, gbc);
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the submit button
     public void initializeSubmitButton() {
         gbc.gridx = 0;
         gbc.gridy = 1;

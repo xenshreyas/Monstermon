@@ -63,7 +63,6 @@ public class WelcomeUI extends JFrame {
     // EFFECTS: sets the action listener to redirect user to the main application and dispose the current page
     public void actionListener() {
         enter.addActionListener(e -> {
-            new MonstermonUI();
             dispose();
         });
     }

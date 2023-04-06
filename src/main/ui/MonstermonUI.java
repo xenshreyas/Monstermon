@@ -17,7 +17,6 @@ public class MonstermonUI extends JFrame {
     public static final int CREATE_MONSTER_TAB = 1;
     public static final int CREATE_TEAM_TAB = 2;
     public static final int ADD_MONSTER_TO_TEAM_TAB = 3;
-//    public static final int VIEW_MONSTERS_TAB = 4;
     public static final int VIEW_TEAMS_TAB = 4;
 
     private static final int WIDTH = 650;
@@ -37,12 +36,23 @@ public class MonstermonUI extends JFrame {
     //EFFECTS: creates MonstermonUI, displays sidebar and tabs
     public MonstermonUI() {
         super("Monstermon Adventures");
-        setSize(WIDTH, HEIGHT);
         addCloseEvent();
+        initializeUI();
+        initializeSidebar();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: initializes the UI
+    private void initializeUI() {
+        setSize(WIDTH, HEIGHT);
         setResizable(false);
         monstermon = new Monstermon();
         setBackground(new Color(0, 0, 0));
+    }
 
+    // MODIFIES: this
+    // EFFECTS: adds the sidebar to this UI
+    private void initializeSidebar() {
         sidebar = new JTabbedPane();
         sidebar.setTabPlacement(JTabbedPane.TOP);
         sidebar.setBackground(new Color(24, 24, 24));
@@ -67,7 +77,6 @@ public class MonstermonUI extends JFrame {
         JPanel newMonsterTab = new NewMonsterTab(this);
         JPanel newTeamTab = new NewTeamTab(this);
         manipulateMonstersTab = new ManipulateMonstersTab(this);
-        JPanel viewMonstersTab = new ViewMonstersTab(this);
         viewTeamsTab = new ViewTeamsTab(this);
 
         sidebar.add(homeTab, HOME_TAB_INDEX);
@@ -78,8 +87,6 @@ public class MonstermonUI extends JFrame {
         sidebar.setTitleAt(CREATE_TEAM_TAB, "New Team");
         sidebar.add(manipulateMonstersTab, ADD_MONSTER_TO_TEAM_TAB);
         sidebar.setTitleAt(ADD_MONSTER_TO_TEAM_TAB, "Monsters");
-//        sidebar.add(viewMonstersTab, VIEW_MONSTERS_TAB);
-//        sidebar.setTitleAt(VIEW_MONSTERS_TAB, "View Monsters");
         sidebar.add(viewTeamsTab, VIEW_TEAMS_TAB);
         sidebar.setTitleAt(VIEW_TEAMS_TAB, "Teams");
     }
@@ -94,10 +101,13 @@ public class MonstermonUI extends JFrame {
         return manipulateMonstersTab;
     }
 
+    // EFFECTS: returns the ViewTeamsTab associated with this UI
     public ViewTeamsTab getViewTeamsTab() {
         return viewTeamsTab;
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds a close event to this UI
     public void addCloseEvent() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.addWindowListener(new java.awt.event.WindowAdapter() {
