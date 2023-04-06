@@ -24,14 +24,18 @@ public class WelcomeUI extends JFrame {
     private WelcomeUI() {
         super("Monstermon Adventures");
 
-        gbc = new GridBagConstraints();
+        initializeGBC();
+        initialize();
+        actionListener();
+    }
 
+    // MODIFIES: this
+    // EFFECTS: initializes the gbc
+    private void initializeGBC() {
+        gbc = new GridBagConstraints();
         setSize(WIDTH, HEIGHT);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-
-        initialize();
-        actionListener();
     }
 
     // EFFECTS: Returns the instance of WelcomeUI
@@ -83,6 +87,5 @@ public class WelcomeUI extends JFrame {
     public static void main(String[] args) {
         new WelcomeUI();
     }
-
 
 }
