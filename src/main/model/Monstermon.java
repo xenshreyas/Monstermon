@@ -19,6 +19,7 @@ public class Monstermon {
         teamList = new ArrayList<>();
         monsters = new Monsters();
         teams = new Teams();
+        EventLog.getInstance().logEvent(new Event("Monstermon created"));
     }
 
     // EFFECTS: returns the list of monsters
@@ -54,6 +55,7 @@ public class Monstermon {
     public void addMonster(Monster m) {
         monsterList.add(m);
         monsters.addMonster(m);
+        EventLog.getInstance().logEvent(new Event("Monster " + m.getName() + " added to Monstermon"));
     }
 
     // MODIFIES: this
@@ -61,6 +63,7 @@ public class Monstermon {
     public void addTeam(Team t) {
         teamList.add(t);
         teams.addTeam(t);
+        EventLog.getInstance().logEvent(new Event("Team " + t.getName() + " added to Monstermon"));
     }
 
     // MODIFIES: this
@@ -73,6 +76,8 @@ public class Monstermon {
                 }
             }
         }
+        EventLog.getInstance().logEvent(new Event("Monster " + monsterName + " added to team " + teamName
+                + " in Monstermon"));
     }
 
     // MODIFIES: this
@@ -85,6 +90,8 @@ public class Monstermon {
                 }
             }
         }
+        EventLog.getInstance().logEvent(new Event("Monster " + monsterName + " removed from team "
+                + teamName + " in Monstermon"));
     }
 
     // EFFECTS: returns true if the given team has the given monster (specified by their names)

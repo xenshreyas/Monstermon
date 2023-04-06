@@ -21,6 +21,7 @@ public class Monster implements Writable {
         this.name = name;
         this.type = type;
         this.healthPoints = healthPoints;
+        EventLog.getInstance().logEvent(new Event("Monster " + name + " created"));
     }
 
     // EFFECTS: gets the name of this monster
@@ -42,6 +43,7 @@ public class Monster implements Writable {
     // EFFECTS: renames this monster to given name
     public void renameMonster(String name) {
         this.name = name;
+        EventLog.getInstance().logEvent(new Event("Monster " + name + " renamed"));
     }
 
     // MODIFIES: this

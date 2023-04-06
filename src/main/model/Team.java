@@ -16,6 +16,7 @@ public class Team implements Writable {
     public Team(String name) {
         this.name = name;
         monsters = new ArrayList<>();
+        EventLog.getInstance().logEvent(new Event("Team " + name + " created"));
     }
 
     // EFFECTS: gets the name of this team
@@ -54,11 +55,12 @@ public class Team implements Writable {
             if (monsters.contains(monster)) {
                 return false;
             }
-
             this.monsters.add(monster);
-            //NO MORE MONSTERS CAN BE ADDED
+            EventLog.getInstance().logEvent(new Event("Monster " + monster.getName() + " added to team "
+                    + name));
             return true;
         }
+        EventLog.getInstance().logEvent(new Event("Team " + name + " is full"));
         return false;
     }
 
@@ -68,6 +70,8 @@ public class Team implements Writable {
         if (monsters.size() > 0) {
             if (monsters.contains(monster)) {
                 this.monsters.remove(monster);
+                EventLog.getInstance().logEvent(new Event("Monster " + monster.getName()
+                        + " removed from team "  + name));
                 return true;
             }
         }
@@ -77,6 +81,7 @@ public class Team implements Writable {
     // MODIFIES: this
     // EFFECTS: renames this team to given name
     public void renameTeam(String name) {
+        EventLog.getInstance().logEvent(new Event("Team " + this.name + " renamed to " + name));
         this.name = name;
     }
 

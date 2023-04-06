@@ -1,10 +1,12 @@
 package ui;
 
 import model.*;
+import model.Event;
 import ui.tabs.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Iterator;
 
 // adapted from: https://github.students.cs.ubc.ca/CPSC210/LongFormProblemStarters.git
 
@@ -36,7 +38,7 @@ public class MonstermonUI extends JFrame {
     public MonstermonUI() {
         super("Monstermon Adventures");
         setSize(WIDTH, HEIGHT);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        addCloseEvent();
         setResizable(false);
         monstermon = new Monstermon();
         setBackground(new Color(0, 0, 0));
@@ -94,6 +96,21 @@ public class MonstermonUI extends JFrame {
 
     public ViewTeamsTab getViewTeamsTab() {
         return viewTeamsTab;
+    }
+
+    public void addCloseEvent() {
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                Iterator eventIterator = EventLog.getInstance().iterator();
+                while (eventIterator.hasNext()) {
+                    Event event = (Event) eventIterator.next();
+                    System.out.println(event.getDescription());
+                }
+                dispose();
+            }
+        });
     }
 
 }
