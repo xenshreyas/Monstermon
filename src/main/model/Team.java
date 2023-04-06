@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 // Represents a team of monsters, with a name and a List of monsters
-public class Team implements Writable, Iterable<Monster> {
+public class Team implements Writable {
 
     private String name;
     private final List<Monster> monsters;
@@ -92,10 +92,5 @@ public class Team implements Writable, Iterable<Monster> {
         json.put("name", name);
         json.put("monsters", monsters);
         return json;
-    }
-
-    @Override
-    public Iterator<Monster> iterator() {
-        return monsters.iterator();
     }
 }
