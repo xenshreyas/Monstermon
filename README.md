@@ -72,6 +72,7 @@
 </div>
 
 ## <span style="color:AliceBlue"> **Instructions for Grader**
+<div style="text-align: justify">
 <ul>
 
 <li>You can add a Monster to a Team by navigating to the Monsters tab, selecting a monster and a team from the two drop-down boxes, and clicking the "Add Monster" button.</li>
@@ -82,3 +83,36 @@
 <li>You can load the state of the application by clicking the "Load" button on the home page.</li>
 
 </ul>
+</div>
+
+## <span style="color:AliceBlue"> **Phase 4: Task 2 [Representative Sample of Events]**
+<div style="text-align: justify">
+<ul>
+
+<li>Monstermon created</li>
+<li>Monster Bulbasaur created</li>
+<li>Monster Bulbasaur added to Monstermon</li>
+<li>Team Team 1 created</li>
+<li>Team Team 1 added to Monstermon</li>
+<li>Monster Bulbasaur added to team Team 1</li>
+<li>Monster Bulbasaur added to team Team 1 in Monstermon</li>
+<li>Monster Charmander created</li>
+<li>Monster Charmander added to Monstermon</li>
+<li>Team Team 2 created</li>
+<li>Team Team 2 added to Monstermon</li>
+<li>Monster Bulbasaur removed from team Team 1</li>
+<li>Monster Bulbasaur removed from team Team 1 in Monstermon</li>
+<li>Monster Charmander added to team Team 2</li>
+<li>Monster Charmander added to team Team 2 in Monstermon</li>
+<li>Monsters saved to JSON</li>
+<li>Teams saved to JSON</li>
+
+</ul>
+</div>
+
+## <span style="color:AliceBlue"> **Phase 4: Task 3 [Future Refactoring]**
+<div style="text-align: justify">
+After reviewing the UML diagram, I believe that implementing the Observer Pattern would benefit my application. To achieve this, I would create an "Observer" interface and a "Subject" class. Both the ManipulateMonstersTab and the ViewTeamsTab would extend the Observer interface, and the MonstermonUI would extend the Subject class. This implementation would ensure that any changes made to the Monstermon field within MonstermonUI would trigger the update method, updating the corresponding Tabs to display the Monsters that are part of the Teams accurately.
+
+Moreover, I plan to refactor the code in the future to eliminate unnecessary clutter by removing the Monsters and Teams classes, and implementing the saving and loading functionality within the Monster and Team classes. I would also like to make the Team class implement the Iterable interface over Monster. This modification would create blissful ignorance as discussed in class, enabling the for each loop to perform its function without knowing much about the monsters field or the operation being carried out on them. Additionally, removing monsters from teams would be a simpler process with the implementation of iterators, which would allow for easy removal.
+</div>
