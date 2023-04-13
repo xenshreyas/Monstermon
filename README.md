@@ -89,23 +89,81 @@
 <div style="text-align: justify">
 <ul>
 
-<li>Monstermon created</li>
-<li>Monster Bulbasaur created</li>
-<li>Monster Bulbasaur added to Monstermon</li>
-<li>Team Team 1 created</li>
-<li>Team Team 1 added to Monstermon</li>
-<li>Monster Bulbasaur added to team Team 1</li>
-<li>Monster Bulbasaur added to team Team 1 in Monstermon</li>
-<li>Monster Charmander created</li>
-<li>Monster Charmander added to Monstermon</li>
-<li>Team Team 2 created</li>
-<li>Team Team 2 added to Monstermon</li>
-<li>Monster Bulbasaur removed from team Team 1</li>
-<li>Monster Bulbasaur removed from team Team 1 in Monstermon</li>
-<li>Monster Charmander added to team Team 2</li>
-<li>Monster Charmander added to team Team 2 in Monstermon</li>
-<li>Monsters saved to JSON</li>
-<li>Teams saved to JSON</li>
+<li>Wed Apr 12 19:12:19 PDT 2023
+
+Monstermon created</li>
+
+<li>Wed Apr 12 19:12:24 PDT 2023
+
+Monster Bulbasaur created</li>
+
+<li>Wed Apr 12 19:12:24 PDT 2023
+
+Monster Bulbasaur added to Monstermon</li>
+
+<li>Wed Apr 12 19:12:27 PDT 2023
+
+Team Team 1 created</li>
+
+<li>Wed Apr 12 19:12:27 PDT 2023
+
+Team Team 1 added to Monstermon</li>
+
+<li>Wed Apr 12 19:12:30 PDT 2023
+
+Monster Bulbasaur added to team Team 1</li>
+
+<li>Wed Apr 12 19:12:30 PDT 2023
+
+Monster Bulbasaur added to team Team 1 in Monstermon</li>
+
+<li>Wed Apr 12 19:12:38 PDT 2023
+
+Monster Charmander created</li>
+
+<li>Wed Apr 12 19:12:38 PDT 2023
+
+Monster Charmander added to Monstermon</li>
+
+<li>Wed Apr 12 19:12:41 PDT 2023
+
+Team Team 2 created</li>
+
+<li>Wed Apr 12 19:12:41 PDT 2023
+
+Team Team 2 added to Monstermon</li>
+
+<li>Wed Apr 12 19:13:01 PDT 2023
+
+Monster Charmander added to team Team 1</li>
+
+<li>Wed Apr 12 19:13:01 PDT 2023
+
+Monster Charmander added to team Team 1 in Monstermon</li>
+
+<li>Wed Apr 12 19:13:06 PDT 2023
+
+Monster Charmander removed from team Team 1</li>
+
+<li>Wed Apr 12 19:13:06 PDT 2023
+
+Monster Charmander removed from team Team 1 in Monstermon</li>
+
+<li>Wed Apr 12 19:13:09 PDT 2023
+
+Monster Charmander added to team Team 2</li>
+
+<li>Wed Apr 12 19:13:09 PDT 2023
+
+Monster Charmander added to team Team 2 in Monstermon</li>
+
+<li>Wed Apr 12 19:13:14 PDT 2023
+
+Monsters saved to JSON</li>
+
+<li>Wed Apr 12 19:13:14 PDT 2023
+
+Teams saved to JSON</li>
 
 </ul>
 </div>

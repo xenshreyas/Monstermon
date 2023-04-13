@@ -116,7 +116,8 @@ public class MonstermonUI extends JFrame {
                 Iterator eventIterator = EventLog.getInstance().iterator();
                 while (eventIterator.hasNext()) {
                     Event event = (Event) eventIterator.next();
-                    System.out.println(event.getDescription());
+                    System.out.println(event.toString());
+                    System.out.println();
                 }
                 dispose();
             }
