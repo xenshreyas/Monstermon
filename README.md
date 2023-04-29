@@ -1,6 +1,11 @@
 # <span style="color:AliceBlue"> Monster Simulator - <span style="color:fireBrick"> **Monstermon Adventures** </span>
 
-## <span style="color:AliceBlue"> **What will the application do?**
+<div style="text-align: center">
+<img src="data/home-page.png" style="width:70%;">
+<img src="data/project-demo.png" style="width:70%;">
+</div>
+
+## <span style="color:AliceBlue"> **What does the application do?**
 
 <div style="text-align: justify">
 <p>"Monstermon Adventures" is an application that brings the excitement of monster collection and battling to your fingertips. Create and customize your own monsters by giving them unique names, selecting their types, and assigning them health points. Assemble a team of 5 powerful monsters and challenge other teams to epic battles. The game will determine the victor and keep track of your progress, so you can pick up right where you left off whenever you want to play. Experience the thrill of monster collecting and battling anytime, anywhere with Monstermon. </p>
