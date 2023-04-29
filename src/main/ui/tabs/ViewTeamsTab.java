@@ -11,8 +11,6 @@ import javax.swing.*;
 import java.util.List;
 import java.awt.*;
 
-// adapted from: https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
-
 // Represents the View Teams Tab
 public class ViewTeamsTab extends Tab {
 

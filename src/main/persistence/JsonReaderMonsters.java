@@ -10,8 +10,6 @@ import java.util.stream.Stream;
 
 import org.json.*;
 
-// adapted from: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
-
 // Represents a reader that reads monsters from JSON data stored in file
 public class JsonReaderMonsters {
     private String source;

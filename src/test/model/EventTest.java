@@ -8,8 +8,6 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// adapted from https://github.students.cs.ubc.ca/CPSC210/AlarmSystem.git
-
 // Represents the Test Class for Event
 public class EventTest {
     private Event e;

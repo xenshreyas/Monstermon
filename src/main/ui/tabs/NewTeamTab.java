@@ -8,8 +8,6 @@ import ui.components.RoundedButton;
 import javax.swing.*;
 import java.awt.*;
 
-// adapted from: https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
-
 // Represents the New Team Tab that allows the user to create a team
 public class NewTeamTab extends Tab {
 

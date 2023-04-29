@@ -106,7 +106,7 @@ public class MewUI extends JFrame {
     public void actionListener() {
         yes.addActionListener(e -> dispose());
         no.addActionListener(e -> {
-            System.out.println(colorRed + "Bruh you crashed the game... The devs are kinda pissed... "
+            System.out.println(colorRed + "Bruh you crashed the game... The devs are kinda mad... "
                     + "And so is the literal GOD of Pokémon. What a disgrace..." + colorReset);
             System.exit(0);
             dispose();

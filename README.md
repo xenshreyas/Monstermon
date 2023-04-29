@@ -28,12 +28,6 @@
 <p>Monstermon battles are intense one-on-one matchups between monsters. Each battle continues until one monster's health points are depleted, at which point the next monster from the respective team enters the arena. This process continues until all the monsters on one team have been defeated, resulting in a victorious team. The tension and excitement build as players strategize and select their monsters, knowing that one false move could lead to defeat. </p>
 </div>
 
-### <span style="color:Beige"> Implementation </span>
-<div style="text-align: justify">
-<p>The Monstermon application will be designed using two main classes: "Monster" and "Team." The "Monster" class represents each individual monster, with attributes such as name, type, and health points. The "Team" class is a collection of "Monster" objects, held together in an ArrayList. It includes additional attributes such as the team's name, and the list of monsters it comprises of. This class-based approach allows for a clear and organized structure for the game's logic and functionality.</p>
-<p>In Monstermon, the "Monster" class is equipped with several methods to manage and manipulate the monsters, such as "renameMonster()" to change the monster's name, "getHp()" to access the monster's health points, and "getType()" to determine the monster's type. The "Team" class is also outfitted with methods to manage the team's roster, such as "renameTeam()" to change the team's name, "addToTeam()" to add a monster to the team, "removeFromTeam()" to remove a monster from the team, and "battle()" to initiate a battle against another team. These methods provide players with the tools to fully customize and control their teams, adding depth and strategy to the game.</p>
-</div>
-
 ## <span style="color:AliceBlue"> **Who will use it?**
 
 <div style="text-align: justify"> 
@@ -71,21 +65,7 @@
 <p>In the future, I plan to expand the Monstermon universe by adding more types of monsters to the game, and creating a more complex system of type advantages and disadvantages. Furthermore, I aim to enhance the user interface by implementing visually appealing sprites and other graphics that will make the game more immersive. Additionally, I want to develop a system that allows monsters to have specific Skill Values such as attack, defense, and speed adding yet another layer of strategy and depth to the battling experience.</p>
 </div>
 
-## <span style="color:AliceBlue"> **Instructions for Grader**
-<div style="text-align: justify">
-<ul>
-
-<li>You can add a Monster to a Team by navigating to the Monsters tab, selecting a monster and a team from the two drop-down boxes, and clicking the "Add Monster" button.</li>
-<li>You can then remove a Monster from a Team by navigating to the Monsters tab, selecting a monster and a team from the two drop-down boxes, and clicking the "Remove Monster" button.</li>
-<li>You can then view the Monsters in a particular Team by navigating to the View Teams tab, selecting a team, and clicking the "View Monsters" button. </li>
-<li>The visual component can be found by typing in %20%Mew%20% in the New Monster tab.</li>
-<li>You can save the state of the application by clicking the "Save" button on the home page.</li>
-<li>You can load the state of the application by clicking the "Load" button on the home page.</li>
-
-</ul>
-</div>
-
-## <span style="color:AliceBlue"> **Phase 4: Task 2 [Representative Sample of Events]**
+## <span style="color:AliceBlue">**Representative Sample of Events**
 <div style="text-align: justify">
 <ul>
 
@@ -168,7 +148,7 @@ Teams saved to JSON</li>
 </ul>
 </div>
 
-## <span style="color:AliceBlue"> **Phase 4: Task 3 [Future Refactoring]**
+## <span style="color:AliceBlue"> **Future Refactoring**
 <div style="text-align: justify">
 <p>After reviewing the UML diagram, I believe that implementing the Observer Pattern would benefit my application. To achieve this, I would create an "Observer" interface and a "Subject" class. Both the ManipulateMonstersTab and the ViewTeamsTab would extend the Observer interface, and the MonstermonUI would extend the Subject class. This implementation would ensure that any changes made to the Monstermon field within MonstermonUI would trigger the update method, updating the corresponding Tabs to display the Monsters that are part of the Teams accurately.</p>
 <p>Moreover, I plan to refactor the code in the future to eliminate unnecessary clutter by removing the Monsters and Teams classes, and implementing the saving and loading functionality within the Monster and Team classes. I would also like to make the Team class implement the Iterable interface over Monster. This modification would create blissful ignorance as discussed in class, enabling the for each loop to perform its function without knowing much about the monsters field or the operation being carried out on them. Additionally, removing monsters from teams would be a simpler process with the implementation of iterators, which would allow for easy removal.</p>

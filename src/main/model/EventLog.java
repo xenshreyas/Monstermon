@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-// adapted from https://github.students.cs.ubc.ca/CPSC210/AlarmSystem.git
-
 // Represents the EventLog
 public class EventLog implements Iterable<Event> {
     // Singleton Design Pattern

@@ -8,8 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Iterator;
 
-// adapted from: https://github.students.cs.ubc.ca/CPSC210/LongFormProblemStarters.git
-
 // Represents the GUI for Monstermon Adventures
 public class MonstermonUI extends JFrame {
 

@@ -11,8 +11,6 @@ import javax.swing.*;
 import java.util.List;
 import java.awt.*;
 
-// adapted from: https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html
-
 // Represents the Add or Remove Monster to or from Team tab
 public class ManipulateMonstersTab extends Tab {
 
